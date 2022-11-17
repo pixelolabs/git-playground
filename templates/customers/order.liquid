@@ -1,0 +1,110 @@
+
+
+
+<div class="account-section light-brown-bottom-image">
+	
+	<div class="container-1400 container-section" >
+		
+		<div class="heading-section text-center">
+      <h1 class="h2 uppercase">Order {{ order.name }}</h1>
+      <p>Placed on {{ order.created_at | date: "%B %d, %Y %I:%M%p" }}</p>
+      {%- if order.cancelled -%}
+      <div class="order--cancelled">
+        {%- assign cancelled_at = order.cancelled_at | time_tag: format: "date_at_time" -%}
+        <p>{{ 'customer.order.cancelled_html' | t: date: cancelled_at }}</p>
+        <p>{{ 'customer.order.cancelled_reason' | t: reason: order.cancel_reason_label }}</p>
+      </div>
+    {%- endif -%}
+	<div class="account-links">
+		<a href="/account" class="backtoaccount btn-link" title="eturn to Account Details">← Back to Account Details</a>
+  {{ 'layout.customer.log_out' | t | customer_logout_link }}
+		</div>
+  </div>
+<!--END BREADCRUMB-->
+<div class="order-address-section-outer flex">
+	
+		<div class="order-section">
+		
+			<table id="order_details">
+			  <thead>
+			    <tr>
+			      <th>Product</th>
+			      <th>SKU</th>
+			      <th>Price</th>
+			      <th class="center">Quantity</th>
+			      <th class="total">Total</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    {% for line_item in order.line_items %}
+			    <tr id="{{ line_item.id }}" class="{% cycle 'odd', 'even' %}">
+			      <td class="product" data-label="Product" >
+			        {{ line_item.title | link_to: line_item.product.url }} 
+			        {% if line_item.fulfillment %}
+			          <div>
+			            Fulfilled {{ line_item.fulfillment.created_at | date: "%b %d" }}
+			            {% if line_item.fulfillment.tracking_number %}
+			              <a href="{{ line_item.fulfillment.tracking_url }}">{{ line_item.fulfillment.tracking_company }} #{{ line_item.fulfillment.tracking_number}}</a>
+			            {% endif %}
+			          </div>
+			        {% endif %}
+			      </td>
+			      <td  data-label="SKU"  class="sku">{{ line_item.sku }}</td>
+			      <td data-label="Price"  class="money">{{ line_item.price | money }}</td>
+			      <td data-label="Quantity"  class="quantity">{{ line_item.quantity }}</td>
+			      <td data-label="Total"  class="total money">{{ line_item.quantity | times: line_item.price | money }}</td>
+			    </tr>
+			    {% endfor %}
+			  </tbody>  
+			  <tfoot>
+			    <tr class="order_summary">
+			      <th  colspan="4">Subtotal:</th>
+			      <td data-label="Subtotal:" ><span>{{ order.subtotal_price | money }}</span></td>
+			    </tr>   
+			    {% for discount in order.discounts %}
+			      <tr class="order_summary discount">
+			        <th colspan="4">{{ discount.code }} Discount:</th>
+			        <td data-label="{{ discount.code }} Discount:" ><span>{{ discount.savings | money }}</span></td>
+			      </tr>
+			    {% endfor %}
+			    {% for shipping_method in order.shipping_methods %}
+			    <tr class="order_summary">
+			      <th  colspan="4">Shipping ({{ shipping_method.title }}):</th>
+			      <td data-label="Shipping ({{ shipping_method.title }}):" ><span>{{ shipping_method.price | money }}</span></td>
+			    </tr>
+			    {% endfor %}
+			    {% for tax_line in order.tax_lines %}
+			      <tr class="order_summary">
+			        <th  colspan="4">Tax ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%):</th>
+			        <td data-label="Tax ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%):" ><span>{{ tax_line.price | money }}</span></td>
+			      </tr>
+			    {% endfor %}    
+			    <tr class="order_summary order_total">
+			      <th  colspan="4"><strong>Total:</strong></th>
+			      <td data-label="Total:" ><strong>{{ order.total_price | money }} {{ order.currency }}</strong></td>
+			    </tr>   
+			  </tfoot>  
+			</table>
+		</div>
+    <div class="address-section">
+      <div class="billing-info">
+      <h6 class="h5">{{ 'customer.order.billing_address' | t }}</h6>
+
+      <p><strong>{{ 'customer.order.payment_status' | t }}:</strong> {{ order.financial_status_label }}</p>
+
+      {{ order.billing_address | format_address }}
+    </div>
+    <div class="shipping-info">
+      <h6 class="h5">{{ 'customer.order.shipping_address' | t }}</h6>
+
+      <p><strong>{{ 'customer.order.fulfillment_status' | t }}:</strong> {{ order.fulfillment_status_label }}</p>
+
+      {{ order.shipping_address | format_address }}
+      </div>
+    </div>
+		
+	</div>
+	
+	
+</div>
+</div>

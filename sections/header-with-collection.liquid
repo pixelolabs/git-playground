@@ -1,0 +1,273 @@
+<!-- Header -->
+<header>
+
+    {% if section.blocks.size > 0%}
+    <!-- Announcement -->
+    {% if section.settings.show_announcement%}
+    <div class="announcement-bar" style="background-color: {{section.settings.announcementColor}};">
+        <div class="container-1174 relative">
+            <div class="js__announcement-slider">
+                {% for block in section.blocks %}
+                {% if block.type == 'announcement' %}
+                <div>
+                    <p>
+                        {{block.settings.header_text}}
+                        {% if block.settings.announcement_link_text != blank%}
+                        <a href="{{block.settings.announcement_link}}"
+                            title="{{block.settings.announcement_link_text}}">{{block.settings.announcement_link_text}}</a>
+                        {%endif%}
+                    </p>
+                </div>
+                {%endif%}
+                {%endfor%}
+            </div>
+            <a href="#" title="close" id="announcement-close" class="close"> {% include 'icon-close' %} </a>
+        </div>
+    </div>
+    <script>
+        $("body").addClass("announcement-visible");
+    </script>
+    {%endif%}
+    {%endif%}
+
+    <div class="overlay js__overlay"></div>
+    <div class="main-header js__main-header">
+        <div class="container-1174 ">
+            <div class="flex-space-between border-bottom">
+                <!-- To be visible from ipad-->
+                <div class="mobile-hamburger">
+                    <button id="hamburger" type="button">
+                        <span>{% include 'icon-hamburger' %}</span>
+                    </button>
+                </div>
+
+                <!-- Logo -->
+                <div class="header-logo">
+                    <a href="{{ routes.root_url }}" itemprop="url" alt="{{shop.name}}">
+                        {% if section.settings.logo != blank %}
+                        <img src="{{ 'ella-jayne-logo-main.svg' | asset_url }}" alt="{{ shop.name }}" />
+                        {%else%}
+                        ELLAJAYNE
+                        {%endif%}
+                    </a>
+                </div>
+
+                <div class="navbar-collapse flex" id="navbarNavDropdown">
+                    <div class="flex-space-between ipad-block">
+                        <!-- Logo -->
+                        <div class="header-logo">
+                            <a href="{{ routes.root_url }}" itemprop="url" alt="{{shop.name}}">
+                                {% if section.settings.logo != blank %}
+                                {{ section.settings.logo | img_url: 'master' | img_tag: shop.name }}
+                                {%else%}
+                                ELLAJAYNE
+                                {%endif%}
+                            </a>
+                        </div>
+                        <!-- To be visible from ipad-->
+                        <div class="mobile-hamburger text-center">
+                            <button id="hamburger-close" type="button">
+                                <span class="close">{% include 'icon-close' %}</span>
+                            </button>
+                        </div>
+
+                    </div>
+                    <div class="header-search ipad-block">
+                        <form method="get" action="/search" class="width-100">
+                            {% include "icon-search" %}
+                            <input type="hidden" name="type" value="product" />
+                            <input type="search" aria-label="Search" name="q" placeholder="Search Products" />
+                            <input type="submit" aria-label="Submit" class="submit hide" value="Search" />
+                        </form>
+                    </div>
+                    {% assign mainMenu = linklists[section.settings.nav_menu]%}
+                    <nav>
+                        {% include 'site-nav' with mainMenu %}
+                    </nav>
+                    <ul class="flex-align-center right-section">
+                        <li>
+                            {% if customer %}
+                            <a href="/account" title="My Account" class="uppercase"> {% include "icon-account" %}
+                                My Account
+                                {% include "icon-left" %}
+                                {%else%}
+                                <a href="/account/login" title="Log In" class="uppercase">
+                                    Account
+                                    {% include "icon-left" %}
+                                    {% include "icon-account" %}
+                                    {%endif%}
+                                </a>
+                        </li>
+                        <li class="ipad-none"> <a href="javascript:void(0);" class="js__search-popup">{% include
+                                "icon-search" %}</a>
+                        </li>
+                        <li class="ipad-none">
+                            <a class="js-cart-expand cart {% if cart.item_count == 0 %}empty-cart{%endif%}" href="/cart"
+                                title="cart">{% include "icon-cart" %}
+
+                                <span class="js__ajax-cart-count  cart-count" style="display: none;">
+                                </span>
+
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="ipad-block">
+                        <ul class="mobile-bottom-menu">
+                            {% assign mobileBottomMenu = linklists[section.settings.mobileBottomMenu]%}
+                            {% include 'site-nav-mobile-bottom' with mobileBottomMenu %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="ipad-block">
+                    <a class="js-cart-expand cart {% if cart.item_count == 0 %}empty-cart{%endif%}" href="/cart"
+                        title="cart">{% include "icon-cart" %}
+
+                        <span class="js__ajax-cart-count cart-count" style="display: none;">
+                        </span>
+
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="header-search ipad-none text-right js__header-search">
+        <div class="container-1174 ">
+            <a href="javascript:void(0);" class="js__close-search-popup">{% include "icon-close" %}</a>
+            <form method="get" action="/search">
+                <input type="hidden" name="type" value="product" />
+                {% include "icon-search" %}
+                <input class="search" type="search" aria-label="Search" name="q" placeholder="Enter Keyword" />
+                <input type="submit" aria-label="Submit" class="submit uppercase" value="Search" />
+            </form>
+        </div>
+    </div>
+    <!-- Mini Cart -->
+    <div id="cart_overlay"></div>
+    {% include "cart-sidebar" %}
+</header>
+
+{% schema %}
+{
+"name": {
+"en": "Header"
+},
+"settings": [
+{
+"type": "image_picker",
+"id": "logo",
+"label": {
+"en": "Logo"
+},
+"info": {
+"en": "450 x 200px recommended"
+}
+},
+{
+"type": "link_list",
+"id": "nav_menu",
+"label": "Main Menu"
+},
+{
+"type": "header",
+"content": {
+"en": "Shop Menu - Collection Images"
+}
+},
+{
+"type": "text",
+"id": "collectionName1",
+"label": "Collection Name 1"
+},
+{
+"type": "image_picker",
+"id": "collectionImage1",
+"label": "Collection Image 1"
+},
+{
+"type": "text",
+"id": "collectionName2",
+"label": "Collection Name 2"
+},
+{
+"type": "image_picker",
+"id": "collectionImage2",
+"label": "Collection Image 2"
+},
+{
+"type": "text",
+"id": "collectionName3",
+"label": "Collection Name 3"
+},
+{
+"type": "image_picker",
+"id": "collectionImage3",
+"label": "Collection Image 3"
+},
+{
+"type": "text",
+"id": "collectionName4",
+"label": "Collection Name 4"
+},
+{
+"type": "image_picker",
+"id": "collectionImage4",
+"label": "Collection Image 4"
+},
+{
+"type": "link_list",
+"id": "mobileBottomMenu",
+"label": "Mobile Bottom Menu"
+},
+{
+"type": "header",
+"content": {
+"en": "Announcement bar"
+}
+},
+{
+"type": "checkbox",
+"id": "show_announcement",
+"label": {
+"en": "Show announcement"
+},
+"default": true
+},
+{
+"type": "color",
+"id": "announcementColor",
+"label": "Background Color"
+}
+],
+"blocks": [
+{
+"type": "announcement",
+"name": "Announcement",
+"settings": [
+{
+"type": "text",
+"id": "header_text",
+"label": {
+"en": "Text"
+}
+},
+{
+"type": "url",
+"id": "announcement_link",
+"label": {
+"en": "Link"
+},
+"info": {
+"en": "Optional"
+}
+},
+{
+"type": "text",
+"id": "announcement_link_text",
+"label": "Link Text"
+}
+]
+}
+]
+}
+{% endschema %}

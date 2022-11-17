@@ -1,0 +1,177 @@
+.featured-blog {
+  padding: 60px 0 40px 0;
+  .image-section {
+    width: 733px;
+    height: 400px;
+    position: relative;
+    img {
+      @include img-object-cover;
+    }
+  }
+  .content {
+    width: calc(100% - 733px);
+    padding-left: 40px;
+    position: relative;
+    * {
+      margin-bottom: 10px;
+    }
+    time {
+      margin-bottom: 20px;
+    }
+    span,
+    time {
+      display: block;
+      font-family: $font-family-primary;
+      font-size: 14px;
+      font-weight: bold;
+      line-height: normal;
+      letter-spacing: 3px;
+    }
+  }
+  @include MQ(MQ-1200) {
+    .image-section {
+      width: 60%;
+    }
+    .content {
+      width: 40%;
+    }
+  }
+  @include MQ(MQ-980) {
+    .image-section {
+      width: 50%;
+    }
+    .content {
+      width: 50%;
+    }
+  }
+  @include MQ(MQ-768) {
+    padding: 42px 0 51px 0;
+    .image-section {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    .content {
+      width: 100%;
+      padding: 0;
+      &::after {
+        display: none;
+      }
+      &:last-child {
+        padding-bottom: 40px;
+        &::after {
+          display: block;
+          width: 100%;
+        }
+      }
+    }
+  }
+  @include MQ(MQ-480) {
+    .image-section {
+      height: 37.1vw;
+    }
+    .content {
+      h2 {
+        font-size: 25px;
+        letter-spacing: 0.63px;
+      }
+    }
+  }
+}
+
+.blog-category-dropdown {
+  margin: 0 0 80px 0;
+  border-bottom: 1px solid $color-black;
+  .ipad-none {
+    ul {
+      width: 100%;
+      justify-content: center;
+      margin-left: -80px;
+      li {
+        padding-left: 80px;
+        a {
+          padding: 40px 0 17px 0;
+          display: inline-block;
+          font-size: 14px;
+          font-weight: bold;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: normal;
+          letter-spacing: 0.5px;
+          border-bottom: solid 2px transparent;
+          &.active {
+            border-color: $color-red;
+          }
+        }
+      }
+    }
+  }
+  @include MQ(MQ-980) {
+    margin: 0 0 40px 0;
+    .ipad-none {
+      ul {
+        margin-left: -40px;
+        li {
+          padding-left: 40px;
+        }
+      }
+    }
+  }
+  @include MQ(MQ-768) {
+    margin: 40px 0;
+    border: none;
+  }
+}
+
+.blog-list-view {
+  margin-left: -40px;
+  li {
+    padding: 0 0 60px 40px;
+    width: 33.33%;
+    .image-section {
+      height: 347px;
+      position: relative;
+      margin-bottom: 20px;
+      img {
+        @include img-object-cover;
+      }
+    }
+    .content {
+      h4 {
+        font-size: 22px;
+        letter-spacing: 1.47px;
+        margin: 0 0 10px 0;
+      }
+      p {
+        margin: 0 0 10px 0;
+      }
+      time {
+        font-family: $font-family-primary;
+        font-size: 14px;
+        margin: 0 0 20px 0;
+        font-weight: bold;
+        line-height: normal;
+        letter-spacing: 3px;
+        display: block;
+      }
+    }
+  }
+  @include MQ(MQ-980) {
+    li {
+      width: 50%;
+    }
+  }
+  @include MQ(MQ-768) {
+    margin: 0;
+    li {
+      width: 100%;
+      padding: 0 0 40px 0;
+    }
+  }
+  @include MQ(MQ-480) {
+    li {
+      .image-section {
+        height: 68vw;
+      }
+    }
+  }
+}

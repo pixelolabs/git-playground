@@ -1,0 +1,76 @@
+{%- layout none -%}
+{
+	"items":[
+	{%- for item in cart.items -%}
+		{
+			"product_title": {{ item.product.metafields.product-info.product_name | json }},
+			"id": {{ item.id | json }},
+			"tag" :[
+			
+			{%- if item.product.tags contains settings.tag1 -%}
+			{
+			"label": {{settings.tagLabel1 | json}},
+			"color": {{ settings.tagColor1 | json}}
+			}
+			{%endif%}
+			{%- if item.product.tags contains settings.tag2 -%}
+			,{
+			"label": {{settings.tagLabel2 | json}},
+			"color": {{ settings.tagColor2 | json}}
+			}
+			{%endif%}
+			{%- if item.product.tags contains settings.tag3 -%}
+			,{
+			"label": {{settings.tagLabel3 | json}},
+			"color": {{ settings.tagColor3 | json}}
+			}
+			{%endif%}
+			
+			{%- if item.product.tags contains settings.tag4 -%}
+			,{
+			"label": {{settings.tagLabel4 | json}},
+			"color": {{ settings.tagColor4 | json}}
+			}
+			{%endif%}
+			
+			{%- if item.product.tags contains settings.tag5 -%}
+			,{
+			"label": {{settings.tagLabel5 | json}},
+			"color": {{ settings.tagColor5 | json}}
+			}
+			{%endif%}
+			{%- if item.product.tags contains settings.tag6 -%}
+			,{
+			"label": {{settings.tagLabel6 | json}},
+			"color": {{ settings.tagColor6 | json}}
+			}
+			{%endif%}
+			{%- if item.product.tags contains settings.tag7 -%}
+			,{
+			"label": {{settings.tagLabel7 | json}},
+			"color": {{ settings.tagColor7 | json}}
+			}
+			{%endif%}
+			{%- if item.product.tags contains settings.tag8 -%}
+			,{
+			"label": {{settings.tagLabel8 | json}},
+			"color": {{ settings.tagColor8 | json}}
+			}
+			{%endif%}
+			{%- if item.product.tags contains settings.tag9 -%}
+			,{
+			"label": {{settings.tagLabel9 | json}},
+			"color": {{ settings.tagColor9 | json}}
+			}
+			{%endif%}
+			{%- if item.product.tags contains settings.tag10 -%}
+			,{
+			"label": {{settings.tagLabel10 | json}},
+			"color": {{ settings.tagColor10 | json}}
+			}
+			{%endif%}
+			]
+		}{% unless forloop.last %},{% endunless %}
+	{%- endfor -%}
+	]
+}

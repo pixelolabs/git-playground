@@ -1,0 +1,21 @@
+/* Safari 11+ */
+@media not all and (min-resolution: 0.001dpcm) {
+    @supports (-webkit-appearance: none) and (stroke-color: transparent) {
+      @media only screen and (max-width: 600px) {
+        // .cart-sidebar {
+        //   &__middle {
+        //     &.safari-mobile {
+        //       height: calc(100vh - 418px) !important;
+        //     }
+        //   }
+        // }
+      }
+    }
+  }
+  
+  /**
+   * Firefox specific rule
+   */
+  @-moz-document url-prefix() {
+  }
+  

@@ -1,0 +1,116 @@
+<ul class="flex-wrap">
+    {% for link in mainMenu.links %}
+    {% if link.links != blank %}
+    <!-- If second child menus are there -->
+    {% assign parent_index = forloop.index %}
+    {% assign linkTitle = link.title | downcase %}
+    <li class="{% if link.levels ==  1 %}has-big-nav{%else%}{%endif%} {% if linkTitle == 'men' %}men-shop-menu{%endif%} {% if linkTitle == 'women' %}women-shop-menu{%endif%} {% if linkTitle == 'accessories' %}accessories-shop-menu{%endif%}"
+        aria-haspopup="true">
+        <a href="{{ link.url }}" class="site-nav__link accordion-toggle" data-meganav-type="parent"
+            aria-controls="MenuParent-{{ parent_index }}" aria-expanded="false" {% unless request.page_type=='index'
+            %}{% if link.active %}aria-current="page" {% endif %}{% endunless%}>
+            {{ link.title | escape }}
+            {% include "icon-plus" %}
+            {% include "icon-minus" %}
+        </a>
+        {% if link.levels == 1 %}
+        <div class="submenu accordion-content">
+            <div class="container-1340 flex-wrap">
+                <div class="shop-menu">
+                    <ul>
+                        {% if linkTitle == 'men' %}
+                        {% for shoplink in menShopMenu.links %}
+                        <li>
+                            <a href="{{ shoplink.url }}" class="shop-nav__link">
+                                {{ shoplink.title | escape }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                        {%endif%}
+
+
+                        {% if linkTitle == 'women' %}
+                        {% for shoplink in womenShopMenu.links %}
+                        <li>
+                            <a href="{{ shoplink.url }}" class="shop-nav__link">
+                                {{ shoplink.title | escape }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                        {%endif%}
+
+
+                        {% if linkTitle == 'accessories' %}
+                        {% for shoplink in accessoriesShopMenu.links %}
+                        <li>
+                            <a href="{{ shoplink.url }}" class="shop-nav__link">
+                                {{ shoplink.title | escape }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                        {%endif%}
+                    </ul>
+
+
+                    {% if linkTitle == 'men' %}
+                    <a href="{{ section.settings.men_shop_btn_url }}" class="btn-white-red-border">{{
+                        section.settings.men_shop_btn_text }}</a>
+                    {%endif%}
+                    {% if linkTitle == 'women' %}
+                    <a href="{{ section.settings.women_shop_btn_url }}" class="btn-white-red-border">{{
+                        section.settings.women_shop_btn_text }}</a>
+                    {%endif%}
+                    {% if linkTitle == 'accessories' %}
+                    <a href="{{ section.settings.accessories_shop_btn_url }}" class="btn-white-red-border">{{
+                        section.settings.accessories_shop_btn_text }}</a>
+                    {%endif%}
+
+
+                </div>
+
+
+                <ul class="flex-wrap link-list">
+                    {% for childlink in link.links %}
+                    <li>
+                        <a href="{{ childlink.url }}" class="site-nav__link"
+                            aria-controls="MenuChildren-{{ parent_index }}-{{ child_index }}" data-meganav-type="parent"
+                            {% unless request.page_type=='index' %}{% if childlink.active %}aria-current="page" {% endif
+                            %}{% endunless%} tabindex="-1">
+                            {{ childlink.title | escape }}</a>
+                    </li>
+                    {%endfor%}
+                </ul>
+
+
+                <div class="image-section">
+                    {% if linkTitle == 'men' %}
+                    <img src="{{ section.settings.men_shop_image.src | img_url: 'master' }}"
+                        alt="Shop  {{ link.title | escape }}">
+                    {%endif%}
+                    {% if linkTitle == 'women' %}
+                    <img src="{{ section.settings.women_shop_image.src | img_url: 'master' }}"
+                        alt="Shop  {{ link.title | escape }}">
+                    {%endif%}
+                    {% if linkTitle == 'accessories' %}
+                    <img src="{{ section.settings.accessories_shop_image.src | img_url: 'master' }}"
+                        alt="Shop  {{ link.title | escape }}">
+                    {%endif%}
+                </div>
+
+
+            </div>
+
+        </div>
+
+        {%endif%}
+    </li>
+    {% else %}
+    <!-- If NO child menus are there -->
+    <li>
+        <a href="{{ link.url }}" class="site-nav__link">
+            {{ link.title | escape }}
+        </a>
+    </li>
+    {% endif %}
+    {% endfor %}
+</ul>

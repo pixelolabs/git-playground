@@ -1,0 +1,203 @@
+{%- assign limit = section.settings.grid | times: section.settings.rows -%}
+
+{% paginate collection.products by limit %}
+
+<div class="collection" data-section-id="{{ section.id }}" data-section-type="collection-template">
+  <div class="collection-header">
+    <div class="collection__hero-section">
+      {% if collection.image %}
+      <img src="{{ collection | img_url: 'master' }}" alt="{{ collection.title | escape }}" display="block" />
+      {% else %}
+      <img src="{{ section.settings.image | img_url: 'master' }}" alt="{{ collection.title | escape }}"
+        display="block" />
+      {% endif %}
+      <div class="container-1360 section-header text-center">
+        {% if collection.metafields.collection-sub-title.sub_title != blank %}
+        <span>{{collection.metafields.collection-sub-title.sub_title}}</span>
+        {% else %}
+        <span>{{section.settings.subTitle }}</span>
+        {% endif %}
+        <h1>
+          <span class="visually-hidden">{{ 'collections.general.collection_label' | t }}: </span>
+          {{ collection.title }}
+        </h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="collection-section" id="CollectionSection" data-section-id="{{ section.id }}"
+    data-section-type="collection-template" data-sort-enabled="{{ section.settings.sort_enable }}">
+    <div class="container-1280 ">
+      <div class="container-1160 ">
+        <div class="collection__top-section text-center">
+          <h4 class="uppercase">Available for in store pickup only.</h4>
+          {% if is_filter_by_available or section.settings.sort_enable %}
+          <div class="filters-toolbar-wrapper{% if is_filter_by_available %} filters-toolbar--has-filter{% endif %}">
+            <div class="page-width">
+              <div class="filters-toolbar">
+                <div class="filters-toolbar__item-wrapper">
+                  {% if section.settings.tags_enable %}
+                  {% unless collection.all_tags.size == 0 %}
+                  <div class="filters-toolbar__item-child">
+                    <label class=" hide filters-toolbar__label select-label" for="FilterTags">{{
+                      'collections.filters.title_tags' | t }}</label>
+                    <div class="filters-toolbar__input-wrapper select-group">
+                      <select class="filters-toolbar__input hidden" name="FilterTags" id="FilterTags"
+                        aria-describedby="a11y-refresh-page-message a11y-selection-message" data-select-input>
+                        <option value="{{ collection.url }}">{{ 'collections.filters.all_tags' | t }}</option>
+                        {% for tag in collection.all_tags %}
+                        {%- assign new_url = tag | link_to_tag: tag | split: 'href="' | last | split: '"' | first -%}
+                        <option value="{{ new_url }}" {% if current_tags contains tag %} selected="selected" {% endif
+                          %}>{{ tag }}</option>
+                        {% endfor %}
+                      </select>
+                      {% include 'icon-chevron-down' %}
+                    </div>
+                  </div>
+                  {% endunless %}
+                  {% endif %}
+
+                  {% if section.settings.sort_enable %}
+                  <div class="filters-toolbar__input-wrapper select-group">
+                    <label class="filters-toolbar__label select-label capitalize hide" for="SortBy">{{
+                      'collections.sorting.title' | t }}</label>
+                    {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+                    <select name="sort_by" id="SortBy" class="filters-toolbar__input"
+                      data-default-sortby="{{ collection.default_sort_by }}" data-select-input
+                      aria-describedby="a11y-refresh-page-message">
+                      {% for option in collection.sort_options %}
+                      <option value="{{ option.value }}" {% if sort_by==option.value %} selected="selected" {% endif %}>
+                        {{ option.name }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  {% endif %}
+                </div>
+
+                <div class="filters-toolbar__item filters-toolbar__item--count hide">
+                  <span class="filters-toolbar__product-count">{{ 'collections.general.items_with_count' | t: count:
+                    collection.products_count }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+        <ul
+          class="collection__product-list grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
+          {% for product in collection.products %}
+          {% include 'product-card-grid', max_height: max_height, product: product, show_vendor:
+          section.settings.show_vendor %}
+          {% else %}
+          {% comment %}
+          Add default products to help with onboarding for collections/all only.
+          The onboarding styles and products are only loaded if the
+          store has no products.
+          {% endcomment %}
+          {% if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0 %}
+          <li class="grid__item product-card 22">
+            <div class="grid grid--uniform">
+              {% for i in (1..limit) %}
+              <div class="grid__item">
+                <div class="grid-view-item">
+                  <a href="#" class="grid-view-item__link">
+                    <div class="grid-view-item__image">
+                      {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                      {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+                    </div>
+                    <div class="h4 grid-view-item__title">{{ 'homepage.onboarding.product_title' | t }}</div>
+                    <div class="grid-view-item__meta">
+                      <span class="product-price__price">$19.99</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </li>
+          {% else %}
+          {%- assign is_empty_collection = true -%}
+          {% endif %}
+          {% endfor %}
+        </ul>
+
+        {% if is_empty_collection %}
+        <div class="grid__item small--text-center">
+          <p class="text-center">{{ 'collections.general.no_matches' | t }}</p>
+        </div>
+        {% endif %}
+
+        {%- if paginate.pages > 1 -%}
+        {% include 'pagination', paginate: paginate %}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+{% endpaginate %}
+
+{% schema %}
+{
+"name": {
+"en": "Collection pages"
+},
+"settings": [
+{
+"type": "text",
+"id" : "subTitle",
+"label": "SubTitle for Collection All"
+},
+{
+"type": "image_picker",
+"id" : "image",
+"label": "Image for Collection All"
+},
+{
+"type": "range",
+"id": "grid",
+"label": {
+"en": "Products per row (grid only)"
+},
+"default": 4,
+"min": 2,
+"max": 5,
+"step": 1
+},
+{
+"type": "range",
+"id": "rows",
+"label": {
+"en": "Rows per page (grid only)"
+},
+"default": 2,
+"min": 2,
+"max": 8,
+"step": 1
+},
+{
+"type": "checkbox",
+"id": "show_vendor",
+"label": {
+"en": "Show product vendors"
+},
+"default": false
+},
+{
+"type": "checkbox",
+"id": "sort_enable",
+"label": {
+"en": "Enable sorting"
+},
+"default": true
+},
+{
+"type": "checkbox",
+"id": "tags_enable",
+"label": {
+"en": "Enable tag filtering"
+},
+"default": true
+}
+]
+}
+{% endschema %}

@@ -1,0 +1,104 @@
+<!--
+  use this line whenever product card call
+  {% include 'product_Card'  with  productRelated: productRelated , show_price: true, show_tags: true, show_auto_tags: true, show_title: true, show_fav: true, show_secondary_button: false %}
+-->
+<div class="image-section">
+
+  {% if show_fav %}
+  <div class="swym-btn-container swym-inject" data-position="default">
+    {% include 'swym-product-view', product: productRelated %}<button
+      class="favorite-icon btn swym-button swym-add-to-wishlist swym-inject swym-iconbtnlink swym-heart"
+      data-swaction="addToWishlist" data-product-id="{{productRelated.id | json}}"></button>
+  </div>
+  {%endif%}
+  <a title="{{ productRelated.title }}" href="{{productRelated.url}}">
+    {% if productRelated.images.size > 1 %}
+    <img class="js__product-image-{{productRelated.id}} lazyload"
+      data-src="{{  productRelated.images[0] | img_url: 'master' }}"
+      alt="{{ productRelated.featured_image.alt | escape }}">
+    <img class="hover-img lazyload" data-src="{{  productRelated.images[1] | img_url: 'master' }}"
+      alt="{{ productRelated.featured_image.alt | escape  }}" />
+    {% else %}
+    <img class="js__product-image-{{productRelated.id}} lazyload"
+      data-src="{{ productRelated.images[0] | img_url: 'master' }}"
+      alt="{{ productRelated.featured_image.alt | escape }}">
+    {% endif %}
+  </a>
+
+
+  {% if show_secondary_button != true %}
+  {%- assign card-current_variant = productRelated.selected_or_first_available_variant -%}
+  {%- if productRelated.available -%}
+  {% if productRelated.has_only_default_variant %}
+  <a class="btn--primary btn-width js__btn-add-to-cart" title="{{ productRelated.title }}" data-variant-id={{
+    card-current_variant.id }} href="javascript:;">Add to Cart</a>
+  {% else %}
+  <a class="btn--primary btn-width" title="{{ productRelated.title }}" href="{{productRelated.url}}">Select Options</a>
+  {% endif %}
+  {%- else -%}
+  <a class="btn--primary btn-width" title="{{ productRelated.title }}" href="{{productRelated.url}}">Sold Out</a>
+  {% endif %}
+  {% endif %}
+  <!-- Pending - Need to see how this is coming For - Three column product section - Home -->
+
+  {% if show_secondary_button %}
+  <a class="btn--secondary btn-width mobile-none" title="{{ productRelated.title }}"
+    href="{{productRelated.url}}">shop</a>
+  {% endif %}
+  {% if show_auto_tags %}
+  <span class="product-card__tags-automatic-status">
+
+    {% if productRelated.compare_at_price > productRelated.price %}
+    <span class="tag sale">Sale</span>
+    {% endif %}
+  </span>
+  {% endif %}
+</div>
+
+<div class="content">
+  {% if productRelated.metafields.product-info.collection_name != blank %}
+  <h5 class="product-card__collection-title"> {{productRelated.metafields.product-info.collection_name}}</h5>
+  {% else %}
+  {% for collectionRelated in productRelated.collections limit: 1 %}
+  <h5 class="product-card__collection-title"> {{ collectionRelated.title }}</h5>
+  {% endfor %}
+  {% endif %}
+  {% if show_title %}
+  <h6 class="product-card__product-title"> <a href="{{productRelated.url}}" id="product-card-{{productRelated.id}}">
+      {% if productRelated.metafields.product-info.product_name != blank %}
+      {{productRelated.metafields.product-info.product_name}}
+      {% else %}
+      {{productRelated.title}}
+      {% endif %}
+    </a></h6>
+  {% endif %}
+  <!-- Pending -->
+
+  <!-- Custom Tags -->
+  {% if show_tags %}
+  {% if settings.tagVisiblity %}
+  <span class="product-card__tags-status">
+    {% include 'product_tags' with productRelated %}
+  </span>
+  {% endif %}
+  {% endif %}
+
+  <!-- Price-->
+  {% if show_price %}
+  <span class="product-card__price flex">
+    {% if productRelated.variants.size > 1 %}
+    <span>
+      starting at
+      {{productRelated.price_min | money}}
+    </span>
+    {%else%}
+    <span> {{productRelated.price | money}}</span>
+    {% if productRelated.compare_at_price_min > productRelated.price %}
+    <s>
+      {{ productRelated.compare_at_price_min | money }}
+    </s>
+    {%endif%}
+    {%endif%}
+  </span>
+  {% endif %}
+</div>

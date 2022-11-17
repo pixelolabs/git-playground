@@ -1,0 +1,113 @@
+<div class="light-brown-bottom-image">
+  <div class="container-section">
+<div class="product-recommendations" data-base-url="{{ routes.product_recommendations_url }}"
+  data-product-id="{{ product.id }}">
+  {%- if recommendations.products_count > 0 -%}
+  <div class="pdp-recommendations">
+    <div class="container-1340">
+      <div class="content">
+        <h2 class="h2-large">{{section.settings.title}}</h2>
+      </div>
+      <div class="product-recommendations-list flex-wrap " {%- if settings.product_recommendation_slider=="on"
+        -%}id="js__pdp-recommendation-slider" {%- endif -%}>
+            {%- for productRelated in recommendations.products limit: 3 -%}
+            <div class="product-card">
+              {% include 'product_Card' with productRelated %}
+              </div>
+           
+            {%endfor%}
+        
+      </div>
+    </div>
+  </div>
+  {%endif%}
+</div>
+  </div>
+</div>
+
+<script>
+  var loadProductRecommendationsIntoSection = function () {
+    // Look for an element with class 'product-recommendations'
+    var productRecommendationsSection = document.querySelector(".product-recommendations");
+    if (productRecommendationsSection === null) { return; }
+    // Read product id from data attribute
+    var productId = productRecommendationsSection.dataset.productId;
+    // Read base URL from data attribute
+    var baseUrl = productRecommendationsSection.dataset.baseUrl;
+    // Read limit from data attribute
+    var limit = productRecommendationsSection.dataset.limit;
+    // Build request URL
+    var requestUrl = baseUrl + "?section_id=product-recommendations&product_id=" + productId + "&limit=" + limit;
+    // Create request and submit it using Ajax
+    var request = new XMLHttpRequest();
+    request.open("GET", requestUrl);
+    request.onload = function () {
+      if (request.status >= 200 && request.status < 300) {
+        var container = document.createElement("div");
+        container.innerHTML = request.response;
+        productRecommendationsSection.parentElement.innerHTML = container.querySelector(".product-recommendations").innerHTML;
+        $("#js__pdp-recommendation-slider")
+          .not(".slick-initialized")
+          .slick({
+            dots: false,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            arrows: true,
+            infinite: false,
+            speed: 500,
+            cssEase: "ease-in-out",
+            autoplay: false,
+            variableWidth: false,
+            draggable: true,
+            responsive: [{
+      breakpoint: 769,
+      settings: {
+        variableWidth: true,
+        slidesToShow: 1,
+    
+      },
+    },
+  ],
+            
+          });
+      }
+    };
+    request.send();
+  };
+
+  // Listen for changes done in the Theme Editor
+  document.addEventListener("shopify:section:load", function (event) {
+    if (event.detail.sectionId === "product-recommendations") {
+      loadProductRecommendationsIntoSection();
+    }
+  });
+  // Fetching the recommendations on page load
+  loadProductRecommendationsIntoSection();
+</script>
+{% schema %}
+{
+"name": "Product Recommendations",
+"settings": [
+{
+"type": "text",
+"id" : "title",
+"label": "Title"
+},
+{
+"type": "text",
+"id" : "subTitle",
+"label": "Sub Title"
+},
+{
+"type": "text",
+"id" : "buttonText",
+"label": "Button Text"
+},
+{
+"type": "url",
+"id" : "buttonLink",
+"label": "Button Link"
+}
+]
+}
+{% endschema %}

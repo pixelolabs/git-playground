@@ -1,0 +1,137 @@
+{% if section.settings.title != blank %}
+<style>
+{% if section.settings.contentBgColor != blank and section.settings.contentBgColor != 'rgba(0,0,0,0)' %}
+    .hero-banner .content {background-color: {{section.settings.contentBgColor}}; }
+{% else %}
+    @media only screen and (max-width: 600px) {.hero-banner .content {border-bottom: 1px solid #ababab; padding: 25px 0;margin:0 20px;}}
+{%endif%}
+
+{% if section.settings.contentColor != blank and section.settings.contentColor != 'rgba(0,0,0,0)' %}
+ .hero-banner .content { color:{{section.settings.contentColor}};}
+{%endif%}
+
+{% if section.settings.contentColor != '#ffffff' and section.settings.contentBgColor != 'rgba(0,0,0,0)' %}
+{% else %}
+    @media only screen and (max-width: 600px) {.hero-banner .content {color: #3c3c3b;}}
+{%endif%}
+
+{% if section.settings.btnBgColor != blank and section.settings.btnTextColor != 'rgba(0,0,0,0)' %}
+    .hero-banner .content .btn-solid-blue {background-color: {{section.settings.btnBgColor}}; color:{{section.settings.btnTextColor}};}
+    .hero-banner .content .btn-solid-blue:hover {background-color: {{section.settings.btnTextColor}}; color:{{section.settings.btnBgColor}};}
+{%endif%}
+</style>
+
+<div class="hero-banner">
+    <div class="hero-img-content">
+        <div class="container-1340 position-relative flex-align-center {% if section.settings.content_align == "left-align" %}left-align{%endif%}{% if section.settings.content_align == "center-align" %}center-align{%endif%}">
+            <div class="image-section">
+                {% if section.settings.backgroundImage != blank %}
+                <picture>
+                    <source media="(max-width: 600px)"
+                        srcset="{{ section.settings.backgroundImageMobile | img_url: 'master' }}">
+                    <img src="{{ section.settings.backgroundImage | img_url: 'master' }}" alt="{{section.settings.title}}">
+                </picture>
+                {%endif%}
+            </div>
+            <!-- By Default Content is right aligned, 
+                    to make it left - add class left-align -->
+            <div class="content">
+                <h3>{{section.settings.title}}</h3>
+                <p>{{section.settings.description}}</p>
+                {% if section.settings.buttonText != blank %}
+                <a class="btn-solid-blue" href="{{section.settings.buttonLink}}"
+                    title="{{section.settings.buttonText}}">{{section.settings.buttonText}}
+                </a>
+                {%endif%}
+            </div>
+        </div>
+    </div>
+    <div class="content hero-content">
+        <h3>{{section.settings.title}}</h3>
+        <p>{{section.settings.description}}</p>
+        {% if section.settings.buttonText != blank %}
+        <a class="btn-solid-blue" href="{{section.settings.buttonLink}}"
+            title="{{section.settings.buttonText}}">{{section.settings.buttonText}}
+        </a>
+        {%endif%}
+    </div>
+</div>
+
+{%endif%}
+
+{% schema %}
+{
+"name": "Hero Banner",
+"settings": [
+{
+"type": "image_picker",
+"id" : "backgroundImage",
+"label": "Background Image (desktop)"
+},
+{
+"type": "image_picker",
+"id" : "backgroundImageMobile",
+"label": "Background Image (mobile)"
+},
+{
+"type": "text",
+"id" : "title",
+"label": "Title"
+},
+{
+"type": "text",
+"id" : "description",
+"label": "Description"
+},
+{
+"type": "select",
+"id": "content_align",
+"options": [
+{ "value": "right-align", "label": "Right"},
+{ "value": "left-align", "label": "Left"},
+{ "value": "center-align", "label": "Center"}
+],
+"label": "Content alignment",
+"info": "By default it is right aligned."
+},
+{
+"type": "paragraph",
+"content": "Note: if Colors is set to NONE; then the default button styles are applied"
+},
+{
+"type": "color",
+"id": "contentColor",
+"label": "Content Color"
+},
+{
+"type": "color",
+"id": "contentBgColor",
+"label": "Content background Color"
+},
+{
+"type": "text",
+"id" : "buttonText",
+"label": "Button Text"
+},
+{
+"type": "url",
+"id" : "buttonLink",
+"label": "Button Link"
+},
+{
+"type": "paragraph",
+"content": "Note: if Button Colors is set to NONE; then the default button styles are applied"
+},
+{
+"type": "color",
+"id": "btnTextColor",
+"label": "Button Text Color"
+},
+{
+"type": "color",
+"id": "btnBgColor",
+"label": "Button Background Color"
+}
+]
+}
+{% endschema %}

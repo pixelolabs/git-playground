@@ -1,0 +1,97 @@
+<ul class="flex-justify-center">
+  {% for link in mainMenu.links %}
+  {% if link.links != blank %}
+  <!-- If second child menus are there -->
+  {% assign parent_index = forloop.index %}
+  <li class="{% if link.levels ==  2 %}has-big-nav{%else%}has-sub-nav{%endif%}" aria-haspopup="true">
+    <a href="{{ link.url }}" class="site-nav__link uppercase" data-meganav-type="parent"
+      aria-controls="MenuParent-{{ parent_index }}" aria-expanded="false" {% unless request.page_type=='index' %}{% if
+      link.active %}aria-current="page" {% endif %}{% endunless%}>
+      {{ link.title | escape }}
+      {% include "icon-plus" %}
+      {% include "icon-minus" %}
+      <span class="ipad-none"></span>
+    </a>
+    {% if link.levels == 2 %}
+    <div class="submenu">
+      <!--  First SHOP menu -->
+      <div class="container-1174 flex-wrap">
+        {% for childlink in link.links %}
+        {% if childlink.links != blank %}
+        {% assign childlinkTitle = childlink.title | downcase | remove: ' ' %}
+        <div class="submenu-links {% if childlinkTitle contains " collection" or childlinkTitle contains "collections"
+          %}submenu-collection-links{%endif%}">
+          <!--  If third child menus are there -->
+          <p> {{ childlink.title | escape }}</p>
+          <ul class="flex-wrap">
+            {% for subChildlink in childlink.links %}
+            <li>
+              {% if childlinkTitle contains "collection" or childlinkTitle contains "collections" %}
+              {% assign _object = subChildlink.object %}
+              <a href="{{ _object.url }}" data-meganav-type="parent" aria-controls="MenuParent-{{ parent_index }}"
+                aria-expanded="false" {% unless request.page_type=='index' %}{% if subChildlink.active
+                %}aria-current="page" {% endif %}{% endunless%}>
+                <div class="image-section">
+                  {% assign subchildlinkTitle = subChildlink.title | downcase | remove: ' ' %}
+                  {% if subChildlink.title == section.settings.collectionName1 %}
+                  <img loading="lazy" alt="{{subChildlink.title | escape}}"
+                    src="{{ section.settings.collectionImage1 | img_url: 'master'  }}">
+                  {% elsif subChildlink.title == section.settings.collectionName2 %}
+                  <img loading="lazy" alt="{{subChildlink.title | escape}}"
+                    src="{{ section.settings.collectionImage2 | img_url: 'master'  }}">
+                  {% elsif subChildlink.title == section.settings.collectionName3 %}
+                  <img loading="lazy" alt="{{subChildlink.title | escape}}"
+                    src="{{ section.settings.collectionImage3 | img_url: 'master'  }}">
+                  {% elsif subChildlink.title == section.settings.collectionName4 %}
+                  <img loading="lazy" alt="{{subChildlink.title | escape}}"
+                    src="{{ section.settings.collectionImage4 | img_url: 'master'  }}">
+                  {%else%}
+                  <img loading="lazy" alt="{{_object.featured_image.alt}}"
+                    src="{{ _object.featured_image.src | product_img_url: 'master'  }}">
+                  {%endif%}
+                </div>
+                <span>{{ subChildlink.title | escape }}</span>
+              </a>
+              {%else%}
+              <a href="{{ subChildlink.url }}" data-meganav-type="parent" aria-controls="MenuParent-{{ parent_index }}"
+                aria-expanded="false" {% unless request.page_type=='index' %}{% if subChildlink.active
+                %}aria-current="page" {% endif %}{% endunless%}> {{ subChildlink.title | escape }}
+              </a>
+              {%endif%}
+            </li>
+            {%endfor%}
+          </ul>
+        </div>
+        {% endif %}
+        {%endfor%}
+      </div>
+
+      {%else%}
+
+      <ul class="sub-menu">
+        {% for childlink in link.links %}
+        <li>
+          <a href="{{ childlink.url }}" class="site-nav__link"
+            aria-controls="MenuChildren-{{ parent_index }}-{{ child_index }}" data-meganav-type="parent" {% unless
+            request.page_type=='index' %}{% if childlink.active %}aria-current="page" {% endif %}{% endunless%}
+            tabindex="-1">
+            {{ childlink.title | escape }}</a>
+        </li>
+        {%endfor%}
+      </ul>
+
+    </div>
+    {%endif%}
+  </li>
+  {% else %}
+  <!-- If NO child menus are there -->
+  <li>
+    <a href="{{ link.url }}" class="site-nav__link uppercase">
+      {{ link.title | escape }}
+      {% include "icon-left" %}
+      <span class="ipad-none"></span>
+    </a>
+  </li>
+  {% endif %}
+  {% endfor %}
+</ul>

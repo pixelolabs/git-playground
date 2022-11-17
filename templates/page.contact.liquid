@@ -1,0 +1,80 @@
+{% section 'inner-hero-section' %}
+<div class="contact-section ">
+    <div class="container-1400">
+        <div class="content">
+            {{page.content}}
+        </div>
+        <div class="contact-into-section">
+            <ul>
+                <li>
+                    {% include 'icon-call' %}
+                    <span class="title uppercase"> Toll Free</span>
+                    <a href="tel:{{settings.tollfreeNumber}}">{{settings.tollfreeNumberLabel}}</a>
+                   
+                </li>
+                <li>
+                    {% include 'icon-mobile' %}
+                    <span class="title uppercase"> Phone</span>
+                    <a href="tel:{% if settings.numberPlusSign == true %}+{%endif%}{{settings.number}}">{{settings.number}}</a>
+                </li>
+                <li>
+                    {% include 'icon-fax' %}
+                    <span class="title uppercase"> Fax</span>
+                    <p> {{settings.fax}}</p>
+                </li>
+                <li>
+                    {% include 'icon-email' %}
+                    <span class="title uppercase"> Email</span>
+                    <a href="mailto:{{settings.emailAddress}}"> {{settings.emailAddress}}</a>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="form-map-section flex-wrap">
+            <div class="form-section">
+                {%- assign formId = 'ContactForm' -%}
+                {% form 'contact', id: formId %}
+                {% include 'form-status', form: form, form_id: formId %}
+                <input placeholder="Name*" type="text" id="{{ formId }}-name"
+                    name="contact[{{ 'contact.form.name' | t }}]"
+                    value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}">
+                <input placeholder="Phone Number" type="tel" id="{{ formId }}-phone"
+                    name="contact[{{ 'contact.form.phone' | t }}]" pattern="[0-9\-]*"
+                    value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+                <div class="grid__item medium-up--one-half">
+                    <input placeholder="Email Address* " type="email" id="{{ formId }}-email" name="contact[email]"
+                        autocorrect="off" autocapitalize="off"
+                        value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                        aria-required="true" {%- if form.errors contains 'email' -%} class="input--error"
+                        aria-invalid="true" aria-describedby="{{ formId }}-email-error" {%- endif -%}>
+                    {%- if form.errors contains 'email' -%}
+                    <span id="{{ formId}}-email-error" class="input-error-message">
+                        <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                        <span>{{ form.errors.translated_fields['email'] | capitalize }}
+                            {{ form.errors.messages['email'] }}.</span>
+                    </span>
+                    {%- endif -%}
+                </div>
+                <label>Comments, Question, or Message*</label>
+                <textarea rows="10" id="{{ formId }}-message"
+                    name="contact[{{ 'contact.form.message' | t }}]">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+                <input type="submit" class="btn-red" value="Submit">
+                {% endform %}
+            </div>
+            <div class="map-section">
+                <div class="inner flex">
+                    {% include 'icon-location' %}
+                    <div class="heading">
+                        <span class="title uppercase">Our Office</span>
+                        <p>{{settings.address}}</p>
+                    </div>
+                </div>
+                {% if settings.mapImg != blank %}
+                <a href="{{settings.mapLink}}" target="_blank" class="image-section">
+                    <img src="{{ settings.mapImg | img_url: 'master' }}">
+                </a>
+                {%- endif -%}
+            </div>
+        </div>
+    </div>
+</div>

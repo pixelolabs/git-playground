@@ -1,0 +1,280 @@
+.announcement-bar {
+    background-color: $color-red;
+    position: relative;
+    &.active {
+      display: block;
+    }
+    .container-1340 {
+      justify-content: center;
+    }
+    .close {
+      position: absolute;
+      right: 20px;
+      color: $color-white;
+      top: 10px;
+      line-height: 12px;
+      svg {
+        height: 12px;
+        * {
+          stroke: $color-white;
+          fill: $color-white;
+        }
+      }
+    }
+    .slick-list {
+      padding: 0 !important;
+    }
+    p {
+      font-family: $font-family-primary-bold;
+      font-size: 12px;
+      font-weight: bold;
+      line-height: normal;
+      letter-spacing: 0.86px;
+      text-align: center;
+      color: $color-white;
+      padding-left: 30px;
+      position: relative;
+      margin-left: 30px;
+      &::before {
+        content: "|";
+        position: absolute;
+        left: 0;
+        color: $color-black;
+      }
+      &:first-child {
+        margin: 0;
+        padding: 0;
+        &::before {
+          display: none;
+        }
+      }
+      img {
+        width: 60px;
+        height: 34px;
+        margin-right: 12px;
+      }
+      span {
+        padding: 10px 0;
+        color: inherit;
+        font: inherit;
+      }
+      a {
+        color: inherit;
+        font: inherit;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    @include MQ(MQ-1120) {
+      &.active {
+        display: none;
+      }
+      .container-1340 {
+        padding: 0;
+        justify-content: flex-start;
+      }
+      p {
+        &:nth-child(2) {
+          display: none;
+        }
+      }
+    }
+    @include MQ(MQ-680) {
+      .close {
+        svg {
+          height: 10px;
+        }
+      }
+      p {
+        font-size: 10px;
+        letter-spacing: 0.71px;
+      }
+    }
+  }
+  
+  header {
+    z-index: 9;
+    .header {
+      border: solid 2px $color-black2;
+      background-color: $color-black;
+      min-height: 65px;
+      border-left: 0;
+      border-right: 0;
+      .flex-align-center.container-1340 {
+        justify-content: space-between;
+        @include MQ(MQ-1120) {
+          padding: 0 20px;
+        }
+      }
+    }
+    &.fixed {
+      position: fixed;
+      transition: 0.3s;
+      width: 100%;
+      top: 0;
+      z-index: 99;
+    }
+    .logo {
+      width: 160px;
+      height: 110px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      top: 9px;
+      z-index: 99;
+      img {
+        @include img-object-contain;
+      }
+      a {
+        img {
+          &:nth-child(2) {
+            display: none;
+          }
+        }
+      }
+      .inner-logo {
+        display: none;
+      }
+      &.active {
+        height: 71px;
+        a {
+          display: none;
+        }
+        .inner-logo {
+          display: block;
+        }
+      }
+    }
+  
+    .mobile-hamburger {
+      display: none;
+      #hamburger {
+        .close {
+          display: none;
+        }
+        &.active {
+          span {
+            display: none;
+            &.close {
+              display: inline;
+            }
+          }
+        }
+      }
+    }
+  
+    @include MQ(MQ-1120) {
+      .header {
+        .container-1340 {
+          align-items: center;
+          min-height: inherit;
+        }
+      }
+      .mobile-hamburger {
+        display: block;
+        height: 20px;
+        button {
+          height: inherit;
+          .close {
+            svg {
+              height: 16px;
+              width: 16px;
+            }
+          }
+        }
+      }
+      .ipad-none {
+        display: none;
+      }
+      .ipad-block {
+        display: block;
+      }
+    }
+    @include MQ(MQ-680) {
+      .header {
+        min-height: 40px;
+      }
+      .logo {
+        width: 88px;
+        height: 62px;
+        top: 4px;
+        &.active {
+          height: 40px;
+        }
+        a {
+          img {
+            display: none;
+            &:nth-child(2) {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  .header-search {
+    flex-wrap: nowrap;
+    display: flex;
+    position: relative;
+    svg {
+      position: absolute;
+      right: 15px;
+      top: 7px;
+    }
+    input {
+      padding: 6px 15px 7px;
+      border: solid 1px $color-white;
+      background-color: transparent;
+      width: 204px;
+      height: 35px;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.57;
+      letter-spacing: normal;
+      font-family: $font-family-primary;
+      color: $color-white;
+      &::placeholder {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.57;
+        letter-spacing: normal;
+        color: $color-white;
+        font-family: $font-family-primary;
+      }
+    }
+    &.ipad-block {
+      display: none;
+      padding: 20px 30px;
+      width: 100%;
+      input {
+        width: 100%;
+      }
+      svg {
+        top: 27px;
+        right: 45px;
+      }
+    }
+    @include MQ(MQ-1120) {
+      &.ipad-block {
+        display: block;
+      }
+    }
+  }
+  
+  .icon-wishlist-heart-empty {
+    font-size: 20px;
+    color: $color-white;
+    &:hover {
+      color: $color-red;
+    }
+  }
+  header {
+    [class*=" icon-wishlist-"]:before,
+    [class^="icon-wishlist-"]:before {
+      display: none;
+    }
+  }
+  

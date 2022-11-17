@@ -1,0 +1,803 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Godzilla",
+    "theme_author": "Dolly",
+    "theme_version": "1.0.0",
+    "theme_documentation_url": "https:\/\/help.shopify.com\/en\/manual\/online-store\/os\/using-themes",
+    "theme_support_url": "https:\/\/support.shopify.com\/"
+  },
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "radio",
+        "id": "submenu_accordion",
+        "label": "Header Submenu Accordion",
+        "info": "Header Sub Menu in mobile hide everything and then open or display links as it is.",
+        "options": [
+          {
+            "value": "yes",
+            "label": "Yes"
+          },
+          {
+            "value": "no",
+            "label": "No"
+          }
+        ],
+        "default": "yes"
+      }
+    ]
+  },
+  {
+    "name": "Product Page",
+    "settings": [
+      {
+        "type": "text",
+        "id": "tag1",
+        "label": "Tag 1"
+      },
+      {
+        "type": "text",
+        "id": "tagLabel1",
+        "label": "Tag Label 1"
+      },
+      {
+        "type": "color",
+        "id": "tagColor1",
+        "label": "Tag Color",
+        "default": "#191919"
+      },
+      {
+        "type": "text",
+        "id": "tag2",
+        "label": "Tag 2"
+      },
+      {
+        "type": "text",
+        "id": "tagLabel2",
+        "label": "Tag Label 2"
+      },
+      {
+        "type": "color",
+        "id": "tagColor2",
+        "label": "Tag Color",
+        "default": "#191919"
+      },
+      {
+        "type": "text",
+        "id": "tag3",
+        "label": "Tag 3"
+      },
+      {
+        "type": "text",
+        "id": "tagLabel3",
+        "label": "Tag Label 3"
+      },
+      {
+        "type": "color",
+        "id": "tagColor3",
+        "label": "Tag Color",
+        "default": "#191919"
+      },
+      {
+        "type": "header",
+        "content": "Product Colors"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgcolor1",
+        "label": "Color 1"
+      },
+      {
+        "type": "text",
+        "id": "colorLabel1",
+        "label": "Color Label 1"
+      },
+      {
+        "type": "text",
+        "id": "outOfStockMsg1",
+        "label": "Out of Stock Message for Color 1"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgcolor2",
+        "label": "Color 2"
+      },
+      {
+        "type": "text",
+        "id": "colorLabel2",
+        "label": "Color Label 2"
+      },
+      {
+        "type": "text",
+        "id": "outOfStockMsg2",
+        "label": "Out of Stock Message for Color 2"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgcolor3",
+        "label": "Color 3"
+      },
+      {
+        "type": "text",
+        "id": "colorLabel3",
+        "label": "Color Label 3"
+      },
+      {
+        "type": "text",
+        "id": "outOfStockMsg3",
+        "label": "Out of Stock Message for Color 3"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgcolor4",
+        "label": "Color 4"
+      },
+      {
+        "type": "text",
+        "id": "colorLabel4",
+        "label": "Color Label 4"
+      },
+      {
+        "type": "text",
+        "id": "outOfStockMsg4",
+        "label": "Out of Stock Message for Color 4"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgcolor5",
+        "label": "Color 5"
+      },
+      {
+        "type": "text",
+        "id": "colorLabel5",
+        "label": "Color Label 5"
+      },
+      {
+        "type": "text",
+        "id": "outOfStockMsg5",
+        "label": "Out of Stock Message for Color 5"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgcolor6",
+        "label": "Color 6"
+      },
+      {
+        "type": "text",
+        "id": "colorLabel6",
+        "label": "Color Label 6"
+      },
+      {
+        "type": "text",
+        "id": "outOfStockMsg6",
+        "label": "Out of Stock Message for Color 6"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgcolor7",
+        "label": "Color 7"
+      },
+      {
+        "type": "text",
+        "id": "colorLabel7",
+        "label": "Color Label 7"
+      },
+      {
+        "type": "text",
+        "id": "outOfStockMsg7",
+        "label": "Out of Stock Message for Color 7"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgcolor8",
+        "label": "Color 8"
+      },
+      {
+        "type": "text",
+        "id": "colorLabel8",
+        "label": "Color Label 8"
+      },
+      {
+        "type": "text",
+        "id": "outOfStockMsg8",
+        "label": "Out of Stock Message for Color 8"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgcolor9",
+        "label": "Color 9"
+      },
+      {
+        "type": "text",
+        "id": "colorLabel9",
+        "label": "Color Label 9"
+      },
+      {
+        "type": "text",
+        "id": "outOfStockMsg9",
+        "label": "Out of Stock Message for Color 9"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgcolor10",
+        "label": "Color 10"
+      },
+      {
+        "type": "text",
+        "id": "colorLabel10",
+        "label": "Color Label 10"
+      },
+      {
+        "type": "text",
+        "id": "outOfStockMsg10",
+        "label": "Out of Stock Message for Color 10"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgcolor11",
+        "label": "Color 11"
+      },
+      {
+        "type": "text",
+        "id": "colorLabel11",
+        "label": "Color Label 11"
+      },
+      {
+        "type": "text",
+        "id": "outOfStockMsg11",
+        "label": "Out of Stock Message for Color 11"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgcolor12",
+        "label": "Color 12"
+      },
+      {
+        "type": "text",
+        "id": "colorLabel12",
+        "label": "Color Label 12"
+      },
+      {
+        "type": "text",
+        "id": "outOfStockMsg12",
+        "label": "Out of Stock Message for Color 12"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgcolor13",
+        "label": "Color 13"
+      },
+      {
+        "type": "text",
+        "id": "colorLabel13",
+        "label": "Color Label 13"
+      },
+      {
+        "type": "text",
+        "id": "outOfStockMsg13",
+        "label": "Out of Stock Message for Color 13"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgcolor14",
+        "label": "Color 14"
+      },
+      {
+        "type": "text",
+        "id": "colorLabel14",
+        "label": "Color Label 14"
+      },
+      {
+        "type": "text",
+        "id": "outOfStockMsg14",
+        "label": "Out of Stock Message for Color 14"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgcolor15",
+        "label": "Color 15"
+      },
+      {
+        "type": "text",
+        "id": "colorLabel15",
+        "label": "Color Label 15"
+      },
+      {
+        "type": "text",
+        "id": "outOfStockMsg15",
+        "label": "Out of Stock Message for Color 15"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgcolor16",
+        "label": "Color 16"
+      },
+      {
+        "type": "text",
+        "id": "colorLabel16",
+        "label": "Color Label 16"
+      },
+      {
+        "type": "text",
+        "id": "outOfStockMsg16",
+        "label": "Out of Stock Message for Color 16"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgcolor17",
+        "label": "Color 17"
+      },
+      {
+        "type": "text",
+        "id": "colorLabel17",
+        "label": "Color Label 17"
+      },
+      {
+        "type": "text",
+        "id": "outOfStockMsg17",
+        "label": "Out of Stock Message for Color 17"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgcolor18",
+        "label": "Color 18"
+      },
+      {
+        "type": "text",
+        "id": "colorLabel18",
+        "label": "Color Label 18"
+      },
+      {
+        "type": "text",
+        "id": "outOfStockMsg18",
+        "label": "Out of Stock Message for Color 18"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgcolor19",
+        "label": "Color 19"
+      },
+      {
+        "type": "text",
+        "id": "colorLabel19",
+        "label": "Color Label 19"
+      },
+      {
+        "type": "text",
+        "id": "outOfStockMsg19",
+        "label": "Out of Stock Message for Color 19"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgcolor20",
+        "label": "Color 20"
+      },
+      {
+        "type": "text",
+        "id": "colorLabel20",
+        "label": "Color Label 20"
+      },
+      {
+        "type": "text",
+        "id": "outOfStockMsg20",
+        "label": "Out of Stock Message for Color 20"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgcolor21",
+        "label": "Color 21"
+      },
+      {
+        "type": "text",
+        "id": "colorLabel21",
+        "label": "Color Label 21"
+      },
+      {
+        "type": "text",
+        "id": "outOfStockMsg21",
+        "label": "Out of Stock Message for Color 21"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgcolor22",
+        "label": "Color 22"
+      },
+      {
+        "type": "text",
+        "id": "colorLabel22",
+        "label": "Color Label 22"
+      },
+      {
+        "type": "text",
+        "id": "outOfStockMsg22",
+        "label": "Out of Stock Message for Color 22"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgcolor23",
+        "label": "Color 23"
+      },
+      {
+        "type": "text",
+        "id": "colorLabel23",
+        "label": "Color Label 23"
+      },
+      {
+        "type": "text",
+        "id": "outOfStockMsg23",
+        "label": "Out of Stock Message for Color 23"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgcolor24",
+        "label": "Color 24"
+      },
+      {
+        "type": "text",
+        "id": "colorLabel24",
+        "label": "Color Label 24"
+      },
+      {
+        "type": "text",
+        "id": "outOfStockMsg24",
+        "label": "Out of Stock Message for Color 24"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgcolor25",
+        "label": "Color 25"
+      },
+      {
+        "type": "text",
+        "id": "colorLabel25",
+        "label": "Color Label 25"
+      },
+      {
+        "type": "text",
+        "id": "outOfStockMsg25",
+        "label": "Out of Stock Message for Color 25"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgcolor26",
+        "label": "Color 26"
+      },
+      {
+        "type": "text",
+        "id": "colorLabel26",
+        "label": "Color Label 26"
+      },
+      {
+        "type": "text",
+        "id": "outOfStockMsg26",
+        "label": "Out of Stock Message for Color 26"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgcolor27",
+        "label": "Color 27"
+      },
+      {
+        "type": "text",
+        "id": "colorLabel27",
+        "label": "Color Label 27"
+      },
+      {
+        "type": "text",
+        "id": "outOfStockMsg27",
+        "label": "Out of Stock Message for Color 27"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgcolor28",
+        "label": "Color 28"
+      },
+      {
+        "type": "text",
+        "id": "colorLabel28",
+        "label": "Color Label 28"
+      },
+      {
+        "type": "text",
+        "id": "outOfStockMsg28",
+        "label": "Out of Stock Message for Color 28"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgcolor29",
+        "label": "Color 29"
+      },
+      {
+        "type": "text",
+        "id": "colorLabel29",
+        "label": "Color Label 29"
+      },
+      {
+        "type": "text",
+        "id": "outOfStockMsg29",
+        "label": "Out of Stock Message for Color 29"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgcolor30",
+        "label": "Color 30"
+      },
+      {
+        "type": "text",
+        "id": "colorLabel30",
+        "label": "Color Label 30"
+      },
+      {
+        "type": "text",
+        "id": "outOfStockMsg30",
+        "label": "Out of Stock Message for Color 30"
+      },
+      {
+        "type": "text",
+        "id": "product_recommendation_limit",
+        "label": "Product Recommendation products limit (if no slider)",
+        "default": "4"
+      }
+    ]
+  },
+  {
+    "name": "Frequently Bought Together Products",
+    "settings": [
+      {
+        "type": "text",
+        "id": "freqBoughtTitle",
+        "label": "Title"
+      },
+      {
+        "type": "product",
+        "id": "product_1",
+        "label": "Product 1"
+      },
+      {
+        "type": "product",
+        "id": "product_2",
+        "label": "Product 2"
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Free Shipping"
+      },
+      {
+        "type": "text",
+        "id": "freeShippingThresholdValue",
+        "label": "Threshold Value"
+      },
+      {
+        "type": "text",
+        "id": "freeShippingMsg",
+        "label": "Free Shipping Message (When the value is reached)"
+      }
+    ]
+  },
+  {
+    "name": "Contact Information",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "emailIcon",
+        "label": "Email Address Icon"
+      },
+      {
+        "type": "text",
+        "id": "emailAddress",
+        "label": "Email Address"
+      },
+      {
+        "type": "image_picker",
+        "id": "callIcon",
+        "label": "Contact Number Icon"
+      },
+      {
+        "type": "text",
+        "id": "number",
+        "label": "Contact Number"
+      },
+      {
+        "type": "checkbox",
+        "id": "numberPlusSign",
+        "label": "Plus sign for tel number",
+        "default": true,
+        "info": "Add Plus sign to tel number into the href to get directly called"
+      },
+      {
+        "type": "image_picker",
+        "id": "chatIcon",
+        "label": "Chat Icon"
+      },
+      {
+        "type": "text",
+        "id": "chatText",
+        "label": "Chat Text"
+      },
+      {
+        "type": "url",
+        "id": "chatLink",
+        "label": "Chat Link"
+      }
+    ]
+  },
+  {
+    "name": "Search",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Product suggestions"
+      },
+      {
+        "type": "checkbox",
+        "id": "predictive_search_enabled",
+        "label": "Enable product suggestions",
+        "info": "This will also affect the search bar on the search results page.",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "predictive_search_show_vendor",
+        "label": "Show vendor",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "predictive_search_show_price",
+        "label": "Show price",
+        "default": false
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Social media"
+    },
+    "settings": [
+      {
+        "type": "header",
+        "content": {
+          "en": "Social accounts"
+        }
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": {
+          "en": "Twitter"
+        },
+        "info": {
+          "en": "https:\/\/twitter.com\/shopify"
+        }
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": {
+          "en": "Facebook"
+        },
+        "info": {
+          "en": "https:\/\/facebook.com\/shopify"
+        }
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_link",
+        "label": {
+          "en": "Pinterest"
+        },
+        "info": {
+          "en": "https:\/\/pinterest.com\/shopify"
+        }
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": {
+          "en": "Instagram"
+        },
+        "info": {
+          "en": "http:\/\/instagram.com\/shopify"
+        }
+      },
+      {
+        "type": "text",
+        "id": "social_tumblr_link",
+        "label": {
+          "en": "Tumblr"
+        },
+        "info": {
+          "en": "http:\/\/shopify.tumblr.com"
+        }
+      },
+      {
+        "type": "text",
+        "id": "social_snapchat_link",
+        "label": {
+          "en": "Snapchat"
+        },
+        "info": {
+          "en": "https:\/\/www.snapchat.com\/add\/shopify"
+        }
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": {
+          "en": "YouTube"
+        },
+        "info": {
+          "en": "https:\/\/www.youtube.com\/shopify"
+        }
+      },
+      {
+        "type": "text",
+        "id": "social_vimeo_link",
+        "label": {
+          "en": "Vimeo"
+        },
+        "info": {
+          "en": "https:\/\/vimeo.com\/shopify"
+        }
+      },
+      {
+        "type": "header",
+        "content": {
+          "en": "Sharing options"
+        }
+      },
+      {
+        "type": "checkbox",
+        "id": "share_insta",
+        "label": {
+          "en": "Share on Insta"
+        }
+      },
+      {
+        "type": "checkbox",
+        "id": "share_youtube",
+        "label": {
+          "en": "Share on Youtube"
+        }
+      },
+      {
+        "type": "checkbox",
+        "id": "share_facebook",
+        "label": {
+          "en": "Share on Facebook"
+        }
+      },
+      {
+        "type": "checkbox",
+        "id": "share_twitter",
+        "label": {
+          "en": "Tweet on Twitter"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Favicon"
+    },
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": {
+          "en": "Favicon image"
+        },
+        "info": {
+          "en": "Will be scaled down to 32 x 32px"
+        }
+      }
+    ]
+  }
+]

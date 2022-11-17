@@ -1,0 +1,581 @@
+<!-- Header -->
+<header>
+    <!-- Announcement -->
+    {% if section.settings.show_announcement%}
+    <div class="announcement-bar">
+        <div class="container-1280 relative">
+            <div class="announcement-slider">
+                {% for block in section.blocks %}
+                {% if block.type == 'announcement' %}
+                <div>
+                    <p>
+                        {{block.settings.header_text}}
+                        {% if block.settings.announcement_link_text != blank%}
+                        <a href="{{block.settings.announcement_link}}"
+                            title="{{block.settings.announcement_link_text}}">{{block.settings.announcement_link_text}}</a>
+                        {%endif%}
+                    </p>
+                </div>
+                {%endif%}
+                {%endfor%}
+            </div>
+            <a href="javascript:void(0)" title="close" id="announcement-close" class="close"> {% include 'icon-close' %}
+            </a>
+        </div>
+    </div>
+    <script>
+        $("body").addClass("announcement-visible");
+    </script>
+    {%endif%}
+    <div class="main-header">
+        <div class="container-1340 flex-align-center">
+            <!-- To be visible from ipad-->
+            <div class="mobile-hamburger">
+                <button id="hamburger" type="button" aria-label="hamburger">
+                    <span>{% include 'icon-hamburger' %}</span>
+                    <span class="close">{% include 'icon-close' %}</span>
+                </button>
+            </div>
+            <!-- Logo -->
+            {% if section.settings.logoYouth != blank %}
+            <div class="header-logo">
+                <a href="{{ routes.root_url }}" class="font-zero" itemprop="url" title="{{shop.name}}">
+                    {{shop.name}}
+                    <picture>
+                        <source media="(max-width: 980px)"
+                            srcset="{{ section.settings.logoYouthMobile | img_url: 'master' }}">
+                        <img src="{{section.settings.logoYouth | img_url: 'master' }}" class="youth-logo"
+                            alt="{{shop.name}} Logo" loading="lazy">
+                    </picture>
+                    <picture>
+                        <source media="(max-width: 980px)"
+                            srcset="{{ section.settings.logoKidsMobile | img_url: 'master' }}">
+                        <img src="{{section.settings.logoKids | img_url: 'master' }}" class="kids-logo"
+                            alt="{{shop.name}} Kids Logo" loading="lazy">
+                    </picture>
+                    <img src="{{ 'fixed-header-logo.png' | asset_url }}" class="scroll-logo"
+                        alt="{{shop.name}} Scroll Logo" loading="lazy">
+                </a>
+            </div>
+            {%endif%}
+
+            <!-- Nav -->
+            <div class="flex menu-links" id="navbarNavDropdown">
+                <div class="left-nav">
+                    <div class="header-search ipad-block flex-align-center" style="display: none;">
+                        <a href="javascript:void(0)" aria-label="search"> {% include 'icon-search' %} </a>
+                        {% comment %}
+                        <form method="get" action="/search" class="width-100">
+                            <input type="search" aria-label="search our site" name="q" placeholder="search our site" />
+                            <input type="submit" aria-label="search" class="submit hide" value="Search" />
+                        </form>
+                        {% endcomment %}
+                        <form method="get" action="/search" class="width-100">
+                            <input type="hidden" name="view" value="spring" />
+                            <input id="ss-search-mobile" type="search" aria-label="search our site" name="q"
+                                placeholder="search our site" value="{{ search.terms | escape }}" />
+                            <input type="submit" aria-label="search" class="submit hide" value="Search" />
+                        </form>
+                    </div>
+                    {% assign mainMenu = linklists[section.settings.shopmenu]%}
+                    <nav class="main-menu">
+                        <ul class="flex-align-center">
+                            {% include 'site-nav_multi-mega-menu' with mainMenu %}
+                        </ul>
+                    </nav>
+                    {% if section.settings.findRetailerText != blank %}
+                    <div class="ipad-block mobile-store-locator">
+                        <a href="{{section.settings.findRetailer}}"
+                            title="{{section.settings.findRetailerText}}">{{section.settings.findRetailerText}}</a>
+                    </div>
+                    {%endif%}
+                </div>
+                <!-- Contact, Cart -->
+                <ul class="flex-align-center right-nav">
+                    <li class="header-search flex-align-center ipad-none">
+                        <a href="javascript:void(0)" onclick="search_open();" id="searchIcon" class="font-zero">
+                            Search
+                            {% include 'icon-search' %}
+                        </a>
+                        <form method="get" action="/search">
+                            <input type="hidden" name="view" value="spring" />
+                            <input name="q" type="search" id="searchOpen" aria-label="search our site"
+                                placeholder="search our site" value="{{ search.terms | escape }}">
+                            <input type="submit" aria-label="search" class="submit hide" value="Search" />
+                        </form>
+                        {% comment %}
+                        <input type="search" id="searchOpen" aria-label="search our site" placeholder="search our site">
+                        <div class="top-search-results flex-wrap">
+                            <ul class="flex-wrap side-links">
+                                <li class="tab-link active" data-attr="beanie">beanie</li>
+                                <li class="tab-link" data-attr="beanies">beanie<strong>s</strong></li>
+                                <li class="tab-link" data-attr="slouchybeanies"> <strong>slouchy</strong> beanies</li>
+                                <li class="tab-link" data-attr="beanierim">beanie
+                                    <strong>rim</strong>
+                                </li>
+                            </ul>
+                            <div id="beanie" class="tab-content" style="display: block;">
+                                <div class="search-content flex-wrap">
+                                    <div class="filters-list">
+                                        <div class="filter">
+                                            <p>color</p>
+                                            <ul class="flex-wrap">
+                                                <li> <input type="radio" id="color1" name="gender" value="color1">
+                                                    <label aria-label="color1" for="color1"></label>
+                                                </li>
+                                                <li> <input type="radio" id="color2" name="gender" value="color2">
+                                                    <label aria-label="color2" for="color2"></label>
+                                                </li>
+                                                <li> <input type="radio" id="color3" name="gender" value="color3">
+                                                    <label aria-label="color3" for="color3"></label>
+                                                </li>
+                                                <li> <input type="radio" id="color4" name="gender" value="color4">
+                                                    <label aria-label="color4" for="color4"></label>
+                                                </li>
+                                                <li> <input type="radio" id="color5" name="gender" value="color5">
+                                                    <label aria-label="color5" for="color5"></label>
+                                                </li>
+                                                <li> <input type="radio" id="color6" name="gender" value="color6">
+                                                    <label aria-label="color6" for="color6"></label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="filter">
+                                            <p>style</p>
+                                            <ul>
+                                                <li>
+                                                    <label class="custom-checkbox">beanies
+                                                        <input type="checkbox" aria-label="beanies">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label class="custom-checkbox">earflaps
+                                                        <input type="checkbox" aria-label="earflaps">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+
+                                                </li>
+                                                <li>
+                                                    <label class="custom-checkbox">helmet liners
+                                                        <input type="checkbox" aria-label="helmet liners">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+
+                                                </li>
+                                                <li>
+                                                    <label class="custom-checkbox">trucker hats
+                                                        <input type="checkbox" aria-label="trucker hats">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="filter">
+                                            <p>layers</p>
+                                            <ul>
+                                                <li>
+                                                    <label class="custom-checkbox">double-layer
+                                                        <input type="checkbox" aria-label="double-layer">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label class="custom-checkbox">single-layer
+                                                        <input type="checkbox" aria-label="single-layer">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+
+                                                </li>
+                                                <li>
+                                                    <label class="custom-checkbox">multi-layer
+                                                        <input type="checkbox" aria-label="multi-layer">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="search-result">
+                                        <p>search results for <strong>“beanie”</strong></p>
+                                        <ul class="flex-wrap">
+                                            <li>
+                                                <div class="image-section">
+                                                    <a href="" class="font-zero">
+                                                        <img src="https://cdn.shopify.com/s/files/1/0987/0714/products/sRsoGBsJubboOphv1Mssr0pMgZAVuLU8-24.jpg"
+                                                            alt="chelonia 150 fleece beanie">
+                                                        chelonia 150 fleece beanie
+                                                    </a>
+                                                </div>
+                                                <div class="content">
+                                                    <a href="">
+                                                        <p class="product-title">chelonia 150 fleece beanie</p>
+                                                    </a>
+                                                    <p>$14.99</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="image-section">
+                                                    <a href="" class="font-zero">
+                                                        <img src="https://cdn.shopify.com/s/files/1/0987/0714/products/sRsoGBsJubboOphv1Mssr0pMgZAVuLU8-24.jpg"
+                                                            alt="chelonia 150 fleece beanie">
+                                                        chelonia 150 fleece beanie
+                                                    </a>
+                                                </div>
+                                                <div class="content">
+                                                    <a href="">
+                                                        <p class="product-title">chelonia 150 fleece beanie</p>
+                                                    </a>
+                                                    <p>$14.99</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="image-section">
+                                                    <a href="" class="font-zero">
+                                                        <img src="https://cdn.shopify.com/s/files/1/0987/0714/products/sRsoGBsJubboOphv1Mssr0pMgZAVuLU8-24.jpg"
+                                                            alt="chelonia 150 fleece beanie">
+                                                        chelonia 150 fleece beanie
+                                                    </a>
+                                                </div>
+                                                <div class="content">
+                                                    <a href="">
+                                                        <p class="product-title">chelonia 150 fleece beanie</p>
+                                                    </a>
+                                                    <p>$14.99</p>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="image-section">
+                                                    <a href="" class="font-zero">
+                                                        <img src="https://cdn.shopify.com/s/files/1/0987/0714/products/sRsoGBsJubboOphv1Mssr0pMgZAVuLU8-24.jpg"
+                                                            alt="chelonia 150 fleece beanie">
+                                                        chelonia 150 fleece beanie
+                                                    </a>
+                                                </div>
+                                                <div class="content">
+                                                    <a href="">
+                                                        <p class="product-title">chelonia 150 fleece beanie</p>
+                                                    </a>
+                                                    <p>$14.99</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="beanies" class="tab-content">
+                                beanies
+                            </div>
+                            <div id="slouchybeanies" class="tab-content">
+                                slouchy
+                                beanies
+                            </div>
+                            <div id="beanierim" class="tab-content">
+                                beanie rim
+                            </div>
+                        </div>
+                        {% endcomment %}
+                    </li>
+                    <li class="ipad-none">
+                        <a href="{{section.settings.storeLocator}}" title="Store Locator"> {% include 'icon-locator' %}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" title="Contact" class="ipad-none" id="questionIcon"
+                            onclick="contact_open();"> {%
+                            include
+                            'icon-question-round' %} </a>
+                        <div class="contact-dropdown" id="headerDropdown">
+                            <ul>
+                                <li>
+                                    <a href="mailto:{{settings.emailAddress}}" title="Email Us"> {% include 'icon-email'
+                                        %}email us</a>
+                                </li>
+                                <li><a href="tel:{{settings.number}}" title="Phone Number">{% include 'icon-phone'
+                                        %}{{settings.number}}</a></li>
+                                <li>
+                                    <a href="{{section.settings.contactUrl}}" title="{{section.settings.contactTitle}}">
+                                        {% include 'icon-chat' %}{{section.settings.contactTitle}}
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="header-contact-menu">
+                                {% assign rightNav = linklists[section.settings.rightContactMenu]%}
+                                {% for link in rightNav.links %}
+                                <li>
+                                    <a href="{{ link.url }}" title="{{link.title}}">
+                                        {{ link.title | escape }} </a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="ipad-none">
+                        {% if customer %}
+                        <a href="/account" id="accountIcon" title="Account">{% include 'icon-user' %}
+                            {%else%}
+                            <a href="/account/login" id="accountIcon" title="Log In">
+                                {% include 'icon-user' %}
+                                {%endif%}
+
+                            </a>
+                    </li>
+                    <li class="ipad-none">
+                        <!-- If no items then empty-cart class is added -->
+                        <a class="js-cart-expand cart mini-cart" href="javascript:void(0)" title="cart">{% include
+                            "icon-cart" %}
+                            <!-- Add Cart Count-->
+                            <span class="js-ajax-cart-count cart-count">
+                                {{cart.item_count}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="ipad-block">
+                <!-- If no items then empty-cart class is added -->
+                <a class="js-cart-expand cart mini-cart" href="javascript:void(0)" title="cart">{% include
+                    "icon-cart" %}
+                    <!-- Add Cart Count-->
+                    <span class="js-ajax-cart-count cart-count">
+                        {{cart.item_count}}</span>
+                </a>
+            </div>
+        </div>
+        {% include "cart-sidebar" %}
+    </div>
+</header>
+
+{% schema %}
+{
+"name": {
+"en": "Header"
+},
+"settings": [
+{
+"type": "image_picker",
+"id": "logoYouth",
+"label": "Main Logo"
+},
+{
+"type": "image_picker",
+"id": "logoYouthMobile",
+"label": "Main Logo Mobile"
+},
+{
+"type": "image_picker",
+"id": "logoKids",
+"label": "Kids Logo"
+},
+{
+"type": "image_picker",
+"id": "logoKidsMobile",
+"label": "Kids Logo Mobile"
+},
+{
+"type": "header",
+"content": {
+"en": "Top Header Right Nav"
+}
+},
+{
+"type": "url",
+"id": "storeLocator",
+"label": "Store Locator Link"
+},
+{
+"type": "url",
+"id": "findRetailer",
+"label": "Find a Retailer Link (mobile)"
+},
+{
+"type": "text",
+"id": "findRetailerText",
+"label": "Find a Retailer Text (mobile)"
+},
+{
+"type": "text",
+"id": "contactTitle",
+"label": "Contact Us Title"
+},
+{
+"type": "url",
+"id": "contactUrl",
+"label": "Contact Us Link"
+},
+{
+"type": "link_list",
+"id": "rightContactMenu",
+"label": "Right Contact Menu"
+},
+{
+"type": "header",
+"content": {
+"en": "Shop Menu"
+}
+},
+{
+"type": "text",
+"id": "shopMenuTitle",
+"label": "Shop Menu Title (Shop)"
+},
+{
+"type": "link_list",
+"id": "shopmenu",
+"label": "Shop Menu"
+},
+{
+"type": "link_list",
+"id": "shopLastMenu",
+"label": "Shop Last Menu"
+},
+{
+"type": "header",
+"content": {
+"en": "Mission Menu"
+}
+},
+{
+"type": "text",
+"id": "missionMenuTitle",
+"label": "Mission Menu Title (Mission)"
+},
+{
+"type": "text",
+"id": "missionTitle",
+"label": "Mission Title"
+},
+{
+"type": "richtext",
+"id": "missionContent",
+"label": "Mission Content"
+},
+{
+"type": "header",
+"content": {
+"en": "Explore Menu"
+}
+},
+{
+"type": "text",
+"id": "exploreMenuTitle",
+"label": "Explore Menu Title (Explore)"
+},
+{
+"type": "link_list",
+"id": "exploremenu",
+"label": "Explore Menu"
+},
+{
+"type": "header",
+"content": {
+"en": "Announcement bar"
+}
+},
+{
+"type": "checkbox",
+"id": "show_announcement",
+"label": {
+"en": "Show announcement"
+},
+"default": true
+}
+],
+"blocks": [
+{
+"type": "announcement",
+"name": "Announcement",
+"settings": [
+{
+"type": "text",
+"id": "header_text",
+"label": {
+"en": "Text"
+}
+},
+{
+"type": "url",
+"id": "announcement_link",
+"label": {
+"en": "Link"
+},
+"info": {
+"en": "Optional"
+}
+},
+{
+"type": "text",
+"id": "announcement_link_text",
+"label": "Link Text"
+}
+]
+},
+{
+"type": "collections",
+"name": "Shop Menu Collections",
+"limit": 3,
+"settings": [
+{
+"type": "image_picker",
+"id" : "collectionImage",
+"label": "Image"
+},
+{
+"type": "text",
+"id" : "title",
+"label": "Collection Title"
+},
+{
+"type": "url",
+"id" : "link",
+"label": "Collection Link"
+}
+]
+},
+{
+"type": "mission",
+"name": "Mission List",
+"limit": 3,
+"settings": [
+{
+"type": "image_picker",
+"id" : "missionImage",
+"label": "Image"
+},
+{
+"type": "text",
+"id" : "title",
+"label": "Mission Title"
+},
+{
+"type": "url",
+"id" : "link",
+"label": "Mission Link"
+}
+]
+},
+{
+"type": "explore",
+"name": "Explore List",
+"limit": 3,
+"settings": [
+{
+"type": "image_picker",
+"id" : "exploreImage",
+"label": "Image"
+},
+{
+"type": "text",
+"id" : "title",
+"label": "Explore Title"
+},
+{
+"type": "url",
+"id" : "link",
+"label": "Explore Link"
+}
+]
+}
+]
+}
+{% endschema %}

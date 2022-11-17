@@ -1,0 +1,11 @@
+{% for link in mobileBottomMenu.links %}
+{% if link.links != blank %}
+{%else%}
+<!-- If NO child menus are there -->
+<li>
+    <a href="{{ link.url }}" title="{{ link.title | escape }}">
+        {{ link.title | escape }}
+    </a>
+</li>
+{%endif%}
+{%endfor%}

@@ -1,0 +1,84 @@
+<ul class="flex-justify-center">
+  {% for link in mainMenu.links %}
+  {% if link.links != blank %}
+  <!-- If first child menus are there -->
+  {% assign parent_index = forloop.index %}
+  <li class="{% if link.levels ==  2 %}has-big-nav{%else%}has-sub-nav{%endif%}" aria-haspopup="true">
+    <a href="{{ link.url }}" title=" {{ link.title | escape }}" class="site-nav__link accordion-toggle"
+      data-meganav-type="parent" aria-controls="MenuParent-{{ parent_index }}" aria-expanded="false" {% unless
+      request.page_type=='index' %}{% if link.active %}aria-current="page" {% endif %}{% endunless%}>
+      {{ link.title | escape }}
+      {% include "icon-plus" %}
+      {% include "icon-minus" %}
+    </a>
+    {% if link.levels == 2 %}
+    <div class="big-nav accordion-content">
+      <div class="container-1400 ">
+        <div class="flex-wrap">
+          {% for childlink in link.links %}
+          {% if childlink.links != blank %}
+          {% assign childlinkTitle = childlink.title | downcase | remove: ' ' %}
+          <div class="big-nav-links">
+            <!--  If third child menus are there -->
+            <div class="image-section">
+              <img src="{{ " dummy-placeholder.png" | asset_url }}" alt="{{ childlink.title | escape }}">
+            </div>
+            <p class="accordion-toggle-inner">{{ childlink.title | escape }} {% include "icon-plus" %}
+              {% include "icon-minus" %}</p>
+            <ul class="accordion-content-inner">
+              {% for subChildlink in childlink.links %}
+              <li>
+                <a href="{{ subChildlink.url }}" data-meganav-type="parent"
+                  aria-controls="MenuParent-{{ parent_index }}" aria-expanded="false" {% unless
+                  request.page_type=='index' %}{% if subChildlink.active %}aria-current="page" {% endif %}{%
+                  endunless%}> {{ subChildlink.title | escape }}
+                </a>
+              </li>
+              {%endfor%}
+            </ul>
+          </div>
+          {% endif %}
+          {%endfor%}
+          {% if section.settings.shopMenuText != blank %}
+          <div class="image-with-heading big-nav-links">
+            {% if section.settings.shopMenuLink != blank %}
+            <a href="{{section.settings.shopMenuLink}}" title="{{section.settings.shopMenuText}}">
+              {% endif %}
+              <div class="image-section">
+                <img src="{{ section.settings.shopMenuImage | img_url: 'master' }}"
+                  alt="{{section.settings.shopMenuText}}">
+              </div>
+              <p>{{section.settings.shopMenuText}}</p>
+              {% if section.settings.shopMenuLink != blank %}
+            </a>
+            {% endif %}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {%else%}
+    {% if link.levels == 1 %}
+    <ul class="sub-nav accordion-content">
+      {% for childlink in link.links %}
+      <li>
+        <a href="{{ childlink.url }}" title="{{ childlink.title | escape }}"
+          aria-controls="MenuChildren-{{ parent_index }}-{{ child_index }}" data-meganav-type="parent" {% unless
+          request.page_type=='index' %}{% if childlink.active %}aria-current="page" {% endif %}{% endunless%}>
+          {{ childlink.title | escape }}</a>
+      </li>
+      {%endfor%}
+    </ul>
+    {%endif%}
+    {%endif%}
+  </li>
+  {% else %}
+  <!-- If NO child menus are there -->
+  <li>
+    <a href="{{ link.url }}" title="{{ link.title | escape }}">
+      {{ link.title | escape }}
+    </a>
+  </li>
+  {% endif %}
+  {% endfor %}
+</ul>

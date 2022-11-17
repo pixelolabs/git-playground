@@ -1,0 +1,787 @@
+/*
+1. Reset
+2. Elements
+3. Headings
+4. Buttons
+5. Inner Page
+6. Full Format
+7. Containers
+8. Extra classes for ease
+    1. Text Alignment
+    2. Text Transform
+    3. Flex
+    4. Position
+    5. Float
+    6. Hide and Show Blocks
+    7. Alignments?
+    8. Paddings
+*/
+/****** RESET ******/
+html {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  font-weight: 500;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: 500 100%/0.8 $font-family-primary !important;
+  color: $color-black;
+  letter-spacing: normal;
+  overflow-wrap: break-word;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  margin: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  background-color: $color-white;
+  overflow-x: hidden;
+}
+
+:focus {
+  outline: none;
+}
+
+::placeholder,
+::-webkit-input-placeholder {
+  opacity: 1 !important;
+}
+
+ul,
+ol,
+li,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  z-index: 1;
+  position: relative;
+
+  &::before {
+    content: "";
+    width: 100%;
+    height: calc(100% + 10px);
+    background-color: $color-white;
+    position: absolute;
+    top: 50%;
+    left: -2px;
+    transform: translateY(-50%);
+  }
+}
+
+li {
+  text-decoration: none;
+  list-style: none;
+}
+
+/****** ELEMENTS ******/
+::selection {
+  background: $color-black;
+}
+p {
+  font-family: $font-family-primary;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 24px;
+}
+
+b,
+strong {
+  font-weight: 600;
+  font-family: $font-family-primary;
+}
+
+a {
+  font-family: $font-family-primary;
+  color: $color-black;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+
+  &:hover {
+    color: #252525;
+  }
+}
+
+/****** HEADINGS ******/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-style: normal;
+  color: $color-black;
+}
+
+h1,
+.h1 {
+  font-family: $font-family-primary;
+  font-weight: 900;
+  font-size: 44px;
+  line-height: 54px;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+}
+
+h2,
+.h2 {
+  font-family: $font-family-primary;
+  font-weight: 900;
+  font-size: 36px;
+  line-height: 44px;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+}
+
+h3,
+.h3 {
+  font-family: $font-family-secondary;
+  font-weight: 900;
+  font-size: 30px;
+  line-height: 32px;
+  letter-spacing: -1px;
+  text-transform: capitalize;
+}
+
+h4,
+.h4 {
+  font-family: $font-family-secondary;
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -1px;
+  text-transform: capitalize;
+}
+
+h5,
+.h5 {
+  font-family: $font-family-primary;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  text-transform: capitalize;
+}
+
+h6 {
+  font-family: $font-family-primary;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  text-transform: capitalize;
+}
+
+/****** BUTTONS ******/
+button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  padding: 0;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn--primary {
+  @include px-button;
+  &:hover {
+    background-color: $color-dark-gray;
+    color: $color-white;
+  }
+}
+
+.btn--secondary {
+  @include px-button;
+  background-color: $color-white;
+  color: $color-black;
+  &:hover {
+    background-color: $color-gray;
+    color: $color-black;
+  }
+}
+
+.btn--tertiary {
+  @include px-button;
+  border: solid 1px $color-black !important;
+  color: $color-black !important;
+  line-height: 1.5 !important;
+  background-color: transparent;
+}
+.link--primary {
+  @include px-button;
+  padding: 0;
+  background-color: transparent;
+  max-width: fit-content;
+  border-bottom: 1px solid $color-black;
+  border-radius: 0;
+  color: $color-black;
+  font-size: 14px;
+  margin-left: auto;
+  display: flex;
+  margin-right: 16px;
+  &.white {
+    color: $color-black;
+    border-color: $color-white;
+  }
+}
+.link--secondary {
+  @include px-button;
+  padding: 0;
+  background-color: transparent;
+  max-width: fit-content;
+  border-bottom: 1px solid $color-dark-gray;
+  border-radius: 0;
+  color: $color-dark-gray;
+  font-size: 16px;
+  font-weight: normal;
+}
+/* INNER PAGE WITH H1 */
+.inner-page {
+  padding: 40px 0px 80px;
+
+  @include MQ(MQ-480) {
+    padding: 20px 0px;
+  }
+
+  h1 {
+    padding-bottom: 45px;
+
+    @include MQ(MQ-480) {
+      padding-bottom: 30px;
+    }
+  }
+}
+
+/* FULL FORMAT */
+.full-format {
+  font-family: $font-family-primary;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+
+  p,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    padding-top: 30px;
+
+    &:first-child {
+      padding-top: 0;
+    }
+  }
+
+  img {
+    width:auto;
+    max-width:100%;
+    height: auto;
+    padding-top: 30px;
+  }
+
+  a {
+    font-size: 16px;
+    border-bottom: 1px solid $color-black;
+    font-weight: 600;
+  }
+
+  h2 {
+    font-size: 48px;
+
+    @include MQ(MQ-480) {
+      font-size: 30px;
+      letter-spacing: 1.2px;
+    }
+  }
+
+  h3 {
+    font-size: 30px;
+  }
+
+  h4 {
+    font-size: 20px;
+  }
+
+  h5 {
+    font-size: 18px;
+  }
+
+  h6 {
+    font-size: 16px;
+  }
+
+  blockquote {
+    font-stretch: condensed;
+    font-style: normal;
+    line-height: 0.92;
+    letter-spacing: -1px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 48px;
+    font-weight: 900;
+    background: url(icon-quote.png) no-repeat left 40px/ 41px;
+  }
+
+  ol,
+  ul {
+    padding-left: 30px;
+    margin-top: 40px;
+
+    li {
+      padding-left: 10px;
+      list-style-type: decimal;
+      font-size: 16px;
+      line-height: 1.57;
+      letter-spacing: normal;
+      color: $color-black;
+      margin-bottom: 0px;
+
+      &:last-child {
+        margin-bottom: 0px;
+      }
+    }
+  }
+
+  ul {
+    padding-left: 0px;
+
+    li {
+      list-style: none;
+      padding-left: 35px;
+      position: relative;
+
+      &::before {
+        width: 3px;
+        height: 3px;
+        content: "";
+        background: $color-black;
+        position: absolute;
+        left: 15px;
+        top: 10px;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  ol {
+    li {
+      padding-left: 10px !important;
+      list-style-type: decimal !important;
+    }
+  }
+}
+
+/****** CONTAINERS ******/
+.width-100 {
+  width: 100%;
+}
+
+.width-50 {
+  width: 50%;
+
+  @include MQ(MQ-768) {
+    width: 100%;
+  }
+}
+
+.wrapper {
+  max-width: 100%;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0px;
+}
+
+.container-1400 {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.container-540 {
+  width: 100%;
+  max-width: 540px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+/* BELOW SECTION IS NEVER CHANGED */
+/****** TEXT ALIGNMENT ******/
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.lowercase {
+  text-transform: lowercase;
+
+  &::first-letter {
+    text-transform: capitalize;
+  }
+}
+
+.capitalize {
+  text-transform: capitalize !important;
+}
+
+/****** FLEX ******/
+.flex {
+  display: flex;
+}
+
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-start {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.flex-align-center {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.flex-direction-row-reverse {
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+}
+
+.flex-direction-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.flex-space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-justify-center {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-justify-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.flex-justify-column-center {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/****** OTHER EXTRA CLASSES ******/
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.clear {
+  clear: both;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.margin-auto {
+  margin: 0 auto;
+}
+
+.align-center {
+  align-items: center;
+  justify-content: center;
+}
+
+.opacity-zero {
+  opacity: 0;
+}
+
+/****** DISPLAYS ******/
+/****** HIDE AND SHOW BLOCKS ******/
+.hide {
+  display: none !important;
+}
+
+.ipad-block {
+  display: none;
+
+  @include MQ(MQ-768) {
+    display: block !important;
+  }
+}
+
+.ipad-none {
+  display: block;
+
+  @include MQ(MQ-768) {
+    display: none !important;
+  }
+}
+
+.mobile-block {
+  display: none;
+
+  @include MQ(MQ-600) {
+    display: block !important;
+  }
+}
+
+.mobile-none {
+  display: block;
+
+  @include MQ(MQ-600) {
+    display: none !important;
+  }
+}
+
+.block-980 {
+  display: none;
+
+  @include MQ(MQ-980) {
+    display: block !important;
+  }
+}
+
+.none-980 {
+  display: block;
+
+  @include MQ(MQ-980) {
+    display: none !important;
+  }
+}
+
+/* Important USED ON PDP */
+.visually-hidden {
+  position: absolute !important;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+.visually-hidden--inline {
+  margin: 0;
+  height: 1em;
+}
+
+.js-focus-hidden:focus {
+  outline: none;
+}
+
+.no-js:not(html) {
+  display: none;
+}
+
+.no-js .no-js:not(html) {
+  display: block;
+}
+
+.no-js .js {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+/****** ALIGNMENTS ******/
+.d-inline-block {
+  display: inline-block;
+}
+
+.center-align {
+  margin: 0 auto;
+  text-align: center;
+
+  * {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+.left-align {
+  margin: 0;
+  margin-right: auto;
+  text-align: left;
+
+  * {
+    margin-right: auto !important;
+    text-align: left !important;
+  }
+}
+
+.right-align {
+  margin: 0;
+  margin-left: auto;
+  text-align: right;
+
+  * {
+    margin-left: auto !important;
+    text-align: right !important;
+  }
+}
+
+// General padding classes
+.padding-bottom-0 {
+  padding-bottom: 0 !important;
+}
+
+.padding-8 {
+  padding: 8px;
+}
+
+.padding-16 {
+  padding: 16px;
+}
+
+.padding-24 {
+  padding: 24px;
+}
+
+.padding-32 {
+  padding-bottom: 32px;
+}
+
+.padding-bottom-40 {
+  padding-bottom: 40px !important;
+}
+
+.padding-48 {
+  padding: 48px;
+}
+
+.padding-56 {
+  padding: 56px;
+}
+
+.padding-80 {
+  padding: 80px;
+}
+
+/* Product */
+.price {
+  display: flex;
+}
+
+.price--unavailable {
+  visibility: hidden;
+}
+
+.price--compare-price-hidden .price__compare {
+  display: none;
+}
+
+.price__pricing-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.price__regular {
+  display: block;
+}
+
+.price--on-sale .price__regular,
+.price--on-sale .price__availability {
+  display: none;
+}
+
+.price__availability {
+  display: none;
+}
+
+.price--sold-out .price__availability {
+  display: block;
+}
+
+.price__sale {
+  display: none;
+}
+
+.price--on-sale .price__sale {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.price__unit {
+  display: none;
+}
+
+.price--unit-available .price__unit {
+  display: block;
+}
+
+.price__badge {
+  display: none;
+}
+
+.price--on-sale .price__badge--sale {
+  display: flex;
+}
+
+.price--sold-out .price__badge--sale {
+  display: none;
+}
+
+.price--sold-out .price__badge--sold-out {
+  display: flex;
+}

@@ -1,0 +1,58 @@
+/* Fonts */
+/* Fonts */
+@font-face {
+  font-family: "GT Super Text Book";
+  src: url(GT-Super-Text-Book.ttf) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GT Super Text Book";
+  src: url(GT-Super-Text-Book-Italic.ttf) format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Fellix";
+  src: url(Fellix-Regular.ttf) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Fellix";
+  src: url(Fellix-Bold.ttf) format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+$font-family-primary: "Fellix", sans-serif;
+$font-family-secondary: "GT Super Text Book", sans-serif;
+
+$font-family-primary: "Arial", sans-serif;
+$font-family-secondary: "Times New Roman", sans-serif;
+
+/* Colors */
+
+$color-light-black: rgba(60, 60, 59, 0.2);
+
+$color-black2: #221d20;
+$color-gold: #c8aa7c;
+$color-light-gold: #f9f6f2;
+$color-white: #ffffff;
+$color-gray: #ababab;
+$color-light-gray: #efeeef;
+$color-dark-gray: #979797;
+$color-red: #e71f25;
+$color-blue: #62c2d6;
+$border-light-gold: rgba(200, 170, 124, 0.2);
+$color-black: #000;
+$color-dark-gray: #4d4d4f;
+$color-light-gray: #f8f8f8;
+$color-light-gray2: #ebebeb;
+$color-gray: #c4c4c4;
+$color-red: #e71f25;
+$color-orange: #fe7d00;
+$color-dark-orange: #e8602a;

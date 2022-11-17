@@ -1,0 +1,112 @@
+<div class="product__media-outer">
+<div class="product__media js-pdp-media {% if settings.pdp_slider_thumbnail == "vertical" %}vertical-slider{% endif %}">
+  <!-- BELOW - OLD CODE NOT TO BE USED -->
+  <ul class=" pdp-slider js__pdp-slider">
+    {% for image in product.images %}
+    {% assign variant = image.alt | split: "/" %}
+    {% assign variantColor = variant[1] | split: "-" %}
+    {% assign variantColor =variantColor[1] | replace: ' ', '-' %}
+    {% assign variantColor =variantColor | downcase %}
+    {% if variantColor =="" %}
+    {% assign variantColor ="all" %}
+    {% endif %}
+    <li class="{{variantColor}}">
+      <div class="image-section">
+        <img data-zoom-image="{{ image.src | img_url: 'master' }}" src="{{ image.src | img_url: 'master' }}"
+          alt="{{ image.alt | escape }}">
+      </div>
+    </li>
+    {% endfor %}
+    {% for media in product.media %}
+    {% case media.media_type %}
+    {% assign variant = media.alt | split: "/" %}
+    {% assign variantColor = variant[1] | split: "-" %}
+    {% assign variantColor =variantColor[1] | replace: ' ', '-' %}
+    {% if variantColor =="" %}
+    {% assign variantColor ="all" %}
+    {% endif %}
+    {% when 'video' %}
+    <li class=" {{variantColor | downcase}}">
+      <div class="image-section video-section">
+        <a href="#product{{ media.id | escape }}">
+          {{ media | video_tag: controls: true }}
+        </a>
+      </div>
+    </li>
+    {% when 'external_video' %}
+    <li class=" {{variantColor | downcase}}">
+      <div class="image-section video-section">
+        {{ media | external_video_tag }}
+      </div>
+    </li>
+    {% endcase %}
+    {% endfor %}
+  </ul>
+
+  <div class=" outer-pdp-thumbnail-slider">
+    <ul class="pdp-thumbnail js__pdp-thumbnail-slider js__pdp-thumbnail mt-45">
+      {% for image in product.images %}
+      {% assign variant = image.alt | split: "/" %}
+      {% assign variantColor = variant[1] | split: "-" %}
+      {% assign variantColor =variantColor[1] | replace: ' ', '-' %}
+      {% assign variantColor =variantColor | downcase %}
+      {% if variantColor =="" %}
+      {% assign variantColor ="all" %}
+      {% endif %}
+      <li class="{{variantColor}}">
+        <div class="image-section">
+          <img src="{{ image.src | img_url: 'master' }}" alt="{{ image.alt | escape }}">
+        </div>
+      </li>
+      {% endfor %}
+      {% for media in product.media %}
+      {% case media.media_type %}
+      {% assign variant = media.alt | split: "/" %}
+      {% assign variantColor = variant[1] | split: "-" %}
+      {% assign variantColor =variantColor[1] | replace: ' ', '-' %}
+      {% if variantColor =="" %}
+      {% assign variantColor ="all" %}
+      {% endif %}
+      {% when 'video' %}
+      <li class=" {{variantColor | downcase}}">
+        <div class="image-section video-section">
+          <a href="#product{{ media.id | escape }}">
+          </a>
+        </div>
+      </li>
+      {% when 'external_video' %}
+      <li class=" {{variantColor | downcase}}">
+        <div class="image-section video-section">
+          <a href="#product{{ media.id | escape }}">
+          </a>
+        </div>
+      </li>
+      {% endcase %}
+      {% endfor %}
+    </ul>
+  </div>
+
+</div>
+
+
+  {% if product.metafields.three_column_list.title != blank %}
+  <div class="three-column-content ipad-none">
+    <ul class="flex-wrap">
+      {% for value in product.metafields.three_column_list.title %}
+      {% if product.metafields.three_column_list.title[forloop.index0] != blank %}
+      <li>
+        <span class="title">{{product.metafields.three_column_list.title[forloop.index0]}}</span>
+        {% if product.metafields.three_column_list.description[forloop.index0] != blank %}
+        <p>{{product.metafields.three_column_list.description[forloop.index0]}}</p>
+        {%- endif -%}
+      </li>
+      {%- endif -%}
+      {% endfor %}
+     
+    </ul>
+  </div>
+
+{% endif %}
+</div>
+
+

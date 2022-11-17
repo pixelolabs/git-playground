@@ -1,0 +1,96 @@
+<div id="cart" class="cart-section light-brown-bottom-image js__show-cart-items-section">
+  <div class="container-1400 container-section">
+    <form action="/cart" method="post">
+      <div class="heading flex">
+        <h2 class="text-center">Your Cart (<span class="js__ajax-cart-count"></span>)</h1>
+          <div class="free-shipping js__progressbar_visiblity hide">
+            <!-- Free Shipping Values from Schema -->
+            <span class="hide js__free-shipping-limit">{{settings.freeShippingThresholdValue}} </span>
+            <!-- Free Shipping Message (When the value is reached) -->
+            <p><span class="js__free-shipping-message" style="display: none;">{{settings.freeShippingMsg}}</span><span
+                class="js__free-shipping-limit-message" style="display: none;"> You are <strong
+                  class="js__free-shipping-remaning-amount">$25.00</strong> away
+                from free shipping.</span></p>
+            <div class="free-shipping__progress-bar js__free-shipping__progress-bar"><span></span></div>
+          </div>
+      </div>
+
+      <div class="inner">
+        <div class="wrapper">
+          <div class="header flex">
+            <div class="table-head">
+              <span>Product</span>
+            </div>
+            <div class="table-head">
+              <span>Price</span>
+            </div>
+            <div class="table-head text-center">
+              <span> Quantity</span>
+            </div>
+            <div class="table-head">
+              <span> Total</span>
+            </div>
+          </div>
+          <div class="cart-list">
+          </div>
+        </div>
+        <!--START TOTAL-->
+        <div class="wrapper-total">
+          <a class="btn--primary-border" href="/collections/all" title="Continue Shopping">Continue Shopping</a>
+          <div class="total">
+            <textarea id="note" name="note" class="form-control hide"
+              placeholder="Add a note to your order...">{{ cart.note }}</textarea>
+            <div class="cart-total">
+              <div class="flex js__cartSubtotalDiscountWraper hide">
+                <b>Subtotal</b>
+                <span class="js__cart-sub-total"></span>
+              </div>
+              <div class="flex js__cartSubtotalDiscountWraper hide">
+                <b>You Saved</b><span class="js__cart-total-saved">-</span>
+              </div>
+              <div class="flex">
+                <p>Taxes and shipping calculated at checkout</p>
+              </div>
+            </div>
+            <div class="order-total flex ">
+              <b>Total</b>
+              <span class="js__cart-total"><span>
+                  {{ cart.total_price | mone }}
+                </span></span>
+            </div>
+            <div class="btn-wrapper">
+              <button class="btn--primary" type="submit" id="checkout" name="checkout">Proceed to Checkout</button>
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- Empty Cart -->
+<div style="display: none;" class="cart-section light-brown-bottom-image empty-cart-section">
+  <style>
+    #cart_overlay.active {
+      display: none;
+    }
+  </style>
+  <div class="container-1400 text-center container-section">
+    <div class="cart-header-section">
+      <h2>Your Cart is Currently Empty</h2>
+    </div>
+    <a href="/collections/all" title="Continue Shopping" class="btn--primary ">Continue Shopping</a>
+  </div>
+</div>
+<style>
+  .scroll-to-top {
+    display: none !important;
+  }
+
+  .forMiniCart {
+    display: none !important;
+  }
+</style>

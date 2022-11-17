@@ -1,0 +1,166 @@
+<div id="cart" class="cart-section js-show-cart-items-section">
+  <div class="container-1220">
+    <a class="btn-continue ipad-block" title="Continue Shopping" href="/collections/all">Continue Shopping</a>
+    <h1 class="h1-medium text-center">Cart</h1>
+    <form action="/cart" method="post">
+      <div class="cart-detail-section">
+        <div class="cart-table-section">
+          <div class="cart-table-header flex">
+            <div class="table-head">
+              Product
+            </div>
+            <div class="table-head">
+              Price
+            </div>
+            <div class="table-head">
+              Quantity
+            </div>
+            <div class="table-head">
+              Total
+            </div>
+          </div>
+          
+          <!-- For loop items -->
+          {% for item in cart.items %}
+          <div class="cart-table-body flex" data-variant-id={{ item.variant_id }}>
+            <div class="table-item" data-head="Product">
+              <div class="image-section "><img class="img-responsive img-thumbnail item-image"
+                  src="{{ item.product.featured_image.src | product_img_url: 'master' }}"
+                  alt="{{ item.title | escape }}" /></div>
+              <div class="content">
+                <!-- Product Title-->
+                <a class="item-name" href="{{ item.product.url | within: collections.all }}"
+                  title="{{ item.product.title }}">{{ item.product.title }}
+                </a>
+                <!-- Variant Information-->
+                {% unless item.variant.title contains 'Default' %}
+                <small>{{ item.variant.title }}</small>
+                {% endunless %}
+                <!-- Line Item Properties-->
+                {% comment %}
+                Optional, loop through custom product line items if available
+                For more info on line item properties, visit:
+                -
+                http://docs.shopify.com/support/your-store/products/how-do-I-collect-additional-information-on-the-product-page-Like-for-a-monogram-engraving-or-customization
+                {% endcomment %}
+                <small class="cart line-properties">
+                  <!-- Bold properties-->
+                  <span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_properties"
+                    style="display:none !important;"></span>
+                  {% assign propertySize = item.properties | size %}
+                  {% if propertySize > 0 %}
+                  {% for p in item.properties %}
+                  {% assign first_character_in_key = p.first | truncate: 1, '' %}
+                  {% unless p.last == blank or first_character_in_key == '_' %}
+                  {{ p.first }}:
+                  {% if p.last contains '/uploads/' %}
+                  <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+                  {% else %}
+                  {{ p.last }}
+                  {% endif %}
+                  {% endunless %}
+                  {% endfor %}
+                  {% endif %}
+                  {% assign propertySize = item.properties | size %}
+                  {% if propertySize > 0 %}
+                  {% for p in item.properties %}
+                  {% assign first_character_in_key = p.first | truncate: 1, '' %}
+                  {% unless p.last == blank or first_character_in_key == '_' %}
+                  <br>
+                  {{ p.first }}:
+                  {% comment %}
+                  Check if there was an uploaded file associated
+                  {% endcomment %}
+                  {% if p.last contains '/uploads/' %}
+                  <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+                  {% else %}
+                  {{ p.last }}
+                  {% endif %}
+                  {% endunless %}
+                  {% endfor %}
+                  {% endif %}
+                </small>
+                <a class="remove" title="Remove" href="/cart/change?line={{ forloop.index }}&quantity=0">remove</a>
+              </div>
+            </div>
+            <div class="table-item price" data-head="Price">
+              <span class="price">{{ item.price | money }}</span>
+              <span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_price" data-item-key="{{item.key}}"
+                style="display:none !important;"></span>
+
+              <!-- Show Sale Price-->
+              {% if item.variant.compare_at_price > item.price %}
+              <s class="product-single__sale-price"> {{ item.variant.compare_at_price | money }}</s>
+              {%endif%}
+            </div>
+            <div class="table-item" data-head="Quantity">
+              <div class="cart-quantity-outer">
+                <a class="minus-qty" onclick="minusQuantity(this)" data-variant-id={{ item.variant_id }}
+                  data-attr="{{item.id}}"></a>
+                <input type="text" class="cart__quantity-selector" name="updates[]" id="updates_{{ item.key }}"
+                  value="{{ item.quantity }}" maxlength="3" size="3">
+                <a class="plus-qty" onclick="plusQuantity(this)" data-variant-id={{ item.variant_id }}
+                  data-attr="{{item.id}}"></a>
+              </div>
+            </div>
+            <div class="table-item" data-head="Total">
+              <span class="js-line-item-price" data-variant-id={{ item.variant_id }}>{{ item.line_price | money }}
+              </span>
+              <span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_total" data-item-key="{{item.key}}"
+                style="display:none !important;"></span>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <!--START TOTAL-->
+        <div class="cart-subtotal-section">
+          <a class="btn-red-border ipad-none" title="Continue Shopping" href="/collections/all">Continue Shopping</a>
+          <div class="cart-total-section">
+            <!--<div class="row">
+						<div class="col-lg-12 col-md-12"><a id="continue-shopping" class="btn btn-link"
+								href="/collections/all"><i class="fa fa-caret-left fa-lg"></i>Continue Shopping</a>
+						</div>
+					</div>
+					{% include 'hear-about-us' %}-->
+            <!-- START ACTIONS -->
+            <!--<div class="col-lg-6 col-md-6">
+							<textarea id="note" name="note" class="form-control"
+								placeholder="Add a note to your order...">{{ cart.note }}</textarea>
+						</div>-->
+            <div class="cart-total ">
+              <div class="flex">
+                <h4>Subtotal</h4><span id="bk-cart-subtotal-price" class="js-cart-total">{{ cart.total_price | money
+                  }}</span></h4>
+              </div>
+              <div class="flex">
+                <h4>You Saved</h4><span id="bk-cart-subtotal-price" class="js-cart-total"></span></h4>
+              </div>
+            </div>
+            <p>Taxes and shipping calculated at checkout</p>
+            <div class="order-total flex">
+              <h3>Total</h3><span id="bk-cart-subtotal-price" class="js-cart-total">{{ cart.total_price | money
+                }}</span></h4>
+              <span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_total" style="display:none !important;"></span>
+
+            </div>
+
+            <!--	<button class="btn btn-primary" type="submit" id="update" name="update">Update</button>-->
+            <button class="btn-black" type="submit" id="checkout" name="checkout">Proceed to Checkout</button>
+          </div>
+        </div>
+        <!-- END ACTIONS -->
+      </div>
+  </div>
+</div>
+</form>
+<!-- Empty Cart -->
+<div id="cart" class="cart-section empty-cart-section">
+  <div class="container-1220 text-center">
+    <div class="cart-header-section">
+      <h1 class="h1-medium">Your Cart is Currently Empty.</h1>
+    </div>
+    <p>Please <a href="/pages/contact" title="Contact Us">contact us</a> for further assistance</p>
+    <a href="/collections/all" title="Continue Shopping" class="btn-black">Continue Shopping</a>
+  </div>
+</div>
+{{ 'sm-cart.js' | asset_url | script_tag }}

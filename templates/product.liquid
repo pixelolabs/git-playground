@@ -1,0 +1,39 @@
+{% comment %}
+The contents of the product.liquid template can be found in /sections/product-template.liquid
+{% endcomment %}
+
+{% section 'product' %}
+
+<!-- Product Recommendations -->
+{% assign metafieldsHandleForProducts = product.metafields.recommended-products.product_handle %}
+{% if metafieldsHandleForProducts != blank %}
+<div class="light-brown-bottom-image">
+  <div class="container-section">
+    <div class="product-recommendations">
+      <div class="pdp-recommendations">
+        <div class="container-1340">
+          <div class="content">
+            <h2 class="h2-large">Related Products</h2>
+          </div>
+          <div class="product-recommendations-list flex-wrap" id="js__pdp-recommendation-slider">
+            {% assign productHandles = metafieldsHandleForProducts | split: "|" %}
+
+            {% for productRec in productHandles limit: 4 %}
+            {% assign productRelated = all_products[productRec] %}
+            {% if productRelated.available and productRelated.title.size > 0 %}
+            <div class="product-card">
+              {% include 'product_Card' with productRelated %}
+            </div>
+
+            {%endif%}
+            {%endfor%}
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% else %}
+{% section 'product-recommendations' %}
+{%endif%}

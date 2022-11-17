@@ -1,0 +1,89 @@
+<div class="inner-hero-section">
+  <div class="image-section">
+    {% if blog.metafields.blog-banner.background_image_desktop != blank %}
+    {% assign image = blog.metafields.blog-banner.background_image_desktop | first %}
+    {% assign mobileImage = blog.metafields.blog-banner.background_image_mobile | first %}
+    <picture>
+      <source media="(max-width: 480px)" srcset="{{ mobileImage.cloudinary_src }}">
+      <img src="{{ image.cloudinary_src }}" alt="{{blog.title}}">
+    </picture>
+    {%endif%}
+  </div>
+  <div class="container-1340">
+    <h1 class="uppercase text-center">{{blog.title}}</h1>
+  </div>
+</div>
+
+<div class="container-1400">
+  {% paginate blog.articles by section.settings.blogItems %}
+  <input type="hidden" class="js__perpage-item" value="{{section.settings.blogItems}}">
+  <input type="hidden" class="js__total-page" value="{{ paginate.pages }}">
+  <input type="hidden" class="js__current-page" value="{{ paginate.current_page }}">
+  <input type="hidden" class="js__items-count" value="{{blog.articles_count}}">
+  {% if section.settings.show_featured_article%}
+  {%- assign featuredArticle = articles[section.settings.featured_article] -%}
+  {% assign featuredArticleTitle = featuredArticle.title %}
+  {% if featuredArticle.title != blank %}
+  <div class="featured-blog flex-wrap">
+    {% include 'article_Card' with articleRelated: featuredArticle,
+    show_tags: true, show_time: true, show_description: true, show_readMore: true %}
+  </div>
+  {%endif%}
+  {%endif%}
+
+  {% include "blog_category" %}
+
+  <ul class="blog-list-view flex-wrap">
+    {% for article in blog.articles %}
+    {% if section.settings.show_featured_article%}
+    {% assign articleTitle = article.title %}
+    {% if articleTitle == featuredArticleTitle %}
+    {% else %}
+    <li>
+      {% include 'article_Card' with articleRelated: article, show_time: true, show_description: true, show_readMore:
+      true %}
+    </li>
+    {%endif%}
+    {%else%}
+    <li>
+      {% include 'article_Card' with articleRelated: article, show_time: true, show_description: true, show_readMore:
+      true %}
+    </li>
+    {%endif%}
+    {% endfor %}
+  </ul>
+
+  <div class="flex-space-between flex-align-center">
+    <p>Showing <span class="js__page-range">1 - 16</span> of {{blog.articles_count}} items</p>
+    {%- if paginate.pages > 1 -%}
+    {% include 'pagination', paginate: paginate %}
+    {%- endif -%}
+  </div>
+  {% endpaginate %}
+</div>
+{% schema %}
+{
+"name": "Featured Article",
+"settings": [
+{
+"type": "checkbox",
+"id": "show_featured_article",
+"label": {
+"en": "Show Featured Article"
+},
+"default": true
+},
+{
+"type": "article",
+"id" : "featured_article",
+"label": "Featured Article"
+},
+{
+"type": "number",
+"id" : "blogItems",
+"label": "How Many Blogs Per Page",
+"default": 4
+}
+]
+}
+{% endschema %}

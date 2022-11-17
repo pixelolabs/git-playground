@@ -1,0 +1,286 @@
+/*Recharge*/
+.recharge-te *,
+.rct_sidebar * {
+  font-family: $font-family-primary !important;
+  strong {
+    line-height: normal;
+  }
+}
+.rct_sidebar {
+  z-index: 999 !important;
+}
+.recharge-te {
+  background: $color-white !important;
+}
+.recharge-te,
+.rct_sidebar {
+  .rct_navigation {
+    .rct_navigation__desktop {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+    li {
+      a {
+        font-family: $font-family-primary !important;
+        text-transform: uppercase;
+        font-size: 12px !important;
+        font-weight: 600;
+        line-height: normal;
+        letter-spacing: 0.43px;
+        color: $color-dark-gray !important;
+        &.rct_navigation__item__link--active {
+          color: $color-black !important;
+        }
+      }
+    }
+  }
+  .rct_content {
+    h1 {
+      font-family: $font-family-secondary;
+      font-size: 44px;
+      font-weight: normal;
+      line-height: 1.08;
+      letter-spacing: 0.92px;
+      @include MQ(MQ-768) {
+        font-size: 35px;
+      }
+      @include MQ(MQ-480) {
+        font-size: 25px;
+      }
+    }
+    h3,
+    h3 strong {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 24px;
+      letter-spacing: 1px;
+      color: $color-black;
+      text-transform: capitalize;
+      font-family: $font-family-secondary !important;
+    }
+  }
+  .rct_button--secondary {
+    @include px-button;
+    height: auto;
+    max-width: 100% !important;
+  }
+  .rct_card--action {
+    .rct_product__info {
+      strong {
+        color: $color-black !important;
+      }
+      p {
+        color: $color-black !important;
+      }
+    }
+    .rct_card__content {
+      strong {
+        color: $color-black !important;
+      }
+      p {
+        color: $color-black !important;
+      }
+    }
+  }
+  .rct_button--primary {
+    @include px-button;
+    height: auto;
+    max-width: 100% !important;
+  }
+  .rct_button--link {
+    font-size: 12px;
+    font-weight: bold;
+    line-height: normal;
+    letter-spacing: 0.5px;
+    color: $color-black;
+    text-decoration: underline;
+  }
+  .rct_card__label {
+    color: $color-black;
+  }
+  .rct_subscription__info {
+    font-size: 14px;
+    color: $color-black;
+  }
+  .rct_text--small {
+    font-size: 12px !important;
+    color: $color-black;
+  }
+  .rct_form__quantity {
+    padding: 0 18px;
+    margin-right: 16px;
+    width: 100%;
+    max-width: 114px;
+    min-width: 114px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+    border: solid 1px $color-black;
+    border-radius: 0px !important;
+    #quantity {
+      border: none;
+      text-align: center;
+      font-family: $font-family-primary !important;
+      font-size: 14px;
+      font-weight: bold;
+      line-height: normal;
+      letter-spacing: 0.82px;
+      color: $color-black;
+      height: 24px;
+      width: 52px;
+      margin: 0px;
+      padding: 0;
+    }
+    .rct_form__quantity__minus {
+      width: 11px;
+      height: 14px;
+      display: block;
+      background: url(icon-minus.png) no-repeat center / 15px;
+      font-size: 0;
+      &::before {
+        display: none;
+      }
+    }
+    .rct_form__quantity__plus {
+      width: 12px;
+      height: 12px;
+      display: block;
+      background: url(icon-plus-big.png) no-repeat center / 15px;
+      font-size: 0;
+      &::before {
+        display: none;
+      }
+    }
+  }
+  .rct_sidebar__header {
+    background: $color-white;
+    height: auto;
+    padding: 20px !important;
+    position: relative !important;
+  }
+  .rct_sidebar__close {
+    svg {
+      display: none;
+    }
+    width: 13px;
+    height: 13px;
+    display: block;
+    background: url(icon-cross.png) no-repeat center / 13px;
+  }
+  .rct_sidebar__header__title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 1px;
+    color: $color-black;
+    text-transform: capitalize;
+    font-family: $font-family-secondary !important;
+  }
+  .rct_shipping-addresses__title,
+  .rct_shipping-addresses__list h3 {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 1px;
+    color: $color-black;
+    text-transform: capitalize;
+    font-family: $font-family-secondary !important;
+  }
+  .rct_shipping-addresses__list {
+    h3 {
+      font-size: 20px;
+    }
+  }
+  form {
+    label {
+      font-family: $font-family-primary !important;
+      font-size: 14px;
+      font-weight: normal;
+      line-height: 1.5;
+      letter-spacing: 0.58px;
+      color: $color-black;
+      display: inline-block;
+    }
+  }
+  .rct_choices__inner {
+    padding: 0px !important;
+    border-radius: 0px !important;
+  }
+  input[type="text"],
+  input[type="search"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="password"],
+  textarea,
+  select,
+  .rct_choices__item--selectable {
+    font-family: $font-family-primary !important;
+    font-size: 14px !important;
+    font-weight: normal;
+    line-height: 1.5;
+    letter-spacing: 0.58px;
+    color: $color-black;
+
+    width: 100%;
+    border-radius: 0px;
+    height: 47px;
+    padding: 13px 24px;
+  }
+}
+@include MQ(MQ-480) {
+  .rct_sidebar {
+    width: 100% !important;
+  }
+}
+@media (max-width: 767px) {
+  .rct_navigation {
+    padding: 0px !important;
+    margin-bottom: 20px !important;
+  }
+}
+.rc_header-settings__description {
+  padding-top: 70px;
+  display: block !important;
+}
+.rc_layout__full {
+  padding-bottom: 50px !important;
+}
+
+.rct_card--charge-summary
+  .rct_order-details__row--total
+  .rct_order-details__row__left {
+  color: $color-black !important;
+}
+
+.recharge-te {
+  a.rct_return-link {
+    font-size: 12px !important;
+    font-style: normal !important;
+    line-height: normal !important;
+    letter-spacing: 1px !important;
+    color: $color-black !important;
+  }
+  .rct_navigation__mobile .rct_choices__list--dropdown .rct_choices__item {
+    padding: 20px 25px 32px !important;
+  }
+
+  .rct_choices__list--dropdown .rct_choices__item--selectable.is-highlighted {
+    background-color: $color-white;
+  }
+  .rct_choices__list--dropdown .rct_choices__item--selectable.is-selected {
+    background-color: $color-gray !important;
+  }
+
+  .rct_choices__list--single .rct_choices__item {
+    color: $color-black;
+    font-weight: 600;
+  }
+
+  .rct_card {
+    background-color: $color-gray !important;
+    padding: 16px 30px 16px 16px !important;
+    border-radius: 4px;
+    padding: 16px;
+  }
+}

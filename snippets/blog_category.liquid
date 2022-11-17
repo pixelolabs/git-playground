@@ -1,0 +1,39 @@
+{% if blog.tags.size > 0 %}
+<div class="blog-category-dropdown">
+    <div class="container-1320">
+        <!-- Desktop List View -->
+        <div class="ipad-none">
+            <ul class="js__active-class flex-align-center">
+                <li><a class="capitalize active" href="{{ blog.url }}">all articles</a></li>
+                {% for tag in blog.all_tags %}
+                <li><a class="capitalize" href="{{ blog.url }}/tagged/{{ tag | handleize }}" title="{{ tag }}"
+                        id="{{ tag | handleize }}">
+                        <span>{{ tag }}</span></a> </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <!-- Dropdown Mobile View -->
+        <div class="dropdown ipad-block">
+            <!-- Select with Tags  -->
+            <select class="" name="FilterTags" id="FilterTags" data-select-input
+                onchange="window.location.href = '{{ blog.url }}' + this.options[this.selectedIndex].value + ''">
+                <option value="">view all</option>
+                {% for tag in blog.all_tags %}
+                <option value="/tagged/{{ tag | handleize }}" {% if current_tags contains tag %} selected="selected" {%
+                    endif %}>{{ tag }}</option>
+                {% endfor %}
+            </select>
+            <!-- Custom Dropdown  -->
+            <p class="js__dropdown_result selected capitalize">Blog Categories</p>
+            <ul class="js__dropdown">
+                <li><a class="capitalize" href="{{ blog.url }}">view all</a></li>
+                {% for tag in blog.all_tags %}
+                <li><a class="capitalize" href="{{ blog.url }}/tagged/{{ tag | handleize }}" title="{{ tag }}"
+                        id="{{ tag | handleize }}">
+                        <span>{{ tag }}</span></a> </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endif %}

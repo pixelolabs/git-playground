@@ -1,0 +1,49 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="{{ shop.description }}">
+
+  {% include 'head'%}
+  {% include 'sm-og-data' %}
+  {% include 'scripts_head'%}
+  {{ content_for_header }}
+  {% comment %}
+  <!-- Extra Apps Per Theme-->
+  {% render 'hulkapps-wishlist-js' %}
+  <link href='//hulkapps-wishlist.nyc3.digitaloceanspaces.com/assets/hulkapps-wishlist-styles.css' rel='stylesheet'>
+  {% endcomment %}
+  <!--begin-boost-pfs-filter-css-->
+  {% render 'boost-pfs-style' %}
+  <!--end-boost-pfs-filter-css-->
+  
+</head>
+
+<body class="template-{{ request.page_type | handle }}">
+  {% section 'header' %}
+  <div class="page-container drawer-page-content" id="PageContainer">
+    <main class="main-content js-focus-hidden" id="MainContent" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+    {% section 'footer' %}
+  </div>
+  {% include 'scripts_footer'%}
+  {% comment %}
+  <!-- Extra Scripts for Apps-->
+  <!-- Hulk App WishList for PDP -->
+  {% if template != null %}{% endif %}
+  {% render 'hulkappsWishlistPopup' %} {% if template != null %}
+  <script type='text/javascript'
+    src='//hulkapps-wishlist.nyc3.digitaloceanspaces.com/assets/hulkapps-wishlist-global.js'></script>{% endif %}
+  <div data-wishlist-wrapper style='display:none' data-time='2021-06-18'></div>
+   {% endcomment %}
+  <!--begin-boost-pfs-js-->
+  {% render 'boost-pfs' %}
+  <!--end-boost-pfs-js-->
+
+</body>
+
+</html>

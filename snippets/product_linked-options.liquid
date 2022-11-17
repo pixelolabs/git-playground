@@ -1,0 +1,280 @@
+{% unless product.has_only_default_variant %}
+<input type="hidden" id="optionSize" value="{{product.options.size}}">
+<div class="pdp-variant-options ">
+  {% for option in product.options_with_values %}
+  {% assign optionindex = forloop.index0 %}
+  {% assign option_name = option.name | upcase %}
+  <!-- Option is COLOR - Show Swatches-->
+  {% if option_name == 'COLOR'%}
+  <!-- Set the background image for the color swatches
+            e.g. 
+            swatch-variantValue.jpg
+            swatch-red.jpg
+            -->
+            <style type="text/css">
+              {% for value in option.values %}
+                {% assign handle = value | handleize %}
+                {% assign swatch_jpg = 'swatch-' | append: handle | append: '.jpg' %}
+                .js__color-swatches.swatch-{{ value | handleize }} {
+                  background-image: url({{ swatch_jpg | file_url }});
+                }
+              {% endfor %}
+            </style>
+
+
+  <div class="variant-option option-{{ optionindex}}" data-type="{{option_name}}">
+    <input type="hidden" id="colorPosition" value="{{option.position}}">
+    <div class="label">{{ option.name }}
+      <span class="selected hide">{{current_variant.options[optionindex] }}</span>
+    </div>
+    <!--
+        Get the color position
+     -->
+    <ul class="color-swatches-outer  flex-wrap">
+      {% for value in option.values %}
+      {% assign handle = value | handleize %}
+      {% assign swatch_jpg = 'swatch-' | append: handle | append: '.jpg' %}
+      {% capture swatchUrl %}{{ swatch_jpg | file_url }}{% endcapture %}
+      {% assign varaintImage = "" %}
+      <!-- Get the variant image -->
+      {% for variant in product.variants %}
+      <!---
+      on the basis of the color options - get the color value
+      medium, Natural, dense
+      --->
+      {% assign colorOption = variant.option1 %}
+      {% if option.position == 2%}
+      {% assign colorOption = variant.option2 %}
+      {% endif %}
+      {% if option.position == 3%}
+      {% assign colorOption = variant.option3 %}
+      {% endif %}
+
+      <!-- color option value = varaint option value
+      e..g natural = natural
+      -->
+      {% if colorOption == value%}
+      {% assign varaintImage = variant.image %}
+        {% endif %}
+      {% endfor %}
+     <!-- Variant Color used for slick filtering -->
+      {% assign variantColor = value | escape %}
+      {% assign variantColor =variantColor | replace: ' ', '-' %}
+      {% assign variantColor =variantColor | downcase %}
+      <li
+        class="js__color-swatches swatch swatch-{{ value | handleize }} {% if value == current_variant.options[optionindex] %}active{% endif %}"
+        data-option="{{ optionindex }}" data-type-value="{{ variantColor }}" data-value="{{ value | escape }}">{{ value
+        }}
+        <div class="out-of-stock-tooltip">out of stock</div>
+        <script>
+          //var fileExists = existsFile("{{swatchUrl}}");
+          var fileExists = false;
+          // if file doesn't exists, then show the variant image
+          if (fileExists == false) {
+           
+              $(".js__color-swatches.swatch-{{ value | handleize }}").css("background-image", "url({{varaintImage  | img_url: 'master'}})")
+
+          
+                      }
+          function existsFile(url) {
+            var http = new XMLHttpRequest();
+            http.open('HEAD', url, false);
+            http.send();
+            return http.status != 404;
+          }
+        </script>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% else %}
+  <!-- Else - Show List -->
+  <div class="variant-option option-{{ optionindex}}" data-type="{{option_name}}">
+    <div class="label">{{ option.name }}<span class="hide selected">{{
+        current_variant.options[optionindex] }}</span></div>
+    <select class="dropdown-select js__pdp-variant-select js__pdp-variant-select{{ optionindex }}"
+      data-option="{{ optionindex }}">
+      {% for value in option.values %}
+      <!-- For Radio Buttons -->
+      <!-- <div class="box {% if value == current_variant.options[optionindex] %}active{% endif %}"
+                  data-option="{{ optionindex }}" data-value="{{ value | escape }}">
+                  {% assign value_label = value | strip %}
+                  {% if value_label contains "(" %}
+                  {% assign value_parts = value_label | split: '(' %}
+                  {{ value_parts[0] | strip }}
+                  {% else %}
+                  {{ value }}
+                  {% endif %}
+                </div>-->
+      <option value="{{ value | escape }}">
+        {% assign value_label = value | strip %}
+        {% if value_label contains "(" %}
+        {% assign value_parts = value_label | split: '(' %}
+        {{ value_parts[0] | strip }}
+        {% else %}
+        {{ value }}
+        {% endif %}
+      </option>
+      {% endfor %}
+    </select>
+  </div>
+  {% endif %}
+  {% endfor %}
+</div>
+{% endunless %}
+
+<script> 
+
+    // <![CDATA[
+    var selectCallback = function(variant, selector) {
+      
+      if (variant) {
+        if (variant.available) {
+          // variant available
+          $('#add').removeAttr('disabled').fadeTo(200,1);
+          $(".pdp-add-to-cart-price").show();
+          $('.pdp-add-to-cart-text').html('Add to Cart');
+        } else {
+          // Variant is sold out.
+          $('#add').attr('disabled', 'disabled').fadeTo(200,0.5);
+          $(".pdp-add-to-cart-price").hide();
+          $('.pdp-add-to-cart-text').html('Sold Out');
+          
+        }
+        
+        // Whether the variant is in stock or not, we can update the price and compare at price.
+        if ( variant.compare_at_price > variant.price ) {
+          $('.product-single__prices').html('<span>' + Shopify.formatMoney(variant.price, "") + '</span>' + '<s>' + Shopify.formatMoney(variant.compare_at_price, "") + '</s>');
+        } else {
+          $('.product-single__prices').html('<span>'+Shopify.formatMoney(variant.price, "")+'</span>');
+        }
+        $(".pdp-add-to-cart-price").html(" - "+Shopify.formatMoney(variant.price, ""));
+      } else {
+        // variant doesn't exist.
+        $(".pdp-add-to-cart-price").hide();
+        $('.pdp-add-to-cart-text').html('Unavailable');
+        $('#add').attr('disabled', 'disabled').fadeTo(200,0.5);
+      }
+    }
+    // ]]>
+    // initialize multi selector for product
+    jQuery(function($) {
+      new Shopify.OptionSelectors("product-select", {
+        product: {{ product | json }},
+        onVariantSelected: selectCallback,
+        enableHistoryState: true
+      });
+      // product options
+      // option color swatch click
+      $(".js__color-swatches").click(function () {
+      
+        // remove active class - from all the li's
+        $('.js__color-swatches').removeClass('active');
+        // add class on the one which is clicked
+        $(this).addClass('active');
+        var optionindex = $(this).data('option');
+        var thevalue = $(this).data('value');
+        //show the selected value
+        $('.variant-option.option-' + optionindex + ' .label span').text(thevalue);
+        if ($(this).hasClass('swatch')) {
+                  /*Slick slider filter on swatch click*/
+                    var thumbColorSelected = thevalue.replace(" ", "-");
+                    thumbColorSelected = thumbColorSelected.replace(/[^a-zA-Z0-9 ]/g, "-");
+                    thumbColorSelected = thumbColorSelected.replace(/ /g, "-");
+                    thumbColorSelected = thumbColorSelected.replace(/--/g, "-");
+                    thumbColorSelected = thumbColorSelected.replace(/---/g, "-");
+                  
+                   $(".pdp-slider").slick("slickUnfilter");
+                    $(".js__pdp-thumbnail-slider").slick("slickUnfilter");
+                    $(".pdp-slider").find(".all").addClass(thumbColorSelected.toLowerCase());
+                    $(".js__pdp-thumbnail-slider").find(".all").addClass(thumbColorSelected.toLowerCase());
+                    $(".pdp-slider").slick("slickFilter", "." + thumbColorSelected.toLowerCase());
+                   $(".js__pdp-thumbnail-slider").slick( "slickFilter","." + thumbColorSelected.toLowerCase());
+                   $(".js__pdp-thumbnail-slider li").removeClass("active");
+                   $(".js__pdp-thumbnail-slider").slick("refresh");
+                  
+                    /*Selected first variant image in slider which have no all class*/
+                var boolVariantFirstImage=false;
+                  $(".js__pdp-thumbnail-slider  li").each(function () {
+                      if (!$(this).hasClass("all")) {
+if(boolVariantFirstImage==false)
+{
+
+
+    $(this).click();
+  $(this).addClass("active");
+
+ 
+  boolVariantFirstImage=true;
+ console.log(boolVariantFirstImage);
+}
+                      }
+                  })
+                  /*When we dont have any variant image*/
+                  console.log(boolVariantFirstImage);
+if(boolVariantFirstImage==false)
+{
+  $(".js__pdp-thumbnail-slider li:first-child").addClass("active");
+  $(".js__pdp-thumbnail-slider li:first-child").click();
+}
+                    colorSelected= thevalue;
+        }
+        // trigger change
+        $('#product-select-option-' + optionindex).val(thevalue).trigger('change');
+      });
+      $(".js-pdp-media").addClass("active");
+      $(".js__color-swatches:first-child").click();
+    });
+  
+  
+    
+</script>
+    
+<!-- Personalized Product "Added To Cart" Listener -- triggers the ajax cart when detected -->
+    <!-- <script>
+      var updateOptionsFunction = setInterval(function(){ 
+        if ($('.pplr-item-added').length) {
+          if ($('.pplr-item-added').css('display') !== 'none') {
+            updateCartStuff();
+            $('#cart_overlay').show(0);
+            $('#cart').addClass('open');
+          }
+        }
+      }, 4000);
+    </script> -->
+  
+  
+    <script>
+      // add to cart working
+        function addItem(form_id) {
+          $.ajax({
+            type: 'POST',
+            url: '/cart/add.js',
+            dataType: 'json',
+            data: $('#' + form_id).serialize(),
+            success: function (product) {
+              if (getglobalLib("Mini_Cart") == "yes") {
+                jQuery.getJSON('/cart.js', function (cart) {
+                  // show message
+                  showCartSuccessMessage();
+                  // now have access to Shopify cart object
+                  reloadAjaxCartItemUsingCartAjaxObject(cart);
+                  //Progress Bar of shipping in cart and mini cart; Varies from theme to theme
+                  progressBar();
+                  //Show and hide empty cart depending upon the cart items
+                  setTimeout(function () {
+                    calculateSubTotalWithDiscount();
+                    addons();
+                  }, 1000);
+                });
+              } else {
+                window.location = "/cart";
+              }
+            },
+            error: function (obj, status) {
+              showCartErrorMessage();
+              // alert('The product you are trying to add is out of stock.');
+            }
+          });
+        }
+    </script>

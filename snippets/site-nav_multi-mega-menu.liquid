@@ -1,0 +1,266 @@
+{% if section.settings.shopMenuTitle != blank %}
+<!-- Main Menu - Mega Menu -->
+<li class="has-big-nav js-shop-menu">
+  <a href="javascript:void(0)" title="{{ link.title | escape }}" class="site-nav__link">
+    <img class="icon-minus" src="{{" icon-left-white.png"|asset_url}}" alt="Icon Minus">
+    {{section.settings.shopMenuTitle}}
+    <img class="icon-plus" src="{{" icon-right-white.png"|asset_url}}" alt="Icon Plus">
+  </a>
+  <!-- Submenu -->
+  <div class="submenu">
+    <div class="container-1280">
+      <ul class="flex-wrap">
+        {% for link in site-nav.links %}
+        {% if link.links != blank %}
+        <li class="submenu-links">
+          <!-- Desktop View - Title (List) -->
+          <h5 class="desktop-nav"><a href="{{link.url}}" title="{{ link.title | escape }} ">
+            {{ link.title | escape }} </a> </h5>
+          <!-- Desktop View - Title (Accordion) -->
+          <h5 class="accordion-toggle mobile-nav">
+            <img class="icon-minus" src="{{" icon-minus.png"|asset_url}}" alt="Icon Minus">
+            <img class="icon-plus" src="{{" icon-plus.png"|asset_url}}" alt="Icon Plus">
+            {{ link.title | escape }}
+          </h5>
+          <!-- inner sub menu -->
+          <!-- Desktop View - List -->
+          <ul class="desktop-nav">
+            {% for childlink in link.links %}
+            {% if childlink.links != blank %}
+            <li aria-haspopup="true">
+              <p><a href="{{childlink.url}}" title="{{ childlink.title | escape }} ">
+                  {{ childlink.title | escape }} </a></p>
+              <ul>
+                {% for subchildlink in childlink.links %}
+                {% if subchildlink.links != blank %}
+                <li>
+                  <a href="{{subchildlink.url}}" title="{{ subchildlink.title | escape }}">
+                    {{subchildlink.title}}
+                  </a>
+                </li>
+                {% else %}
+                <li {% if subchildlink.title=="sale" %} class="sale-link" {% endif %}>
+                  <a href="{{ subchildlink.url }}" title="{{ subchildlink.title | escape }}">
+                    {{ subchildlink.title | escape }}
+                  </a>
+                </li>
+                {% endif %}
+                {% endfor %}
+              </ul>
+            </li>
+            {% else %}
+            <li>
+              <a href="{{ childlink.url }}" title="{{ childlink.title | escape }}">
+                {{ childlink.title | escape }}
+              </a>
+            </li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+          <!-- Desktop View - Accordion -->
+          <ul class="accordion-content mobile-nav">
+            {% for childlink in link.links %}
+            {% if childlink.links != blank %}
+            <li aria-haspopup="true">
+              <p class="accordion-toggle-child">
+                <img class="icon-minus" src="{{" icon-minus-small.png"|asset_url}}" alt="Icon Minus">
+                <img class="icon-plus" src="{{" icon-plus-small.png"|asset_url}}" alt="Icon Plus">
+                {{ childlink.title | escape }}
+              </p>
+              <ul class="accordion-content-child">
+                {% for subchildlink in childlink.links %}
+                {% if subchildlink.links != blank %}
+                <li>
+                  <a href="{{subchildlink.url}}" title="{{ subchildlink.title | escape }}">
+                    {{subchildlink.title}}
+                  </a>
+                </li>
+                {% else %}
+                <li {% if subchildlink.title=="sale" %} class="sale-link" {% endif %}>
+                  <a href="{{ subchildlink.url }}" title="{{ subchildlink.title | escape }}">
+                    {{ subchildlink.title | escape }}
+                  </a>
+                </li>
+                {% endif %}
+                {% endfor %}
+              </ul>
+            </li>
+            {% else %}
+            <li>
+              <a href="{{ childlink.url }}" title="{{ childlink.title | escape }}">
+                {{ childlink.title | escape }}
+              </a>
+            </li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+        </li>
+        {% else %}
+        <li>
+          <a href="{{ link.url }}" title="{{ link.title | escape }}" class="site-nav__link">
+            {{ link.title | escape }}
+          </a>
+        </li>
+        {% endif %}
+        {% endfor %}
+        {% assign lastMenu = linklists[section.settings.shopLastMenu]%}
+        <li class="last-menu">
+          <ul>
+            {% for link in lastMenu.links %}
+            <li {% if link.title == "sale" %} class="sale-link"{% endif %}>
+              <a href="{{ link.url }}" title="{{link.title}}">
+                {{ link.title | escape }} </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </li>
+        <li class="list-with-img">
+          <ul>
+            {% for block in section.blocks %}
+            {% if block.type == 'collections' %}
+            <li>
+              <div class="image-section">
+                <img src="{{block.settings.collectionImage | img_url: 'master' }}" alt="{{ block.settings.title }} img">
+              </div>
+              <div class="content absolute-0-auto">
+                {% if block.settings.title != blank %}
+                <a href="{{block.settings.link}}" title="{{block.settings.title}}"
+                  class="btn-border-white">{{block.settings.title}}</a>
+                {%endif%}
+              </div>
+            </li>
+            {%endif%}
+            {%endfor%}
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</li>
+{%endif%}
+{% if section.settings.missionMenuTitle != blank %}
+<li class="has-big-nav js-mission-menu">
+  <a href="javascript:void(0)" title="{{ link.title | escape }}" class="site-nav__link">
+    <img class="icon-minus" src="{{" icon-left-white.png"|asset_url}}" alt="Icon Minus">
+    {{section.settings.missionMenuTitle}}
+    <img class="icon-plus" src="{{" icon-right-white.png"|asset_url}}" alt="Icon Plus">
+  </a>
+  <div class="submenu">
+    <div class="container-1280">
+      <ul class="flex-wrap">
+        <li class="content">
+          <p class="large"> {{section.settings.missionTitle}}</p>
+          {{section.settings.missionContent}}
+        </li>
+        <li class="list-with-img">
+          <ul class="flex-wrap">
+            {% for block in section.blocks %}
+            {% if block.type == 'mission' %}
+            <li>
+              <div class="image-section">
+                <img src="{{block.settings.missionImage | img_url: 'master' }}" alt="{{ block.settings.title }} img">
+              </div>
+              <div class="content absolute-0-auto">
+                {% if block.settings.title != blank %}
+                <a href="{{block.settings.link}}" title="{{block.settings.title}}"
+                  class="btn-border-white">{{block.settings.title}}</a>
+                {%endif%}
+              </div>
+            </li>
+            {%endif%}
+            {%endfor%}
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</li>
+{%endif%}
+
+{% if section.settings.exploreMenuTitle != blank %}
+<li class="has-big-nav js-explore-menu">
+  <a href="javascript:void(0)" title="{{ link.title | escape }}" class="site-nav__link">
+    <img class="icon-minus" src="{{" icon-left-white.png"|asset_url}}" alt="Icon Minus">
+    {{section.settings.exploreMenuTitle}}
+    <img class="icon-plus" src="{{" icon-right-white.png"|asset_url}}" alt="Icon Plus">
+  </a>
+  <div class="submenu">
+    <div class="container-1280">
+      <ul class="flex-wrap">
+        {% assign exploreMenu = linklists[section.settings.exploremenu]%}
+        <li>
+          <ul>
+            {% for link in exploreMenu.links %}
+            {% if link.links != blank %}
+            <li class="submenu-links">
+              <!-- Desktop View - Title (List) -->
+              <h5 class="desktop-nav"> {{ link.title | escape }}</h5>
+              <!-- Mobile View - Title (Accordion) -->
+              <h5 class="accordion-toggle mobile-nav">
+                <img class="icon-minus" src="{{" icon-minus.png"|asset_url}}" alt="Icon Minus">
+                <img class="icon-plus" src="{{" icon-plus.png"|asset_url}}" alt="Icon Plus">
+                {{ link.title | escape }}
+              </h5>
+              <!-- Desktop View - List -->
+              <ul class="desktop-nav">
+                {% for childlink in link.links %}
+                <li aria-haspopup="true">
+                  <a href="{{ childlink.url }}" title="{{ childlink.title | escape }}">
+                    {{ childlink.title | escape }}
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+              <!-- Mobile View - Accordion -->
+              <ul class="accordion-content mobile-nav">
+                {% for childlink in link.links %}
+                <li aria-haspopup="true">
+                  <a href="{{ childlink.url }}" title="{{ childlink.title | escape }}">
+                    {{ childlink.title | escape }}
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+            </li>
+            {% else %}
+            <li>
+              <a href="{{ link.url }}" title="{{ link.title | escape }}" class="site-nav__link">
+                {{ link.title | escape }}
+              </a>
+            </li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+        </li>
+        <li class="header-social-links">
+          <p class="large">{{settings.social_icons_title}} </p>
+          {% include 'social-icons' %}
+          <div class="newslatter">
+            <p class="large">{{settings.newslettertext}}</p>
+            <div class="klaviyo-form-RH4nWn"></div>
+          </div>
+        </li>
+        <li class="list-with-img">
+          <ul class="flex-wrap">
+            {% for block in section.blocks %}
+            {% if block.type == 'explore' %}
+            <li>
+              <div class="image-section">
+                <img src="{{block.settings.exploreImage | img_url: 'master' }}" alt="{{ block.settings.title }} img">
+              </div>
+              <div class="content absolute-0-auto">
+                {% if block.settings.title != blank %}
+                <a href="{{block.settings.link}}" title="{{block.settings.title}}"
+                  class="btn-border-white">{{block.settings.title}}</a>
+                {%endif%}
+              </div>
+            </li>
+            {%endif%}
+            {%endfor%}
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</li>
+{%endif%}

@@ -1,0 +1,10 @@
+{
+  "name": "Page",
+  "sections": {
+    "innerBanner": {
+      "type": "inner-hero-section"
+    }
+  },
+  "order": ["innerBanner"]
+}
+

@@ -1,0 +1,75 @@
+{% if section.settings.title != blank %}
+<div class="error-page">
+    <div class="image-section">
+        {% if section.settings.backgroundImage != blank %}
+        <picture>
+            <source media="(max-width: 480px)"
+                srcset="{{ section.settings.backgroundImageMobile | img_url: 'master' }}">
+            <img src="{{ section.settings.backgroundImage | img_url: 'master' }}" alt="{{section.settings.title}}">
+        </picture>
+        {%endif%}
+    </div>
+    <div class="content">
+        <h1 class="normal">{{section.settings.title}}</h1>
+        <h2>{{section.settings.subTitle}}</h2>
+        {% if section.settings.buttonText1 != blank %}
+        <a class="btn-black-border" href="{{section.settings.buttonUrl1}}"
+            title="{{section.settings.buttonText1}}">{{section.settings.buttonText1}}
+        </a>
+        {%endif%}
+        {% if section.settings.buttonText2 != blank %}
+        <a class="btn-green-solid" href="{{section.settings.buttonUrl2}}"
+            title="{{section.settings.buttonText2}}">{{section.settings.buttonText2}}
+        </a>
+        {%endif%}
+    </div>
+</div>
+{%endif%}
+
+{% schema %}
+{
+"name": "404",
+"settings": [
+{
+"type": "image_picker",
+"id" : "backgroundImage",
+"label": "Background Image (desktop)"
+},
+{
+"type": "image_picker",
+"id" : "backgroundImageMobile",
+"label": "Background Image (mobile)"
+},
+{
+"type": "text",
+"id": "title",
+"label": "Title"
+},
+{
+"type": "text",
+"id": "subTitle",
+"label": "Sub Title"
+},
+{
+"type": "text",
+"id" : "buttonText1",
+"label": "Button Text (home)"
+},
+{
+"type": "url",
+"id" : "buttonUrl1",
+"label": "Button Url (home)"
+},
+{
+"type": "text",
+"id" : "buttonText2",
+"label": "Button Text (shop)"
+},
+{
+"type": "url",
+"id" : "buttonUrl2",
+"label": "Button Url (shop)"
+}
+]
+}
+{% endschema %}

@@ -1,0 +1,74 @@
+
+
+<div class="account-section light-brown-bottom-image">
+  <div class="container-1400 container-section">
+
+
+
+    <div class="heading-section text-center">
+      <h1 class="h2">{{ 'customer.account.title' | t }}</h1>
+      {{ 'layout.customer.log_out' | t | customer_logout_link }}
+    </div>
+    <div class="order-address-section-outer flex">
+      <div class="order-section ">
+        {% paginate customer.orders by 20 %}
+        {% if customer.orders.size != 0 %}
+        <table class="responsive-table">
+          <thead>
+            <tr>
+              <th scope="col">{{ 'customer.orders.order_number' | t }}</th>
+              <th scope="col">{{ 'customer.orders.date' | t }}</th>
+              <th scope="col">{{ 'customer.orders.payment_status' | t }}</th>
+              <th scope="col">{{ 'customer.orders.fulfillment_status' | t }}</th>
+              <th scope="col">{{ 'customer.orders.total' | t }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order in customer.orders %}
+            <tr>
+              <td data-label="{{ 'customer.orders.order_number' | t }}" scope="row">
+                <a href="{{ order.customer_url }}" class="btn--small"
+                  aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}">{{ order.name }}</a>
+              </td>
+              <td data-label="{{ 'customer.orders.date' | t }}">{{ order.created_at | time_tag: format: 'date' }}</td>
+              <td data-label="{{ 'customer.orders.payment_status' | t }}">{{ order.financial_status_label }}</td>
+              <td data-label="{{ 'customer.orders.fulfillment_status' | t }}">{{ order.fulfillment_status_label }}</td>
+              <td data-label="{{ 'customer.orders.total' | t }}">{{ order.total_price | money }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+          
+        </table>
+        {% else %}
+        <p>{{ 'customer.orders.none' | t }}</p>
+        {% endif %}
+        {%- if paginate.pages > 1 -%}
+        {% include 'pagination', paginate: paginate %}
+        {%- endif -%}
+        {% endpaginate %}
+      </div>
+      <div class="address-section">
+      
+        <p class="customer-name">{{ customer.name}}</p>
+        <p>
+          {% if customer.default_address != nil %}
+          {{ customer.default_address.address1 }}, <br />
+          {% if customer.default_address.address2 != "" %}
+          {{ customer.default_address.address2 }}, <br />
+          {% endif %}
+          {{ customer.default_address.city}}, 
+          {% if address.province_code %}
+          {{customer.default_address.province_code}}, 
+          {% endif %}
+          {{ customer.default_address.zip | upcase }}, 
+          {{customer.default_address.country}}
+        </p>
+        <p>{{ customer.default_address.phone }}</p>
+        {% endif %}
+        <a href="{{ routes.account_addresses_url }}" class="btn-link">Addresses</a>
+       <div class="wishlist hide">
+        <a class="btn-link" href="/apps/advanced-wishlist" style="user-select: auto;">View My Wishlist</a>
+       </div>
+      </div>
+    </div>
+  </div>

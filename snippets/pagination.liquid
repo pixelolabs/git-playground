@@ -1,0 +1,40 @@
+{% comment %}
+Renders a pagination bar
+
+Accepts:
+- paginate: {Object} Paginate Liquid object (required)
+
+Usage:
+{% include 'pagination', paginate: paginate %}
+{% endcomment %}
+
+<ul class="pagination flex-align-center">
+  {% unless paginate.previous.is_link %}
+  <li aria-hidden="true">
+    <button disabled> </button>
+  </li>
+  {% else %}
+  <li class="prev">
+    <a href="{{ paginate.previous.url }}" title="prev"></a>
+  </li>
+  {% endunless %}
+  <li class="pagination-text flex-align-center">
+    {% for part in paginate.parts %}
+    {% if part.is_link %}
+    <a href="{{ part.url }}" title="{{ part.title }}"><span class="item link">{{ part.title }}</span></a>
+    {% else %}
+    <span class="item current"> {{ part.title }}</span>
+    {% endif %}
+    {% endfor %}
+  </li>
+  {% unless paginate.next.is_link %}
+  <li aria-hidden="true">
+    <button disabled></button>
+  </li>
+  {% else %}
+  <li class="next">
+    <a href="{{ paginate.next.url }}" title="NEXT"></a>
+  </li>
+  {% endunless %}
+</ul>
+

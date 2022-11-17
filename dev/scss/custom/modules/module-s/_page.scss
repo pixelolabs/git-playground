@@ -1,0 +1,17 @@
+.single-page {
+  padding: 80px 0;
+  @include MQ(MQ-680) {
+    padding: 40px 0;
+  }
+  h1 {
+    margin-bottom: 40px;
+  }
+  @include MQ(MQ-600) {
+    h1 {
+      font-size: 35px;
+      line-height: 1.06;
+      letter-spacing: 0.88px;
+      margin-bottom: 20px;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{% capture productHandle %}
+{% include 'shortcode-render' render:'name' %}
+{% endcapture %}
+
+{% assign handle = productHandle | strip | split: "|" %}
+
+<div class="four-column-product-slider">
+    <div class="slider flex-wrap">
+        {% for productRec in handle %}
+        {% assign singleProduct = productRec | strip %}
+        {% assign productRelated = all_products[singleProduct] %}
+        <div class="slide-product product-card">
+            {% include 'product_Card' with productRelated: productRelated , show_price: true, show_tags: true,
+            show_auto_tags: true, show_title: true, show_fav: true, show_secondary_button: false %}
+        </div>
+        {%endfor%}
+    </div>
+</div>
+
+{%- comment -%}
+// Use of ShortCodes
+[products name="product-handle-1|product-handle-2|product-handle-3"]
+{%- endcomment -%}

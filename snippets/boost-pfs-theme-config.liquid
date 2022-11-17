@@ -1,0 +1,115 @@
+{%- comment -%} VERSION: 0.0.3 Please do not delete this line. {%- endcomment -%}
+<script>
+  
+  // Declare boostPFSThemeConfig variable
+  var boostPFSThemeConfig = {
+    label: {
+      sorting_heading: {%- assign temp = 'collections.sorting.title' | t  -%} {%- unless temp contains 'translation missing'  -%} "{{ temp }}" {%- else -%} "Sorting" {%- endunless -%},
+      sorting_best_selling: {%- assign temp = 'collections.sorting.best_selling' | t -%} {%- unless temp contains 'translation missing'  -%} "{{ temp }}" {%- else -%} "Best Selling" {%- endunless -%},
+      sorting_featured: {%- assign temp = 'collections.sorting.featured' | t -%} {%- unless temp contains 'translation missing'  -%} "{{ temp }}" {%- else -%} "Featured" {%- endunless -%},
+      sorting_manual: {%- assign temp = 'collections.sorting.manual' | t -%} {%- unless temp contains 'translation missing'  -%} "{{ temp }}" {%- else -%} "Featured" {%- endunless -%},
+      sorting_title_ascending: {%- assign temp = 'collections.sorting.az' | t -%} {%- unless temp contains 'translation missing'  -%} "{{ temp }}" {%- else -%} "Alphabetically, A-Z" {%- endunless -%},
+      sorting_title_descending: {%- assign temp = 'collections.sorting.za' | t -%} {%- unless temp contains 'translation missing'  -%} "{{ temp }}" {%- else -%} "Alphabetically, Z-A" {%- endunless -%},
+      sorting_price_ascending: {%- assign temp = 'collections.sorting.price_ascending' | t -%} {%- unless temp contains 'translation missing'  -%} "{{ temp }}" {%- else -%} "Lowest Price" {%- endunless -%},
+      sorting_price_descending: {%- assign temp = 'collections.sorting.price_descending' | t -%} {%- unless temp contains 'translation missing'  -%} "{{ temp }}" {%- else -%} "Highest Price" {%- endunless -%},
+      sorting_created_ascending: {%- assign temp = 'collections.sorting.created_ascending' | t -%} {%- unless temp contains 'translation missing'  -%} "{{ temp }}" {%- else -%} "Date, Old to New" {%- endunless -%},
+      sorting_created_descending: {%- assign temp = 'collections.sorting.created_descending' | t -%} {%- unless temp contains 'translation missing'  -%} "{{ temp }}" {%- else -%} "Date, New to Old" {%- endunless -%},
+      sorting_date_ascending: {%- assign temp = 'collections.sorting.date_ascending' | t -%} {%- unless temp contains 'translation missing'  -%} "{{ temp }}" {%- else -%} "Date, Old to New" {%- endunless -%},
+      sorting_date_descending: {%- assign temp = 'collections.sorting.date_descending' | t -%} {%- unless temp contains 'translation missing'  -%} "{{ temp }}" {%- else -%} "Date, New to Old" {%- endunless -%},
+      sorting_sale_descending: {%- assign temp = 'collections.sorting.sale_descending' | t -%} {%- unless temp contains 'translation missing'  -%} "{{ temp }}" {%- else -%} "% Off" {%- endunless -%},
+      sorting_relevance: {%- assign temp = 'collections.sorting.relevance' | t -%} {%- unless temp contains 'translation missing'  -%} "{{ temp }}" {%- else -%} "Relevance" {%- endunless -%},
+          toolbar_viewas: "{{ label_toolbar_viewas | default: 'View as' }}",
+          items_with_count_one: "{{ label_items_with_count_one | default: 'Product' }}",
+          items_with_count_other: "{{ label_items_with_count_other | default: 'Products' }}",
+    },
+    label_basic: {
+      sale: {{ label_sale | default: 'Sale' | json }},
+      sold_out: {{ label_soldout | default: 'Sold Out' | json }},
+      from: {{ label_from | default: 'From' | json }},
+    },
+    
+    custom: {
+    layout_type: {{ layout_type | default: 'box' | json }},
+      enable_filter_sticky: {{ enable_filter_sticky | default: false | json }},
+      view_as_type: {{ view_as_type | default: 'view_as_type_list_grid_2_3_4_5' | json }},
+      products_per_page: {{ products_per_page | default: 24 | json }},
+      products_per_row: {{ products_per_row | default: 3 | json }},
+      products_per_row_mobile: {{ products_per_row_mobile | default: 2 | json }},
+      show_vendor: {{ show_vendor | default: false | json }},
+      show_price: {{ show_price | default: false | json }},
+      show_sale_label: {{ show_sale_label | default: false | json }},
+      show_sale_percent: {{ show_sale_percent | default: false | json }},
+      show_sold_out_label: {{ show_sold_out_label | default: false | json }},
+    show_label_by_tag: {{ show_label_by_tag | default: false | json }},
+      active_image_swap: {{ active_image_swap | default: false | json }},
+      show_product_review: {{ show_product_review | default: false | json }},
+    show_toolbar_sort_by: {{ show_toolbar_sort_by | default: true | json }},
+    hide_toolbar_view_as_mobile: {{ hide_toolbar_view_as_mobile | default: false | json }},
+  
+      display_item_swatch: {{ display_item_swatch | default: false | json }},
+      swatch_color_display_type: {{ swatch_color_display_type | default: false | json }},
+      swatch_color_event_change_image: {{ swatch_color_event_change_image | default: 'none' | json }},
+      swatches_color_shape: {{ swatches_color_shape | default: 'circle' | json }},
+  
+    display_item_swatch_size: {{ display_item_swatch_size | default: false | json }},
+  
+      equal_height: {{ equal_height | default: false | json }},
+      ratio_width_height_other: {{ ratio_width_height_other | default: '' | json }},
+      equal_height_crop_image_position: {{ equal_height_crop_image_position | default: 'center' | json }},
+      product_item_type: {{ product_item_type | default: 'grid' | json }},
+      custom_tags: [
+          {
+            "name": {{ tag1 | json }},
+            "color": {{ settings.tagColor1 | json }},
+            "label": {{ settings.tagLabel1 | json }}
+          },
+          {
+            "name": {{ tag2 | json }},
+            "color": {{ settings.tagColor2 | json }},
+            "label": {{ settings.tagLabel2 | json }}
+          },
+          {
+            "name": {{ tag3 | json }},
+            "color": {{ settings.tagColor3 | json }},
+            "label": {{ settings.tagLabel3 | json }}
+          }
+        ]
+    }
+  };
+  
+  // Declare Templates
+  var boostPFSTemplate = {
+    'soldOutClass': ' sold-out',
+    'saleClass': ' on-sale',
+    'soldOutLabelHtml': {%- render 'boost-pfs-filter-html', layout: 'soldOutLabelHtml', label_soldout: label_soldout -%},
+    'saleLabelHtml': {%- render 'boost-pfs-filter-html', layout: 'saleLabelHtml', label_sale: label_sale -%},
+    'tagLabelHtml': {%- render 'boost-pfs-filter-html', layout: 'tagLabelHtml' -%},
+    'vendorHtml': {%- render 'boost-pfs-filter-html', layout: 'vendorHtml' -%},
+    // Grid Template
+    'productGridItemHtml': {%- render 'boost-pfs-filter-html', layout: 'productGridItemHtml' -%},
+    // For List View
+    // List Template
+    'productListItemHtml': {%- render 'boost-pfs-filter-html', layout: 'productListItemHtml' -%},
+    // End For List View
+    'productListPlaceholderHtml': {%- render 'boost-pfs-filter-html', layout: 'productListPlaceholderHtml' -%},
+    // Pagination Template
+    'previousActiveHtml': {%- render 'boost-pfs-filter-html', layout: 'previousActiveHtml' -%},
+    'previousDisabledHtml': {%- render 'boost-pfs-filter-html', layout: 'previousDisabledHtml' -%},
+    'nextActiveHtml': {%- render 'boost-pfs-filter-html', layout: 'nextActiveHtml' -%},
+    'nextDisabledHtml': {%- render 'boost-pfs-filter-html', layout: 'nextDisabledHtml' -%},
+    'pageItemHtml': {%- render 'boost-pfs-filter-html', layout: 'pageItemHtml' -%},
+    'pageItemSelectedHtml': {%- render 'boost-pfs-filter-html', layout: 'pageItemSelectedHtml' -%},
+    'pageItemRemainHtml': {%- render 'boost-pfs-filter-html', layout: 'pageItemRemainHtml' -%},
+    'paginateHtml': {%- render 'boost-pfs-filter-html', layout: 'paginateHtml' -%},
+    // Sorting Template
+    'sortingHtml': {%- render 'boost-pfs-filter-html', layout: 'sortingHtml' -%},
+    // Show Limit Template
+    'showLimitHtml': {%- render 'boost-pfs-filter-html', layout: 'showLimitHtml' -%},
+    // Breadcrumb Template
+    'breadcrumbHtml': {%- render 'boost-pfs-filter-html', layout: 'breadcrumbHtml' -%},
+    'breadcrumbDivider': {%- render 'boost-pfs-filter-html', layout: 'breadcrumbDivider' -%},
+    'breadcrumbItemLink': {%- render 'boost-pfs-filter-html', layout: 'breadcrumbItemLink' -%},
+    'breadcrumbItemSelected': {%- render 'boost-pfs-filter-html', layout: 'breadcrumbItemSelected' -%},
+  };
+  </script>
+  

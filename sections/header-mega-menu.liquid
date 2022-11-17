@@ -1,0 +1,359 @@
+<!-- Header -->
+<header>
+    <!-- Announcement -->
+    {% if section.settings.show_announcement%}
+    <div class="announcement-bar js__mobile-menu-open-hide"
+        style="background-color: {{section.settings.announcementColor}};">
+        <div class="container-1340 relative flex-align-center">
+            <p class="flex-align-center">
+                {% if section.settings.announcement_image1 != blank%}
+                <img src="{{section.settings.announcement_image1 | img_url: 'master'}}"
+                    alt="{{section.settings.header_text1}}">
+                {%endif%}
+                <span> {{section.settings.header_text1}}</span>
+                {% if section.settings.announcement_link1 != blank%}
+                <a href="{{section.settings.announcement_link1}}"
+                    title="{{section.settings.announcement_link_text1}}">{{section.settings.announcement_link_text1}}</a>
+                {%endif%}
+            </p>
+            {% if section.settings.header_text2 != blank %}
+            <p>
+                {% if section.settings.announcement_image2 != blank%}
+                <img src="{{section.settings.announcement_image2 | img_url: 'master'}}"
+                    alt="{{section.settings.header_text2}}">
+                {%endif%}
+                <span>{{section.settings.header_text2}}</span>
+                {% if section.settings.announcement_link2 != blank%}
+                <a href="{{section.settings.announcement_link2}}"
+                    title="{{section.settings.announcement_link_text2}}">{{section.settings.announcement_link_text2}}</a>
+                {%endif%}
+            </p>
+            {%endif%}
+            <a href="#" title="close" id="announcement-close" class="close"> {% include 'icon-close' %} </a>
+        </div>
+    </div>
+    <script>
+        $("body").addClass("announcement-visible");
+    </script>
+    {%endif%}
+
+    <div class="header relative">
+        <div class="flex-align-center container-1340">
+            <!-- To be visible from ipad-->
+            <div class="mobile-hamburger">
+                <button id="hamburger" type="button">
+                    <span>{% include 'icon-hamburgur' %}</span>
+                    <span class="close">{% include 'icon-close' %}</span>
+                </button>
+            </div>
+
+            <!-- Main Nav -->
+            <div class="navbar-collapse" id="navbarNavDropdown">
+                {% assign mainMenu = linklists[section.settings.main_menu] %}
+                {% assign menShopMenu = linklists[section.settings.men_shop_menu] %}
+                {% assign womenShopMenu = linklists[section.settings.women_shop_menu] %}
+                {% assign accessoriesShopMenu = linklists[section.settings.accessories_shop_menu] %}
+                {% if section.settings.header_text2 != blank %}
+                <p class="announcement-text js__mobile-announcement-text">
+                    {% if section.settings.announcement_image2 != blank%}
+                    <img src="{{section.settings.announcement_image2 | img_url: 'master'}}"
+                        alt="{{section.settings.header_text2}}">
+                    {%endif%}
+                    <span>{{section.settings.header_text2}}</span>
+                    {% if section.settings.announcement_link2 != blank%}
+                    <a href="{{section.settings.announcement_link2}}"
+                        title="{{section.settings.announcement_link_text2}}">{{section.settings.announcement_link_text2}}</a>
+                    {%endif%}
+                </p>
+                {%endif%}
+                <div class="header-search ipad-block">
+                    {% include "icon-search" %}
+                    <form method="get" action="/search" class="width-100">
+                        <input type="hidden" name="type" value="product" />
+                        <input type="search" aria-label="Search" name="q" placeholder="Search" />
+                        <input type="submit" aria-label="Submit" class="submit hide" value="Search" />
+                    </form>
+                </div>
+                <nav class="main-menu">
+                    {% include 'site-nav' with mainMenu %}
+                    <div class="ipad-block account-link">
+                        {% if customer %}
+                        <a href="/account" title="My Account">My Account
+                            {%else%}
+                            <a href="/account/login" title="Log In">
+                                Account
+                                {%endif%}
+                            </a></a>
+                    </div>
+                    <div class="ipad-block wishlist-link">
+                        <a href="/apps/advanced-wishlist">wishlist</a>
+                    </div>
+                    <div class="ipad-block social-icons">
+                        <p>Connect with Us</p>
+                        {% include "social-icons" %}
+                    </div>
+                </nav>
+            </div>
+
+            <!-- Logo -->
+            {% if section.settings.logo != blank %}
+            <div class="logo js__logo">
+                <a href="{{ routes.root_url }}" itemprop="url" alt="{{shop.name}}">
+                    {{ section.settings.logo | img_url: 'master' | img_tag: shop.name }}
+                    {{ section.settings.mobileLogo | img_url: 'master' | img_tag: shop.name }}
+                </a>
+                {% if section.settings.logoInner != blank %}
+                <a href="{{ routes.root_url }}" class="inner-logo" itemprop="url" alt="{{shop.name}}">
+                    {{ section.settings.logoInner | img_url: 'master' | img_tag: shop.name }}
+                    {{ section.settings.mobileLogoInner | img_url: 'master' | img_tag: shop.name }}
+                </a>
+                {%endif%}
+            </div>
+            {%endif%}
+
+            <!-- Right Nav - Search, Account, Cart -->
+            <ul class="right-nav flex-align-center">
+                <li class="header-search ipad-none">
+                    {% include "icon-search" %}
+                    <form method="get" action="/search" class="width-100">
+                        <input type="hidden" name="type" value="product" />
+                        <input type="search" aria-label="Search" class="top-search" name="q" placeholder="Search" />
+                        <input type="submit" aria-label="Submit" class="submit hide" value="Search" />
+                    </form>
+                </li>
+                <li class="ipad-none">
+                    {% if customer %}
+                    <a href="/account" title="My Account"> {% include "icon-account" %}
+                        {%else%}
+                        <a href="/account/login" title="Log In">
+                            {% include "icon-account" %}
+                            {%endif%}
+                        </a></a>
+                </li>
+                <li class="ipad-none"><a class="icon-wishlist-heart-empty" href="/apps/advanced-wishlist">
+                        {% include "icon-wishlist-heart-empty" %}
+                    </a></li>>
+                <li>
+                    <a class="js-cart-expand cart {% if cart.item_count == 0 %}empty-cart{%endif%}" href="/cart"
+                        title="cart">{% include "icon-cart" %}
+                        {% if cart.item_count == 0 %}
+                        {%else%}
+                        <span class="js-ajax-cart-count cart-count">
+                            {{cart.item_count}}</span>
+                        {%endif%}
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+    {% include "cart-sidebar" %}
+</header>
+
+{% schema %}
+{
+"name": {
+"en": "Header"
+},
+"settings": [
+{
+"type": "image_picker",
+"id": "logo",
+"label": {
+"en": "Logo"
+},
+"info": {
+"en": "450 x 200px recommended"
+}
+},
+{
+"type": "image_picker",
+"id": "mobileLogo",
+"label": {
+"en": "Mobile Logo"
+},
+"info": {
+"en": "450 x 200px recommended"
+}
+},
+{
+"type": "image_picker",
+"id": "logoInner",
+"label": {
+"en": "Text Logo"
+},
+"info": {
+"en": "450 x 200px recommended"
+}
+},
+{
+"type": "image_picker",
+"id": "mobileLogoInner",
+"label": {
+"en": "Text Logo Mobile"
+},
+"info": {
+"en": "450 x 200px recommended"
+}
+},
+{
+"type": "link_list",
+"id": "main_menu",
+"label": "Main Menu"
+},
+{
+"type": "header",
+"content": "Men Shop Menu"
+},
+{
+"type": "link_list",
+"id": "men_shop_menu",
+"label": "Shop Menu"
+},
+{
+"type": "text",
+"id": "men_shop_btn_text",
+"label": "Shop All Text"
+},
+{
+"type": "url",
+"id": "men_shop_btn_url",
+"label": "Shop All Link"
+},
+{
+"type": "image_picker",
+"id": "men_shop_image",
+"label": "Image"
+},
+{
+"type": "header",
+"content": "Women Shop Menu"
+},
+{
+"type": "link_list",
+"id": "women_shop_menu",
+"label": "Shop Menu"
+},
+{
+"type": "text",
+"id": "women_shop_btn_text",
+"label": "Shop All Text"
+},
+{
+"type": "url",
+"id": "women_shop_btn_url",
+"label": "Shop All Link"
+},
+{
+"type": "image_picker",
+"id": "women_shop_image",
+"label": "Image"
+},
+{
+"type": "header",
+"content": "Accessories Shop Menu"
+},
+{
+"type": "link_list",
+"id": "accessories_shop_menu",
+"label": "Shop Menu"
+},
+{
+"type": "text",
+"id": "accessories_shop_btn_text",
+"label": "Shop All Text"
+},
+{
+"type": "url",
+"id": "accessories_shop_btn_url",
+"label": "Shop All Link"
+},
+{
+"type": "image_picker",
+"id": "accessories_shop_image",
+"label": "Image"
+},
+{
+"type": "header",
+"content": {
+"en": "Announcement bar"
+}
+},
+{
+"type": "checkbox",
+"id": "show_announcement",
+"label": {
+"en": "Show announcement"
+},
+"default": true
+},
+{
+"type": "text",
+"id": "header_text1",
+"label": {
+"en": "Text 1"
+},
+"default": {
+"en": "Announce something here"
+}
+},
+{
+"type": "image_picker",
+"id": "announcement_image1",
+"label": {
+"en": "Image 1"
+}
+},
+{
+"type": "url",
+"id": "announcement_link1",
+"label": {
+"en": "Link 1"
+},
+"info": {
+"en": "Optional"
+}
+},
+{
+"type": "text",
+"id": "announcement_link_text1",
+"label": "Link Text 1"
+},
+{
+"type": "text",
+"id": "header_text2",
+"label": {
+"en": "Text 2"
+}
+},
+{
+"type": "image_picker",
+"id": "announcement_image2",
+"label": {
+"en": "Image 2"
+}
+},
+{
+"type": "url",
+"id": "announcement_link2",
+"label": {
+"en": "Link 2"
+},
+"info": {
+"en": "Optional"
+}
+},
+{
+"type": "text",
+"id": "announcement_link_text2",
+"label": "Link Text 2"
+},
+{
+"type": "color",
+"id": "announcementColor",
+"label": "Background Color"
+}
+]
+}
+{% endschema %}

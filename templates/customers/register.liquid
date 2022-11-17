@@ -1,0 +1,84 @@
+
+
+
+<div class="form-section login-page-tempate light-brown-bottom-image create-account">
+
+  <div class="container-540 container-section">
+
+
+    <div class="form-vertical">
+
+      <h1 class="text-center h2">{{ 'customer.register.title' | t }}</h1>
+
+      {%- assign formId = 'RegisterForm' -%}
+      {% form 'create_customer', id: formId, novalidate: 'novalidate' %}
+      {% include 'form-status', form: form, form_id: formId %}
+
+    
+      <input placeholder="{{ 'customer.register.first_name' | t }}"  type="text" name="customer[first_name]"
+        id="{{ formId }}-FirstName" {% if form.first_name %}value="{{ form.first_name }}" {% endif %}
+        autocomplete="given-name">
+
+      
+      <input placeholder="{{ 'customer.register.last_name' | t }}"  type="text" name="customer[last_name]"
+        id="{{ formId }}-LastName" {% if form.last_name %}value="{{ form.last_name }}" {% endif %}
+        autocomplete="family-name">
+
+  
+      <input placeholder="{{ 'customer.register.email' | t }}" type="email" name="customer[email]"
+        id="{{ formId }}-email" class="{% if form.errors contains 'email' %} input--error{% endif %}" {% if form.email
+        %} value="{{ form.email }}" {% endif %} autocorrect="off" autocapitalize="off" autocomplete="email"
+        aria-required="true" {%- if form.errors contains 'email' -%} class="input--error" aria-invalid="true"
+        aria-describedby="{{ formId }}-email-error" {%- endif -%}>
+      {%- if form.errors contains 'email' -%}
+      <span id="{{ formId }}-email-error" class="input-error-message">
+        <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+      
+        <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+      </span>
+      {%- endif -%}
+
+    
+      <input placeholder="{{ 'customer.register.password' | t }}"  type="password" name="customer[password]"
+        id="{{ formId }}-password" class="{% if form.errors contains 'password' %} input--error{% endif %}"
+        aria-required="true" {%- if form.errors contains 'password' -%} class="input--error" aria-invalid="true"
+        aria-describedby="{{ formId }}-password-error" {%- endif -%}>
+      {%- if form.errors contains 'password' -%}
+      <span id="{{ formId}}-password-error" class="input-error-message">
+     
+        <span>{{ form.errors.translated_fields['password'] | capitalize }} {{ form.errors.messages['password']
+          }}.</span>
+      </span>
+      {%- endif -%}
+    
+      <input placeholder="Confirm Password"  type="password" value="" name="customer[password_confirmation]"
+        id="password_confirm" />
+      <span id="RegisterForm-confirmpassword-error" style="display:none" class="input-error-message">
+        Password do not match
+      </span>
+
+      <div class="btn-wrapper">
+        <input type="submit" value="{{ 'customer.register.submit' | t }}" class="btn--primary">
+        <p class="already-login-section">
+          Already have an account? <a class="btn-link" href="/account/login" title="Login">Login</a>
+        </p>
+      </div>
+
+      {% endform %}
+    </div>
+  </div>
+</div>
+
+<script>
+  $('form#RegisterForm').submit(function (e) {
+    $('#RegisterForm-confirmpassword-error').hide();
+    if ($('#RegisterForm-password').val() === $('#password_confirm').val()) {
+      //alert('Password Good!!');
+
+    } else {
+      $('#RegisterForm-confirmpassword-error').show();
+      e.preventDefault();
+      e.stopImmediatePropagation();
+    }
+  });
+</script>

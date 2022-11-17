@@ -1,0 +1,494 @@
+.login-page-tempate {
+  .login-header {
+    margin-bottom: 60px;
+  }
+  padding: 60px 0 100px;
+  @include MQ(MQ-480) {
+    padding: 40px 0 60px;
+  }
+  h1 {
+    margin-bottom: 60px;
+    text-align: center;
+    @include MQ(MQ-480) {
+      margin-bottom: 40px;
+    }
+  }
+
+  .btn-wrapper {
+    margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    > div {
+      font-size: 14px;
+      line-height: 1.5;
+      color: $color-black;
+    }
+
+    .btn-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      &:last-child {
+        margin-bottom: 0px;
+      }
+    }
+
+    .btn-link,
+    #customer_register_link {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.5;
+      color: $color-black;
+      text-transform: capitalize;
+      border: none;
+      background: none;
+    }
+    p {
+      margin-bottom: 20px;
+    }
+    .already-login-section {
+      margin-bottom: 0px;
+    }
+    #customer_register_link {
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+    .btn--primary {
+      margin-bottom: 20px;
+    }
+  }
+  #RecoverPasswordForm {
+    .btn-wrapper {
+      .btn-link {
+        margin-bottom: 0px;
+      }
+    }
+  }
+
+  &.reset-password {
+    .btn-wrapper {
+      margin-top: 20px;
+    }
+  }
+  @include MQ(MQ-480) {
+    .login-header {
+      margin-bottom: 40px;
+    }
+  }
+}
+.account-section {
+  padding: 60px 0 100px;
+  .order-detail-info {
+    margin-bottom: -20px;
+    h4 {
+      margin-bottom: 8px;
+    }
+  }
+  .heading-section {
+    text-align: center;
+    position: relative;
+    #customer_logout_link,
+    .btn-link {
+      position: relative;
+      margin-top: 20px;
+      display: inline-block;
+    }
+    p {
+      margin-top: 10px;
+    }
+  }
+  #customer_logout_link,
+  .btn-link {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: $color-black;
+    display: inline-block;
+  }
+  .order-address-section-outer {
+    margin-top: 60px;
+    .address-section {
+      width: 230px;
+      flex: none;
+      margin-left: 70px;
+      text-transform: capitalize;
+      h4 {
+        margin-bottom: 10px;
+      }
+      h6 {
+        margin-bottom: 20px;
+      }
+      .shipping-info {
+        margin-top: 40px;
+      }
+      .customer-name {
+        display: block;
+        margin-bottom: 0px;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      p {
+        a {
+          margin-top: 0px;
+          text-decoration: none;
+          color: $color-black;
+        }
+      }
+      h3 {
+        margin-bottom: 10px;
+      }
+      a.btn-link {
+        margin-top: 20px;
+        display: inline-block;
+      }
+    }
+    .order-section {
+      width: 100%;
+      flex: auto;
+      table {
+        width: 100%;
+        border-spacing: 0px;
+        dl {
+          margin: 0;
+        }
+        th {
+          padding: 0px 0 20px;
+          text-align: left;
+          font-size: 12px;
+          font-weight: 600;
+          font-family: $font-family-secondary;
+          line-height: 14px;
+          letter-spacing: 3px;
+          color: $color-black;
+          text-transform: uppercase;
+          border-bottom: 1px solid $color-black;
+        }
+        tbody,
+        tfoot {
+          td,
+          th {
+            padding: 20px 0;
+            border-bottom: solid 1px rgba(42, 23, 23, 0.3);
+            font-family: $font-family-primary;
+            font-weight: 600;
+            font-size: 14px;
+
+            line-height: 1.5;
+            letter-spacing: normal;
+            color: $color-black;
+            a {
+              color: $color-black;
+              border: none;
+            }
+            strong {
+              font-weight: 600;
+            }
+            &:first-child {
+              text-align: left;
+            }
+          }
+        }
+      }
+      table#order_details {
+        thead,
+        tbody {
+          tr {
+            th,
+            td {
+              width: 20% !important;
+              @include MQ(MQ-768) {
+                width: 100% !important;
+              }
+              &:first-child {
+                width: 30% !important;
+                @include MQ(MQ-768) {
+                  width: 100% !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .backtoaccount {
+    margin-top: 20px;
+    display: inline-block;
+  }
+  @include MQ(MQ-980) {
+    .order-address-section-outer {
+      flex-direction: column;
+      .address-section {
+        width: 100%;
+        margin-left: 0px;
+        margin-top: 50px;
+      }
+    }
+  }
+  @include MQ(MQ-768) {
+    .heading-section {
+      #customer_logout_link,
+      .btn-link {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-top: 10px;
+        display: inline-block;
+      }
+    }
+    .order-address-section-outer {
+      .order-table__product {
+        div {
+          width: 100%;
+        }
+      }
+      .order-table {
+        tbody {
+          tr {
+            border-bottom: none !important;
+          }
+        }
+      }
+
+      .order-discount-wrapper {
+        display: block;
+        text-align: right !important;
+        .medium-up--hide {
+          display: none;
+        }
+      }
+      table {
+        thead {
+          display: none;
+        }
+        tbody,
+        tfoot {
+          tr {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+            border: 1px solid rgba(42, 23, 23, 0.3);
+          }
+          td {
+            float: left;
+            clear: left;
+            width: 100%;
+            text-align: right !important;
+            padding: 15px !important;
+            padding-left: 80px !important;
+            position: relative;
+            min-height: 52px;
+            a {
+              text-align: right;
+            }
+          }
+          td:first-child {
+            border-top: none;
+          }
+          td:before {
+            content: attr(data-label);
+            position: absolute;
+            left: 20px;
+            top: 15px;
+            font-size: 14px !important;
+            line-height: normal;
+            letter-spacing: normal;
+            font-weight: bold;
+            max-width: 70%;
+            color: $color-black;
+          }
+          /* td:nth-child(2):before {
+            content: 'Date';
+          }
+          td:nth-child(3):before {
+            content: 'Payment Status';
+          }
+          td:nth-child(4):before {
+            content: 'Fulfillment Status';
+          }
+          td:nth-child(5):before {
+            content: 'Total';
+          }*/
+          /* tr:last-child {
+              margin-bottom: 0;
+            }*/
+          tr td:last-child {
+            border-bottom: none;
+          }
+        }
+        tfoot {
+          tr {
+            margin-bottom: 0px;
+            border-bottom: 1px solid rgba(42, 23, 23, 0.3);
+            border-left: none;
+            border-right: none;
+            border-top: none;
+            &:first-child {
+              border-top: 1px solid rgba(42, 23, 23, 0.3);
+            }
+          }
+          td {
+            display: flex;
+            padding-left: 20px !important;
+            align-items: center;
+            justify-content: space-between;
+            &::before {
+              order: 1;
+              position: relative !important;
+              top: 0;
+              left: 0;
+              text-align: left;
+            }
+            span,
+            strong {
+              order: 2;
+            }
+          }
+        }
+        thead,
+        tfoot th {
+          display: none !important;
+        }
+        tfoot tr td,
+        tfoot tr th {
+          border: 1px solid rgba(42, 23, 23, 0.3);
+          border-top: none;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        margin-bottom: 20px;
+
+        &:last-child {
+          border-bottom: 1px solid rgba(42, 23, 23, 0.3) !important;
+          margin-bottom: 0px;
+        }
+      }
+    }
+  }
+  @include MQ(MQ-480) {
+    padding: 40px 0 60px;
+    .order-address-section-outer {
+      margin-top: 40px;
+    }
+  }
+}
+.address-section.account-section {
+  .address-block-outer {
+    margin-top: 60px;
+    @include MQ(MQ-480) {
+      margin-top: 40px;
+    }
+    margin-bottom: 20px;
+    .address-block-section {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+    .address-block {
+      max-width: 100%;
+      padding: 20px 0;
+      border-bottom: solid 1px rgba(42, 23, 23, 0.3);
+
+      &:first-child {
+        padding-top: 0px;
+      }
+      form {
+        > div {
+          margin-top: 40px;
+          max-width: 480px;
+          .btn-wrapper {
+            text-align: center;
+          }
+          .btn--primary {
+            margin: 0 auto;
+
+            margin-bottom: 20px;
+          }
+        }
+      }
+    }
+    .address-innerblock {
+      text-transform: capitalize;
+      h3 {
+        display: block;
+        margin-bottom: 10px;
+        text-transform: capitalize;
+      }
+      .action {
+        margin-top: 20px;
+      }
+    }
+  }
+  .new-address-section {
+    margin: 0 auto;
+    max-width: 480px;
+    margin-top: 60px;
+    @include MQ(MQ-480) {
+      margin-top: 40px;
+    }
+    margin-bottom: 0px;
+    .btn-wrapper {
+      margin-top: 0px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .btn--primary {
+      margin-top: 0px;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+
+.account-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  @include MQ(MQ-400) {
+    flex-direction: column;
+  }
+  a {
+    padding: 0 !important;
+    margin: 0px !important;
+  }
+  a:last-child {
+    position: relative;
+    @include MQ(MQ-400) {
+      margin-top: 10px !important;
+      padding-top: 10px !important;
+      display: inline-block;
+    }
+    &::before {
+      content: "|";
+      margin: 0 20px;
+      color: $color-black;
+      position: relative;
+      @include MQ(MQ-400) {
+        position: absolute;
+        content: "";
+        background: $color-black;
+        height: 2px;
+        width: 40px;
+        margin: 0 auto;
+        top: 0;
+        left: 0;
+        right: 0;
+      }
+    }
+  }
+}
+
+.login-guest-section {
+  text-align: center;
+  padding-top: 40px;
+  margin-top: 20px;
+  border-top: 1px solid $color-black;
+  .h2 {
+    margin-bottom: 30px;
+  }
+}

@@ -1,0 +1,136 @@
+<script>
+  $(document).ready(function () {
+    // To save all images in an array named img_array
+    var img_array = $('.article-content img').map(function () {
+      return $(this).attr("src");
+    });
+    var firstImage = img_array[0];
+
+    {% if article.image %}
+    {% else %}
+    $(".custom-article-image img").attr("src", firstImage);
+    {% endif %}
+  });
+</script>
+
+<div class="container-1400">
+  <div class="article-template">
+    <div class="text-center">
+      {% for tag in article.tags %}
+      <span class="uppercase d-inline-block">{{ tag }}</span>
+      {% endfor %}
+      <h1 class="uppercase">{{ article.title }}</h1>
+      {% if section.settings.blog_show_date %}
+      <time class="d-inline-block">{{ article.published_at | date: "%d/%m/%Y" }}</time>
+      {% endif %}
+    </div>
+
+    {% capture img_id %}ArticleImage-{{ article.image.id }}{% endcapture %}
+    {% capture img_wrapper_id %}ArticleImageWrapper-{{ article.image.id }}{% endcapture %}
+    {%- assign img_url = article.image | img_url: 'master' -%}
+    <div id="{{ img_wrapper_id }}" class="image-section custom-article-image">
+      <img id="{{ img_id }}" class="lazyload" data-src="{{ img_url }}"
+        data-widths="[180, 360, 540, 720, 905, 1090, 1296, 1512, 1728, 2048]"
+        data-aspectratio="{{ article.image.aspect_ratio }}" data-sizes="auto" alt="{{ article.title }}">
+    </div>
+
+    <div class="content-wrapper relative flex">
+      <div class="content full-format">
+        <div class="article-content">
+          {% include 'shortcode' load: article.content %}
+          
+        </div>
+      </div>
+
+      <div class="social-sharing">
+        {% if article.author %}
+        <div>
+          <p class="uppercase mb-0"> by {{article.author}}</p>
+        </div>
+        {% endif %}
+        {% if article.tags %}
+        <div>
+          <p class="uppercase">Categories</p>
+          {% for tag in article.tags %}
+          <span class="d-inline-block">{{ tag }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% if section.settings.show_share_buttons %}
+        <div>
+          <p class="uppercase">share </p>
+          {% include 'social-sharing', share_title: article.title, share_permalink: article.url, share_image:
+          article.image
+          %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="related-posts">
+    <h2 class="text-center uppercase">Related Posts</h2>
+    <ul class="js__realated-articles blog-list-view flex-wrap">
+      {% for relatedArticle in blog.articles %}
+      <li data-article-id="{{relatedArticle.id}}">
+        {% include 'article_Card' with articleRelated: relatedArticle, show_time: true, show_description: true,
+        show_readMore:
+        true %}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+<script>
+  /** Hide blogs if they are gettings repeated **/
+  var relatedList = $('.js__realated-articles').children('li'),
+    relatedListArray = [];
+  /* If no posts - then hide the section */
+  if (relatedList.length === 0) {
+    $('.related-posts').hide();
+  }
+  /* get the current postID */
+  var currentArticleID = $('article').attr("data-article-id");
+  /* go through the loop of the postArray List */
+  $(relatedList).each(function () {
+    var articleID = $(this).attr("data-article-id");
+    /* if the current article ID matches anyone in the loop - then remove it */
+    if (currentArticleID == articleID) {
+      $(this).remove();
+    }
+    else {
+      relatedListArray.indexOf(articleID) == -1 ? relatedListArray.push(articleID) : $(this).remove();
+    }
+  });
+  /* if you had just one in array and too matched - then hide the section */
+  if (relatedListArray.length === 0) {
+    $('.related-posts').hide();
+  }
+</script>
+
+
+{% schema %}
+{
+"name": {
+"en": "Posts"
+},
+"settings": [
+{
+"type": "checkbox",
+"id": "blog_show_date",
+"label": {
+"en": "Show date"
+},
+"default": true
+},
+{
+"type": "checkbox",
+"id": "show_share_buttons",
+"label": {
+"en": "Show social sharing buttons"
+},
+"default": true
+}
+]
+}
+{% endschema %}

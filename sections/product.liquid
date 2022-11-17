@@ -1,0 +1,177 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+<div id="product" class="product">
+  <div class="container-1340 flex-wrap">
+    <div class="ipad-block"> 
+ <!-- Sale Tag-->
+ {% if product.compare_at_price > product.price %}
+ <div class="tag sale">sale!</div>
+{% endif %}
+      <span class="sub-heading green vendor">{% for collection in product.collections %}
+        {{collection.title}}
+        {% unless forloop.last %}|{% endunless %}
+      {% endfor %}  </span>
+
+          
+         <h1>{{product.title}}</h1>
+         <div class="review-section flex">
+          <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+            <a class="write-review js__write-review-btn"> Write a Review </a> 
+           </div>
+         <!-- SKU -->
+         <div class="sku-section js-sku-section" style="display: none;">
+           SKU:
+           <span>{{ current_variant.sku }}</span>
+         </div>
+
+          <div class="flex">
+            <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+              <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+              <link itemprop="availability"
+                href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+              <div class="product-single__prices" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
+                {% if product.price < product.compare_at_price %} <span>{{ product.price | money_without_trailing_zeros }}</span>
+                  <s>{{ product.compare_at_price | money_without_trailing_zeros }}</s>
+                  {% else %}
+
+                  <span>  {{ product.price | money_without_trailing_zeros }}</span>
+                  {% endif %}
+              </div>
+            </div>
+          </div>
+     </div>
+    <!-- Left Product Image Slider Section -->
+    {%include 'product_images'%}
+    <!-- Right Product Information Section -->
+    <div class="product__information" itemscope itemtype="http://schema.org/Product" id="ProductSection"
+      data-section-id="{{ section.id }}" data-section-type="product-template"
+      data-image-zoom-type="{{ section.settings.product_image_zoom_type }}"
+      data-extra-tab-content="{{ section.settings.extra_tab_content }}" data-enable-history-state="true">
+      <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+      <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
+     <div class="ipad-none"> 
+  <!-- Sale Tag-->
+  {% if product.compare_at_price > product.price %}
+  <div class="tag sale">sale!</div>
+{% endif %}
+      <span class="sub-heading green vendor">{% for collection in product.collections %}
+        {{collection.title}}
+        {% unless forloop.last %}|{% endunless %}
+      {% endfor %}  </span>
+
+         
+         <h1>{{product.title}}</h1>
+         <div class="review-section flex">
+          <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+            <a class="write-review js__write-review-btn"> Write a Review </a> 
+           </div>
+         <!-- SKU -->
+         <div class="sku-section js-sku-section" style="display: none;">
+           SKU:
+           <span>{{ current_variant.sku }}</span>
+         </div>
+
+          <div class="flex">
+            <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+              <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+              <link itemprop="availability"
+                href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+              <div class="product-single__prices" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
+                {% if product.price < product.compare_at_price %} <span>{{ product.price | money_without_trailing_zeros }}</span>
+                  <s>{{ product.compare_at_price | money_without_trailing_zeros }}</s>
+                  {% else %}
+
+                  <span>  {{ product.price | money_without_trailing_zeros }}</span>
+                  {% endif %}
+              </div>
+            </div>
+          </div>
+     </div>
+          <!-- yotpo Reviews 
+          <div class="yotpo bottomLine" data-product-id="{{product.id}}"></div>-->
+      
+          <div class="product__form">
+          <form action="/cart/add" id="add-to-cart" method="post" enctype="multipart/form-data"
+          data-productid="{{ product.id }}">
+        {%include 'product_linked-options' %}
+        <div class="hide">
+          <select id="product-select" name="id" style="display: none;">
+            {% for variant in product.variants %}
+            {% if variant.available %}
+            <option {% if variant==current_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
+              {{ variant.title }}
+            </option>
+            {% else %}
+            <option disabled="disabled">{{ variant.title }} - sold out!</option>
+            {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+          <div class="quantity-btn-wrapper flex">
+            <div class="product-single__quantity js-product-single__quantity js-quantity-hide">
+              <span>Qty</span>
+              <div class="quantity-outer " data-children-count="1">
+                <a class="minus-qty js-plus-minus-qty" data-type="minus">{% include 'icon-minus' %}</a>
+                <input type="text" class="quantity-selector js-quantity-selector" value="1" id="Quantity"
+                  name="quantity">
+                <a class="plus-qty js-plus-minus-qty" data-type="plus">{% include 'icon-plus' %}</a>
+              </div>
+            </div>
+            <div class="add-to-cart">
+              <button type="submit"  name="add" id="add" class="btn--primary" 
+                onclick="addItem('add-to-cart'); return false;">
+           
+              <span class="pdp-add-to-cart-text">Add to Cart</span>
+              <span class="pdp-add-to-cart-price"></span>
+              </button>
+              <div class="trigger_disclaimer"></div>
+            </div>
+          </div>
+         
+        </form>
+      </div>
+          {%comment%}
+          show success/error message if required.
+          This needs to be enabled in js
+          {%endcomment%}
+          <div id="cart-message"></div>
+
+            <!-- Product Short Description-->
+            {% if product.metafields.product-description.product_short_description != blank %}
+            <div class="description">
+              <p>  {{product.metafields.product-description.product_short_description}}</p>
+
+              {% if product.description != blank or product.metafields.product_faq.title != blank  %}
+                <a class="js__pdp-view-details">More Details ▾</a>
+                {% endif %}
+            </div>
+            {% endif %}
+       <!--     {% if product.description != blank %}
+            <div class="description full-format">
+           <p>Short Description - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec purus neque, fermentum ut libero at, placerat iaculis ante. Aenean condimentum nisl sit amet arcu pulvinar, non venenatis massa porttitor. Pellentesque in justo tellus. Ut ac mollis felis. Nunc id est sit amet felis ultrices convallis eu vel justo. Proin non nisi dictum, pellentesque nunc sit amet, elementum dolor. Pellentesque luctus ex quis tortor volutpat posuere.</p>
+              <a class="js__pdp-view-details">More Details ▾</a>
+            </div>
+          {% endif %}-->
+        </div>
+
+        
+        {% if product.metafields.three_column_list.title != blank %}
+        <div class="three-column-content ipad-block">
+          <ul class="flex-wrap">
+            {% for value in product.metafields.three_column_list.title %}
+            {% if product.metafields.three_column_list.title[forloop.index0] != blank %}
+            <li>
+              <span class="title">{{product.metafields.three_column_list.title[forloop.index0]}}</span>
+              {% if product.metafields.three_column_list.description[forloop.index0] != blank %}
+              <p>{{product.metafields.three_column_list.description[forloop.index0]}}</p>
+              {%- endif -%}
+            </li>
+            {%- endif -%}
+            {% endfor %}
+           
+          </ul>
+        </div>
+      </div>
+      {% endif %}
+      </div>
+    </div>
+  </div>

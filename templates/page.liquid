@@ -1,0 +1,13 @@
+<div class="inner-hero-section">
+  <div class="container-740">
+    <h1 class="text-center">{{page.title}}</h1>
+    {% if page.metafields.page-sub-heading.page_sub_heading != blank %}
+    <span class="sub-heading">{{page.metafields.page-sub-heading.page_sub_heading}}</span>
+    {% endif %}
+  </div>
+</div>
+<div class="full-width-content full-format">
+  <div class="container-740">
+    {{ page.content }}
+  </div>
+</div>

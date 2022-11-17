@@ -1,0 +1,182 @@
+/*
+1. Announcement Bar
+2. Main Content [main]
+3. Header
+*/
+
+/****** Announcement Bar ******/
+.announcement-bar {
+  background-color: $color-gold;
+  position: relative;
+  height: 33px;
+
+  .container-1400 {
+    justify-content: space-between;
+  }
+  .close {
+    position: absolute;
+    color: $color-white;
+    right: 30px;
+    top: 8px;
+    svg {
+      height: 15px;
+      * {
+        stroke: $color-white;
+        fill: $color-white;
+      }
+    }
+  }
+  .slick-slider {
+    height: 33px;
+    .slick-track {
+      height: inherit;
+    }
+    .slick-slide {
+      height: 33px;
+    }
+  }
+  .slick-list {
+    padding: 0 !important;
+  }
+  p {
+    text-align: center;
+    color: $color-white;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: normal;
+    letter-spacing: 2.57px;
+    padding: 9px 10px;
+    a {
+      color: $color-blue;
+      font: inherit;
+      text-decoration: underline;
+    }
+  }
+}
+
+/****** Main Content ******/
+.main-content {
+  padding-top: 123px;
+  &.active {
+    padding-top: 70px;
+  }
+  @include MQ(MQ-980) {
+    padding-top: 92px;
+    &.active {
+      padding-top: 59px;
+    }
+  }
+  @include MQ(MQ-800) {
+    padding-top: 103px;
+    &.active {
+      padding-top: 59px;
+    }
+  }
+  @include MQ(MQ-460) {
+    padding-top: 115px;
+    &.active {
+      padding-top: 59px;
+    }
+  }
+}
+
+/****** Header ******/
+header {
+  position: fixed;
+  z-index: 9;
+  width: 100%;
+  background: $color-white;
+  /****** Header Logo ******/
+  .header-logo {
+    width: 200px;
+    height: 50px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    img {
+      @include img-object-contain;
+      display: none;
+      &.logo {
+        display: block;
+      }
+      @include MQ(MQ-980) {
+        display: none;
+        &.logo {
+          display: none;
+        }
+        &.mobile-logo {
+          display: block;
+        }
+      }
+    }
+    @include MQ(MQ-980) {
+      width: 120px;
+      height: 30px;
+    }
+  }
+  /****** Fixed Header ******/
+  &.fixed {
+    position: fixed;
+    transition: 0.3s;
+    width: 100%;
+    top: 0;
+    z-index: 99;
+    .announcement-bar {
+      display: none;
+    }
+    .navbar-collapse {
+      @include MQ(MQ-980) {
+        height: calc(100vh - 59px);
+        top: 59px;
+      }
+    }
+    .main-menu {
+      li {
+        a {
+          padding: 27px 0 26px;
+          @include MQ(MQ-980) {
+            padding: 15px 0;
+          }
+        }
+      }
+      li.has-big-nav .big-nav,
+      li.has-sub-nav .sub-nav {
+        top: 70px;
+        @include MQ(MQ-980) {
+          top: 0;
+        }
+      }
+    }
+  }
+  /****** Mobile Hamburger ******/
+  .mobile-hamburger {
+    display: none;
+    #hamburger {
+      height: 20px;
+      width: 20px;
+      .close {
+        display: none;
+      }
+      &.active {
+        span {
+          display: none;
+          &.close {
+            display: inline;
+          }
+        }
+      }
+    }
+    @include MQ(MQ-980) {
+      display: block;
+    }
+  }
+  @include MQ(MQ-980) {
+    .ipad-none {
+      display: none;
+    }
+    .ipad-block {
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,40 @@
+<div class="inner-hero-section">
+    <div class="image-section">
+        {% if section.settings.image != blank %}
+        <picture>
+            <source media="(max-width: 480px)" srcset="{{ section.settings.mobileImage | img_url: 'master' }}">
+            <img src="{{ section.settings.image | img_url: 'master' }}" alt="{{page.title}}">
+        </picture>
+        {%endif%}
+    </div>
+    <div class="container-1340 ">
+        <h1 class="text-center">
+            {% if section.settings.title != blank %}
+            {{ section.settings.title }}
+            {%else%}
+            {{ page.title }}
+            {%endif%}
+        </h1>
+        {% if page.content != blank %}
+        {{ page.content }}
+        {%endif%}
+    </div>
+</div>
+
+{% schema %}
+{
+"name": "Inner Banner",
+"settings": [
+{
+"type": "image_picker",
+"id" : "image",
+"label": "Image"
+},
+{
+"type": "image_picker",
+"id" : "mobileImage",
+"label": "Mobile Image"
+}
+]
+}
+{% endschema %}

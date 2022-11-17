@@ -1,0 +1,244 @@
+/** breakpoints
+1920
+1440
+1024
+980
+768
+630
+600
+480
+350
+**/
+$MQ-350: 350px;
+$MQ-400: 400px;
+$MQ-480: 480px;
+$MQ-600: 600px;
+$MQ-630: 630px;
+$MQ-768: 768px;
+$MQ-980: 980px;
+$MQ-1024: 1024px;
+$MQ-1200: 1200px;
+$MQ-1280: 1280px;
+$MQ-1440: 1440px;
+$MQ-1550: 1550px;
+$MQ-1720: 1720px;
+$MQ-1850: 1850px;
+$MQ-1920: 1920px;
+/** media queries **/
+@mixin MQ($canvas) {
+  @if $canvas==MQ-350 {
+    @media only screen and (max-width: $MQ-350) {
+      @content;
+    }
+  }
+  @if $canvas==MQ-400 {
+    @media only screen and (max-width: $MQ-400) {
+      @content;
+    }
+  } @else if $canvas==MQ-480 {
+    @media only screen and (max-width: $MQ-480) {
+      @content;
+    }
+  }
+  @if $canvas==MQ-600 {
+    @media only screen and (max-width: $MQ-600) {
+      @content;
+    }
+  }
+  @if $canvas==MQ-630 {
+    @media only screen and (max-width: $MQ-630) {
+      @content;
+    }
+  } @else if $canvas==MQ-768 {
+    @media only screen and (max-width: $MQ-768) {
+      @content;
+    }
+  } @else if $canvas==MQ-980 {
+    @media only screen and (max-width: $MQ-980) {
+      @content;
+    }
+  } @else if $canvas==MQ-1024 {
+    @media only screen and (max-width: $MQ-1024) {
+      @content;
+    }
+  } @else if $canvas==MQ-1200 {
+    @media only screen and (max-width: $MQ-1200) {
+      @content;
+    }
+  } @else if $canvas==MQ-1280 {
+    @media only screen and (max-width: $MQ-1280) {
+      @content;
+    }
+  } @else if $canvas==MQ-1440 {
+    @media only screen and (max-width: $MQ-1440) {
+      @content;
+    }
+  } @else if $canvas==MQ-1550 {
+    @media only screen and (max-width: $MQ-1550) {
+      @content;
+    }
+  } @else if $canvas==MQ-1720 {
+    @media only screen and (max-width: $MQ-1720) {
+      @content;
+    }
+  } @else if $canvas==MQ-1850 {
+    @media only screen and (max-width: $MQ-1850) {
+      @content;
+    }
+  } @else if $canvas==MQ-1920 {
+    @media only screen and (max-width: $MQ-1920) {
+      @content;
+    }
+  } @else {
+    @media only screen and (max-width: $canvas) {
+      @content;
+    }
+  }
+}
+
+/* Buttons */
+@mixin px-button {
+  font-family: $font-family-primary;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: 3px;
+  text-align: center;
+  color: $color-black;
+  width: 100%;
+  border: 2px solid $color-black;
+  color: $color-black;
+  background-color: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-decoration: none;
+  padding: 10.5px;
+  max-width: 200px;
+  text-transform: uppercase;
+}
+
+/*Content*/
+@mixin wrapper-padding-15 {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@mixin wrapper-padding-30 {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+/* Images */
+@mixin img-object-cover {
+  position: absolute;
+  object-fit: cover;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+@mixin img-object-contain {
+  position: absolute;
+  object-fit: contain;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+@mixin img-object-contain-relative-bottom {
+  position: relative;
+  object-fit: contain;
+  object-position: bottom;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* iframe */
+@mixin iframe-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: none;
+  max-height: none;
+  min-width: 110vw;
+  min-height: 110vw;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+@mixin before-black-overlay {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: $color-black;
+  opacity: 0.3;
+  top: 0;
+  left: 0;
+}
+
+@mixin animation-stretch {
+  animation-name: stretch;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-delay: 0;
+  animation-play-state: running;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+@keyframes stretch {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@mixin animation-stretchless {
+  animation-name: stretchless;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-delay: 0;
+  animation-play-state: running;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+@keyframes stretchless {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@mixin animation-stretchreverce {
+  animation-name: stretchreverce;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-delay: 0;
+  opacity: 0;
+}
+@keyframes stretchreverce {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+}

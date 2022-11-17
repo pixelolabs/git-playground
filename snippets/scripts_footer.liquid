@@ -1,0 +1,392 @@
+<link rel="preload" href="{{ 'theme.js' | asset_url }}" as="script">
+</script>
+<script type="text/javascript" src="https://cdn.rawgit.com/igorlino/elevatezoom-plus/1.1.6/src/jquery.ez-plus.js"></script>
+<script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=Rge4HY"></script>
+<!-- Product object -->
+<script>
+  window.theme = window.theme || {};
+  var theme = {
+    strings: {
+      addToCart: {{ 'products.product.add_to_cart' | t | json }},
+  soldOut: {{ 'products.product.sold_out' | t | json}},
+  unavailable: {{ 'products.product.unavailable' | t | json}}
+      },
+  settings: {
+    // Adding some settings to allow the editor to update correctly when they are changed
+  },
+  variables: {
+    mediaQueryMedium: 'screen and (max-width: 768px)',
+      bpSmall: false
+  },
+  moneyFormat: {{ shop.money_format | json}}
+    }
+  document.documentElement.className = document.documentElement.className.replace('no-js', 'supports-js');
+</script>
+ <script>
+   var prodLib = [
+   {%- unless product.has_only_default_variant -%}
+     {% if product.variants.size > 0%}
+     {% for variant in product.variants %}
+     {
+       "productID":"{{product.id}}",
+       "id":"{{variant.id}}",
+       "handle":"{{variant.handle}}",
+       "option1":"{{variant.option1}}",
+       "option2":"{{variant.option2}}",
+       "option3":"{{variant.option3}}",
+       "image":"{{variant.image | img_url}}",
+       "sku":"{{ variant.sku }}",
+       "quantity":"{{variant.inventory_quantity}}",
+       "price":"{{variant.price}}",
+       "priceCompared":"{{variant.compare_at_price}}",
+       "available":"{{variant.available}}"
+     }{% unless forloop.last %},{% endunless %}
+     {% endfor %}
+     {%endif%}
+     {%endunless%}
+   ];
+   </script>
+   
+<script>
+ var cartLib = [
+   {% if cart.item_count > 0%}
+   {% for item in cart.items %}
+   {
+     "id":"{{item.id}}",
+     "title":"{{item.title}}",
+     "price":"{{item.price}}",
+     "comparePrice":"{{item.variant.product.compare_at_price}}",
+     "quantity":"{{item.quantity}}",
+    // "variant":'{{item.variant | json}}'
+   }{% unless forloop.last %},{% endunless %}
+   {% endfor %}
+   {%endif%}
+  
+ ];
+ </script>
+
+ {% if template.name != 'collection' and template.name != 'search'%}
+<script>
+ var relProdLib = [
+ {% paginate collections['all'].products by 1000 %}
+ {% for product in collections['all'].products %}
+  {% for variant in product.variants %}
+     {
+       "productID":"{{product.id}}",
+       "id":"{{variant.id}}",
+       "handle":"{{variant.handle}}",
+       "option1":"{{variant.option1}}",
+       "option2":"{{variant.option2}}",
+       "option3":"{{variant.option3}}",
+       "image":"{{variant.image | img_url}}",
+       "quantity":"{{variant.inventory_quantity}}",
+       "price":"{{variant.price}}",
+       "priceCompared":"{{variant.compare_at_price}}",
+       "available":"{{variant.available}}"
+     }
+     {% unless forloop.last %},{% endunless %}
+     {% endfor %}
+     {% unless forloop.last %},{% endunless %}
+     {% endfor %}
+     {% endpaginate %}
+     ];
+      /*Collection object*/
+      var collectionLibrary = [
+     {% paginate collections['all'].products by 1000 %}
+     {% for _product in collections['all'].products %}
+     {
+       id: "{{_product.id}}",
+    title: "{{_product.title}}",
+       images: [
+       {% for image in _product.images %}
+         {
+          image: "{{image.src | img_url: 'master'}}",
+          alt: "{{ image.alt | escape }}"
+         }{% unless forloop.last %},{% endunless %}
+         {% endfor %}
+       ]
+     }{% unless forloop.last %},{% endunless %}
+     {% endfor %}
+     {% endpaginate %}
+   ];
+</script>
+{% endif %}
+
+<script>
+  var globalLib = [
+      {
+        "Variant_Display": "dropdown",
+        "Color_Swatches": "yes",
+        "Color_Swatches_Limit": "3",
+        "Color_Swatches_ViewAll": "yes",
+        "Image_Popup": "no",
+        "Image_Zoom": "no",
+        "Free_Shipping_progressbar": "no",
+        "Static_Addons": "yes",
+        "Dynamic_Addons": "yes",
+        "Mini_Cart": "yes",
+        "Footer_Accordion": "yes",
+        "FAQ_Side_Panel": "no",
+        "PDP_Slider_Thumbnail": "horizontal",
+        "PDP_Slider_Thumbnail_Viewmore": "on",
+        "PDP_Thumbnail_Viewmore_Click": "popup",
+        "Product_Recommendation_Slider": "off",
+      } 
+    ];
+    function getglobalLib(type) {
+  var globalLibValue = "";
+  $.each(globalLib, function (key, value) {
+      globalLibValue = value[type];
+  })
+  return globalLibValue;
+}
+</script>
+
+<script>
+
+  var prodColor = [
+  {% if settings.imgcolor1 != blank %}     
+  {
+    "color":"{{ settings.imgcolor1 | img_url: 'master'}}",
+     "title":"{{ settings.colorLabel1 }}",
+     "ourOfStockMsg":"{{settings.outOfStockMsg1}}"
+   } {%endif%}
+   {% if settings.imgcolor2 != blank %}
+   ,
+   {
+     "color":"{{ settings.imgcolor2 | img_url: 'master'}}",
+     "title":"{{ settings.colorLabel2 }}",
+     "ourOfStockMsg":"{{settings.outOfStockMsg2}}"
+   } {%endif%}
+   {% if settings.imgcolor3 != blank %}
+   ,
+   {
+     "color":"{{ settings.imgcolor3 | img_url: 'master'}}",
+     "title":"{{ settings.colorLabel3 }}",
+     "ourOfStockMsg":"{{settings.outOfStockMsg3}}"
+   } {%endif%}
+   {% if settings.imgcolor4 != blank %}
+   ,
+   {
+     "color":"{{ settings.imgcolor4 | img_url: 'master'}}",
+     "title":"{{ settings.colorLabel4 }}",
+     "ourOfStockMsg":"{{settings.outOfStockMsg4}}"
+   }{%endif%}
+   {% if settings.imgcolor5 != blank %}
+   ,
+   {
+     "color":"{{ settings.imgcolor5 | img_url: 'master'}}",
+     "title":"{{ settings.colorLabel5 }}",
+     "ourOfStockMsg":"{{settings.outOfStockMsg5}}"
+   } {%endif%}
+   {% if settings.imgcolor6 != blank %}
+   ,
+   {
+     "color":"{{ settings.imgcolor6 | img_url: 'master'}}",
+     "title":"{{ settings.colorLabel6 }}",
+     "ourOfStockMsg":"{{settings.outOfStockMsg6}}"
+   } {%endif%}
+   {% if settings.imgcolor7 != blank %}
+   ,
+   {
+     "color":"{{ settings.imgcolor7 | img_url: 'master'}}",
+     "title":"{{ settings.colorLabel7 }}",
+     "ourOfStockMsg":"{{settings.outOfStockMsg7}}"
+   }
+   {%endif%}
+   {% if settings.imgcolor8 != blank %}
+   ,
+   {
+     "color":"{{ settings.imgcolor8 | img_url: 'master'}}",
+     "title":"{{ settings.colorLabel8 }}",
+     "ourOfStockMsg":"{{settings.outOfStockMsg8}}"
+   }
+   {%endif%}
+   {% if settings.imgcolor9 != blank %}
+   ,
+   {
+     "color":"{{ settings.imgcolor9 | img_url: 'master'}}",
+     "title":"{{ settings.colorLabel9 }}",
+     "ourOfStockMsg":"{{settings.outOfStockMsg9}}"
+   } {%endif%}
+   {% if settings.imgcolor10 != blank %}
+   ,
+   {
+     "color":"{{ settings.imgcolor10 | img_url: 'master'}}",
+     "title":"{{ settings.colorLabel10 }}",
+     "ourOfStockMsg":"{{settings.outOfStockMsg10}}"
+   }
+   {%endif%}
+   {% if settings.imgcolor11 != blank %}
+   ,
+   {
+     "color":"{{ settings.imgcolor11 | img_url: 'master'}}",
+     "title":"{{ settings.colorLabel11 }}",
+     "ourOfStockMsg":"{{settings.outOfStockMsg11}}"
+   }
+   {%endif%}
+   {% if settings.imgcolor12 != blank %}
+   ,
+   {
+     "color":"{{ settings.imgcolor12 | img_url: 'master'}}",
+     "title":"{{ settings.colorLabel12 }}",
+     "ourOfStockMsg":"{{settings.outOfStockMsg12}}"
+   }
+   {%endif%}
+   {% if settings.imgcolor13 != blank %}
+   ,
+   {
+     "color":"{{ settings.imgcolor13 | img_url: 'master'}}",
+     "title":"{{ settings.colorLabel13 }}",
+     "ourOfStockMsg":"{{settings.outOfStockMsg13}}"
+   }
+   {%endif%}
+   {% if settings.imgcolor14 != blank %}
+   ,
+   {
+     "color":"{{ settings.imgcolor14 | img_url: 'master'}}",
+     "title":"{{ settings.colorLabel14 }}",
+     "ourOfStockMsg":"{{settings.outOfStockMsg14}}"
+   }
+   {%endif%}
+   {% if settings.imgcolor15 != blank %}
+   ,
+   {
+     "color":"{{ settings.imgcolor15 | img_url: 'master'}}",
+     "title":"{{ settings.colorLabel15 }}",
+     "ourOfStockMsg":"{{settings.outOfStockMsg15}}"
+   }
+   {%endif%}
+   {% if settings.imgcolor16 != blank %}
+   ,
+   {
+     "color":"{{ settings.imgcolor16 | img_url: 'master'}}",
+     "title":"{{ settings.colorLabel16 }}",
+     "ourOfStockMsg":"{{settings.outOfStockMsg16}}"
+   }
+   {%endif%}
+   {% if settings.imgcolor17 != blank %}
+   ,
+   {
+     "color":"{{ settings.imgcolor17 | img_url: 'master'}}",
+     "title":"{{ settings.colorLabel17 }}",
+     "ourOfStockMsg":"{{settings.outOfStockMsg17}}"
+   }
+   {%endif%}
+   {% if settings.imgcolor18 != blank %}
+   ,
+   {
+     "color":"{{ settings.imgcolor18 | img_url: 'master'}}",
+     "title":"{{ settings.colorLabel18 }}",
+     "ourOfStockMsg":"{{settings.outOfStockMsg18}}"
+   }
+   {%endif%}
+   {% if settings.imgcolor19 != blank %}
+   ,
+   {
+     "color":"{{ settings.imgcolor19 | img_url: 'master'}}",
+     "title":"{{ settings.colorLabel19 }}",
+     "ourOfStockMsg":"{{settings.outOfStockMsg19}}"
+   }
+   {%endif%}
+   {% if settings.imgcolor20 != blank %}
+   ,
+   {
+     "color":"{{ settings.imgcolor20 | img_url: 'master'}}",
+     "title":"{{ settings.colorLabel20 }}",
+     "ourOfStockMsg":"{{settings.outOfStockMsg20}}"
+   }
+   {%endif%}
+   {% if settings.imgcolor21 != blank %}
+   ,
+   {
+     "color":"{{ settings.imgcolor21 | img_url: 'master'}}",
+     "title":"{{ settings.colorLabel21 }}",
+     "ourOfStockMsg":"{{settings.outOfStockMsg21}}"
+   }
+   {%endif%}
+   {% if settings.imgcolor22 != blank %}
+   ,
+   {
+     "color":"{{ settings.imgcolor22 | img_url: 'master'}}",
+     "title":"{{ settings.colorLabel22 }}",
+     "ourOfStockMsg":"{{settings.outOfStockMsg22}}"
+   }
+   {%endif%}
+   {% if settings.imgcolor23 != blank %}
+   ,
+   {
+     "color":"{{ settings.imgcolor23 | img_url: 'master'}}",
+     "title":"{{ settings.colorLabel23 }}",
+     "ourOfStockMsg":"{{settings.outOfStockMsg23}}"
+   }
+   {%endif%}
+   {% if settings.imgcolor24 != blank %}
+   ,
+   {
+     "color":"{{ settings.imgcolor24 | img_url: 'master'}}",
+     "title":"{{ settings.colorLabel24 }}",
+     "ourOfStockMsg":"{{settings.outOfStockMsg24}}"
+   }
+   {%endif%}
+   {% if settings.imgcolor25 != blank %}
+   ,
+   {
+     "color":"{{ settings.imgcolor25 | img_url: 'master'}}",
+     "title":"{{ settings.colorLabel25 }}",
+     "ourOfStockMsg":"{{settings.outOfStockMsg25}}"
+   }
+   {%endif%}
+   {% if settings.imgcolor26 != blank %}
+   ,
+   {
+     "color":"{{ settings.imgcolor26 | img_url: 'master'}}",
+     "title":"{{ settings.colorLabel26 }}",
+     "ourOfStockMsg":"{{settings.outOfStockMsg26}}"
+   }
+   {%endif%}
+   {% if settings.imgcolor27 != blank %}
+   ,
+   {
+     "color":"{{ settings.imgcolor27 | img_url: 'master'}}",
+     "title":"{{ settings.colorLabel27 }}",
+     "ourOfStockMsg":"{{settings.outOfStockMsg27}}"
+   }
+   {%endif%}
+   {% if settings.imgcolor28 != blank %}
+   ,
+   {
+     "color":"{{ settings.imgcolor28 | img_url: 'master'}}",
+     "title":"{{ settings.colorLabel28 }}",
+     "ourOfStockMsg":"{{settings.outOfStockMsg28}}"
+   }
+   {%endif%}
+   {% if settings.imgcolor29 != blank %}
+   ,
+   {
+     "color":"{{ settings.imgcolor29 | img_url: 'master'}}",
+     "title":"{{ settings.colorLabel29 }}",
+     "ourOfStockMsg":"{{settings.outOfStockMsg29}}"
+   }
+   {%endif%}
+   {% if settings.imgcolor30 != blank %}
+   ,
+   {
+     "color":"{{ settings.imgcolor30 | img_url: 'master'}}",
+     "title":"{{ settings.colorLabel30 }}",
+     "ourOfStockMsg":"{{settings.outOfStockMsg30}}"
+   }
+   {%endif%}
+  ]
+    
+  </script>
+
+  <!-- Yotpo -->
+<script type="text/javascript">
+  $(window).load(function () {
+    (function e() { var e = document.createElement("script"); e.type = "text/javascript", e.async = true, e.src = "//staticw2.yotpo.com/RNz3BUPDnFBdKv6pABbXcDuEhkYg5SAa7TMKwZ12/widget.js"; var t = document.getElementsByTagName("script")[0]; t.parentNode.insertBefore(e, t) })();
+  });
+  
+</script>
+
+

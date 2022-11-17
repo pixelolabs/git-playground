@@ -1,0 +1,138 @@
+{% if template!='cart' %}
+<div id="CartSidebar" class="cart-sidebar">
+  <!-- header-->
+  <div class="cart-sidebar__header flex-space-between">
+    <p class="flex-align-center">
+      <a href="javascript:void(0)" title="Close" class="icon-close" id="js__cart-close">
+        close cart
+        {% include "icon-close" %}
+      </a>
+      Bag (<span class="js__ajax-cart-count">{{cart.item_count}}</span>)
+    </p>
+    <a href="/cart" class="btn-border-black" title="Cart">view</a>
+    <div class="free-shipping js__progressbar_visiblity hide">
+      <!-- Free Shipping Values from Schema -->
+      <span class="hide js__free-shipping-limit">{{settings.freeShippingThresholdValue}} </span>
+      <!-- Free Shipping Message (When the value is reached) -->
+      <p><span class="js__free-shipping-message" style="display: none;">{{settings.freeShippingMsg}}</span><span
+          class="js__free-shipping-limit-message" style="display: none;"> You are <strong
+            class="js__free-shipping-remaning-amount"></strong> away from free
+          shipping.</span></p>
+      <div class="free-shipping__progress-bar js__free-shipping__progress-bar"><span></span></div>
+    </div>
+  </div>
+
+  <!-- Items List -->
+  <div class="cart-sidebar__middle">
+    <ul class="added-products js__ajax-products-bind">
+      <!-- Looping of items -->
+      {% for item in cart.items %}
+      <li class="flex-wrap">
+        <div class="image-section">
+          <a href="{{item.url}}" alt="{{item.title}}">
+            <img class="lazyload" data-src="{{ item.product.featured_image.src | product_img_url: 'master' }}"
+              alt="{{item.title}}"> </a>
+        </div>
+        <div class="content">
+          <h5>
+            <a href="{{item.url}}" title="{{item.title}}">{{item.title}}</a>
+            <div class="remove js__cart-item-remove" onclick="removeCartItem(this)" data-cart-remove-variant={{item.id}}
+              data-cart-item-count="">Remove</div>
+          </h5>
+          <div class="flex-space-between">
+            <div class="cart-quantity-outer">
+              <a class="minus-qty" onclick="minusQuantity(this)" data-variant-id={{item.id}}>minus</a>
+              <input type="text" class="cart__quantity-selector" name="updates[]" value={{item.quantity}} maxlength="3"
+                size="3">
+              <a class="plus-qty" onclick="plusQuantity(this)" data-variant-id={{item.id}}>plus</a>
+            </div>
+            <div class='text-right'>
+              <p>{{item.price}}</p>
+            </div>
+          </div>
+      </li>
+      {%endfor%}
+    </ul>
+    <!-- Frequently Bought Together Product List -->
+    <div class="freq-product-list js__freq-bought-products hide">
+      <p>{{settings.freqBoughtTitle}}</p>
+      <ul class="js__top-cart-addons">
+        {% assign product1 = all_products[settings.product_1] %}
+        {%- assign current_variant1 = product1.selected_or_first_available_variant -%}
+        <li class="flex-wrap" data-handler="{{settings.product_1}}" data-attr-variantid={{current_variant1.id}}>
+          <div class="image-section">
+            <a href="{{product1.url}}" title="{{product1.title}}">
+              product image
+              <img class="lazyload" data-src="{{ product1.featured_image.src | product_img_url: 'master' }}"
+                alt="{{product1.title}}">
+            </a>
+          </div>
+          <div class="content">
+            <h5>
+              <a href="{{product1.url}}" title="{{product1.title}}">{{product1.title}}</a>
+            </h5>
+            <p>{{product1.price | money}}</p>
+            <a title="Add" data-attr-variantid={{current_variant1.id}} class="btn-black js__addon-add-to-cart ">add</a>
+            <div class="flex-align-center hide">
+              <!-- <select name="" id="">
+                <option value="">1 bottle • 500ml (16.9)</option>
+                <option value="">2 bottle • 500ml (16.9)</option>
+                <option value="">3 bottle • 500ml (16.9)</option>
+              </select> -->
+            </div>
+        </li>
+        {% assign product2 = all_products[settings.product_2] %}
+        {%- assign current_variant2 = product2.selected_or_first_available_variant -%}
+        <li class="flex-wrap" data-handler="{{settings.product_2}}" data-attr-variantid={{current_variant2.id}}>
+          <div class="image-section">
+            <a href="{{product2.url}}" title="{{product2.title}}">
+              product image
+              <img class="lazyload" data-src="{{ product2.featured_image.src | product_img_url: 'master' }}"
+                alt="{{product2.title}}">
+            </a>
+          </div>
+          <div class="content">
+            <h5>
+              <a href="{{product2.url}}" title="{{product2.title}}">{{product2.title}}</a>
+            </h5>
+            <p>{{product2.price | money}}</p>
+            <a title="Add" data-attr-variantid={{current_variant2.id}} class="btn-black js__addon-add-to-cart ">add</a>
+            <div class="flex-align-center hide">
+              <!-- <select name="" id="">
+                <option value="">1 bottle • 500ml (16.9)</option>
+                <option value="">2 bottle • 500ml (16.9)</option>
+                <option value="">3 bottle • 500ml (16.9)</option>
+              </select> -->
+            </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- Footer Actions -->
+  <div class="cart-sidebar__footer js__top-cart-form-actions">
+    <div class="cart-total flex-space-between">
+      <span>subtotal:</span>
+      <b class="subtotal js__ajax-cart-total"></b>
+    </div>
+    <!-- Footer Actions -->
+    <div class="js__top-cart-form-actions width-100">
+      <form action="/cart" method="post" class="">
+        <button class="btn-black width-100" type="submit" id="checkout" name="checkout"> Checkout Now</button>
+      </form>
+      <a href="/cart" class="btn-black-border width-100" title="View Cart">VIEW MY CART</a>
+    </div>
+  </div>
+</div>
+{% endif %}
+<script>
+  var cartAjaxItems = [
+    {% if cart.item_count > 1 %}
+  {% for item in cart.items %}
+  {
+    "id": "{{ item.id }}",
+      "addons": "{{ item.product.metafields.addon.product_handle}}"
+  } {% unless forloop.last %}, {% endunless %}
+  {% endfor %}
+  {% endif %}
+  ];
+</script>

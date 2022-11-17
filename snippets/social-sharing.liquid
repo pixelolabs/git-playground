@@ -1,0 +1,60 @@
+{% if request.page_type == 'article' or request.page_type == 'blog' %}
+{% capture permalinkURL %}{{ shop.url }}{{ article.url }}{% endcapture %}
+{% capture shareTitle %}{{ article.title | url_param_escape }}{% endcapture %}
+{% elsif request.page_type == 'product' %}
+{% capture permalinkURL %}{{ shop.url }}{{ product.url }}{% endcapture %}
+{% capture shareTitle %}{{ product.title | url_param_escape }}{% endcapture %}
+{% elsif request.page_type == 'password' %}
+{% capture permalinkURL %}{{ shop.url }}{% endcapture %}
+{% capture shareTitle %}{% unless shop.metafields.global.description_tag == blank %}{{
+shop.metafields.global.description_tag | url_param_escape }}{% else %}{{ shop.name | url_param_escape }}{% endunless
+%}{% endcapture %}
+{% endif %}
+
+<ul data-permalink="{{ permalinkURL }}" class="flex-align-center">
+    {% if settings.share_pinterest %}
+    <li>
+        <a target="_blank" href="http://pinterest.com/pin/create/link/?url={{ permalinkURL }}" class="share-pinterest"
+            title="{{ 'general.social.alt_text.share_on_pinterest' | t }}">
+            {% include 'icon-pinterest' %}
+            <span class="visually-hidden">{{ 'general.social.alt_text.share_on_pinterest' | t }}</span>
+        </a>
+    </li>
+    {% endif %}
+    {% if settings.share_facebook %}
+    <li>
+        <a target="_blank" href="//www.facebook.com/sharer.php?u={{ permalinkURL }}" class="share-facebook"
+            title="{{ 'general.social.alt_text.share_on_facebook' | t }}">
+            {% include 'icon-facebook' %}
+            <span class="visually-hidden">{{ 'general.social.alt_text.share_on_facebook' | t }}</span>
+        </a>
+    </li>
+    {% endif %}
+    {% if settings.share_twitter %}
+    <li>
+        <a target="_blank" href="//twitter.com/share?text={{ shareTitle }}&amp;url={{ permalinkURL }}"
+            class="share-twitter" title="{{ 'general.social.alt_text.share_on_twitter' | t }}">
+            {% include 'icon-twitter' %}
+            <span class="visually-hidden">{{ 'general.social.alt_text.share_on_twitter' | t }}</span>
+        </a>
+
+        {% endif %}
+        {% if settings.share_email %}
+    <li>
+        <a class="js-copy-link"
+            href="mailto:{{settings.contact_email}}?subject=Checkout {{article.title}} on {{shop.name}}&body=Here is the Link: {{shop.url}}{{article.url}}">
+            {% include'icon-email' %}</a>
+    </li>
+    {% endif %}
+
+    <script>
+        jQuery('.js-copy-link').on('click', function () {
+            var copyText = document.getElementById("getLink")
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            // jQuery('.js-copy-link').text('Copied!');
+        });
+    </script>
+</ul>
+<input type="text" style="opacity: 0; position: fixed;" id="getLink" value="{{shop.url}}{{article.url}}" />
