@@ -23,12 +23,11 @@
 </head>
 
 <body class="template-{{ request.page_type | handle }}">
-  {% section 'header' %}
+
   <div class="page-container drawer-page-content" id="PageContainer">
     <main class="main-content js-focus-hidden" id="MainContent" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>
-    {% section 'footer' %}
   </div>
   {% include 'scripts_footer'%}
   {% comment %}
