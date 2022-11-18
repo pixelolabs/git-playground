@@ -84,12 +84,12 @@ h2 {
 } */
 button {
     background: transparent;
-    border: none;
-    cursor: pointer;
     -webkit-transition: all .5s ease;
     transition: all .5s ease;
     padding: 0;
     width: 16px;
+    cursor: pointer;
+    border: none;
     cursor: pointer;
     opacity: 0;
 }
@@ -97,11 +97,22 @@ button {
     padding: 80px 0;
 }
 .text-container {
-    width: 100%;
-    max-width: 1040px;
     margin: 0 auto;
     padding: 0 30px;
+    width: 100%;
+    max-width: 1040px;
+   
 }
 .full-width-text-section .content {
     text-align: center;
+}
+.full-width-text-section .content p{
+    padding: 0 50px;
+    position: relative;
+    font-family: Headland One,serif;
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 1.4;
+    display: block;
+    margin-bottom: 18px;
 }
