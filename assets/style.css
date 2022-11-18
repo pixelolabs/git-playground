@@ -154,10 +154,10 @@ button {
     height: 500px;
     width: 105vw !important
   } */
-@media only screen and (min-width: 800px){
-/* .slick-slider .slide {
+@media only screen and (min-width: 600px){
+.slick-slider .slide {
     height: 500px;
-} */
+}
   .slick-slider .slick-list{
     height: 500px;
   }
