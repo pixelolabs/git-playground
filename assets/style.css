@@ -121,7 +121,7 @@ button {
     width: 40px;
     height: 27px;
     position: absolute;
-    background: url(icon-quote.png) no-repeat center/40px;
+    background: url(left-icon.png) no-repeat center/40px;
     top: 0;
     left: 0;
 }
