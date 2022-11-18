@@ -93,3 +93,6 @@ button {
     cursor: pointer;
     opacity: 0;
 }
+.full-width-text-section {
+    padding: 80px 0;
+}
