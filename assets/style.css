@@ -125,6 +125,12 @@ button {
     top: 0;
     left: 0;
 }
+.full-width-text-section .content p:before {
+    content: "";
+    transform: rotate(180deg);
+    top: 0;
+    left: 0;
+}
 .full-width-text-section .content .author{
     text-transform: uppercase;
     font-size: 14px;
