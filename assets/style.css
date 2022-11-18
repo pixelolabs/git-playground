@@ -96,3 +96,9 @@ button {
 .full-width-text-section {
     padding: 80px 0;
 }
+.text-container {
+    width: 100%;
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
