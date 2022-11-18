@@ -116,6 +116,15 @@ button {
     display: block;
     margin-bottom: 18px;
 }
+.full-width-text-section .content p:after {
+    content: "";
+    width: 40px;
+    height: 27px;
+    position: absolute;
+    background: url(icon-quote.png) no-repeat center/40px;
+    top: 0;
+    left: 0;
+}
 .full-width-text-section .content .author{
     text-transform: uppercase;
     font-size: 14px;
