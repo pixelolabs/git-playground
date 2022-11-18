@@ -17,6 +17,7 @@
 .slick-slide {
     height: 800px;
     position: relative;
+    overflow: hidden;
 }
 .content-section {
     width: 100%;
