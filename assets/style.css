@@ -161,7 +161,7 @@ button {
 .slick-slider .slide {
     height: 500px;
 }
-.slick-list{
+  .slick-slider .slick-list{
     height: 500px;
   }
   
