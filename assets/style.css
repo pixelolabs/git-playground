@@ -30,3 +30,9 @@ h6 {
     font-size: 14px;
     letter-spacing: 2.67px;
 }
+h2 {
+    margin-bottom: 30px;
+    margin-top: 10px;
+    color: #241f21;
+    font-size: 40px;
+}
