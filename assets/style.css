@@ -67,3 +67,14 @@ h2 {
     -ms-flex-pack: center;
     justify-content: center;
 }
+.slick-dots li.slick-active, .slick-dots li:hover {
+    background: #fff;
+}
+.slick-dots li {
+    border-radius: 50%;
+    cursor: pointer;
+    width: 15px;
+    margin-right: 10px;
+    height: 15px;
+    border: 1px solid #fff;
+}
