@@ -21,6 +21,16 @@
     overflow: hidden;
     padding: 80px 30px;
 }
+.content-section .cta {
+    padding: 10px 20px;
+    border: 1px solid #000;
+    margin: 40px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    color: #241f21;
+    font-size: 16px;
+    letter-spacing: 2.67px;
+}
 h6 {
     font-size: 14px;
     font-weight: 700;
