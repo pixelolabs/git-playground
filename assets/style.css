@@ -129,8 +129,13 @@ button {
     content: "";
     transform: rotate(180deg);
     background: url(left-icon.png) no-repeat center/40px;
-    top: 0;
-    left: 0;
+    left: auto;
+    top: auto;
+    bottom: 0;
+    right: 0;
+    width: 40px;
+    height: 27px;
+    position: absolute;
 }
 .full-width-text-section .content .author{
     text-transform: uppercase;
