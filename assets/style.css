@@ -8,5 +8,7 @@
 }
 .slide {
     position: relative;
+}
+.slick-slide {
     height: 800px;
 }
