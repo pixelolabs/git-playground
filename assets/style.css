@@ -81,3 +81,11 @@ h2 {
 .slick-dots button {
     font-size: 0px;
 }
+button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+    padding: 0;
+}
