@@ -102,3 +102,6 @@ button {
     margin: 0 auto;
     padding: 0 30px;
 }
+.full-width-text-section .content {
+    text-align: center;
+}
