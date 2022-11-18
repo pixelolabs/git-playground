@@ -115,6 +115,7 @@ button {
     line-height: 1.4;
     display: block;
     margin-bottom: 18px;
+    font-family: Headland One,serif;
 }
 .full-width-text-section .content p:after {
     content: "";
