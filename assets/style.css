@@ -12,3 +12,12 @@
 .slick-slide {
     height: 800px;
 }
+.content-section {
+    width: 100%;
+    z-index: 9;
+    text-align: center;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    padding: 80px 30px;
+}
