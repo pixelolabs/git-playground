@@ -89,4 +89,7 @@ button {
     -webkit-transition: all .5s ease;
     transition: all .5s ease;
     padding: 0;
+    width: 16px;
+    cursor: pointer;
+    opacity: 0;
 }
