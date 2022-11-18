@@ -150,10 +150,10 @@ button {
 .slick-track:before{
   background: url(thred.png) no-repeat center/40px;
 }
-.slick-slider .slick-list{
+/* .slick-slider .slick-list{
     height: 500px;
     width: 105vw !important
-  }
+  } */
 @media only screen and (min-width: 600px){
 .slick-slider .slide {
     height: 500px;
