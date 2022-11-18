@@ -78,3 +78,6 @@ h2 {
     height: 15px;
     border: 1px solid #fff;
 }
+.slick-dots button {
+    font-size: 0px;
+}
