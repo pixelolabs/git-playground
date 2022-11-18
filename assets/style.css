@@ -21,3 +21,12 @@
     overflow: hidden;
     padding: 80px 30px;
 }
+h6 {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.43;
+    text-transform: uppercase;
+    color: #241f21;
+    font-size: 14px;
+    letter-spacing: 2.67px;
+}
