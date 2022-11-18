@@ -54,7 +54,7 @@ h2 {
     color: #241f21;
     font-size: 40px;
 }
-.slick-dots {
+/* .slick-dots {
     position: absolute;
     left: 0px;
     right: 0;
@@ -89,4 +89,4 @@ button {
     -webkit-transition: all .5s ease;
     transition: all .5s ease;
     padding: 0;
-}
+} */
