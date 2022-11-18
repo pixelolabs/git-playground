@@ -146,3 +146,6 @@ button {
     letter-spacing: 3px;
     color: #241f21;
 }
+.shopify-section:before{
+  background: url(thred.png) no-repeat center/40px;
+}
