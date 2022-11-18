@@ -54,7 +54,7 @@ h2 {
     color: #241f21;
     font-size: 40px;
 }
-/* .slick-dots {
+.slick-dots {
     position: absolute;
     left: 0px;
     right: 0;
@@ -70,7 +70,7 @@ h2 {
 .slick-dots li.slick-active, .slick-dots li:hover {
     background: #fff;
 }
-.slick-dots li {
+/* .slick-dots li {
     border-radius: 50%;
     cursor: pointer;
     width: 15px;
@@ -78,11 +78,11 @@ h2 {
     height: 15px;
     border: 1px solid #fff;
     list-style:none;
-}
-.slick-dots button {
+} */
+/* .slick-dots button {
     font-size: 0px;
-}
-button {
+} */
+/* button {
     background: transparent;
     border: none;
     cursor: pointer;
