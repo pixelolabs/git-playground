@@ -16,6 +16,7 @@
 }
 .slick-slide {
     height: 800px;
+    position: relative;
 }
 .content-section {
     width: 100%;
