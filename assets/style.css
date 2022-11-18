@@ -149,3 +149,7 @@ button {
 .slick-track:before{
   background: url(thred.png) no-repeat center/40px;
 }
+@media only screen and (max-width: 600px)
+.slick-slider .slide {
+    height: 500px;
+}
