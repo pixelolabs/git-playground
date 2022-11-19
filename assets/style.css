@@ -178,6 +178,7 @@ four-column-container{
 .inner-section{
     width: 100%;
     position: relative;
+    height: 34vw;
 }
 .inner-section img{
     position: absolute;
