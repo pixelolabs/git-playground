@@ -189,6 +189,15 @@ four-column-container{
     top: 0;
 }
 
+.inner-section content{
+    text-align: center;
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    padding: 30px;
+    overflow: hidden;
+}
+
 @media only screen and (min-width: 800px){
 .slick-slider .slide {
     height: 500px;
