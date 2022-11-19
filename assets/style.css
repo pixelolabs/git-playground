@@ -189,7 +189,7 @@ four-column-container{
     top: 0;
 }
 
-.inner-section content{
+.inner-section .content{
     text-align: center;
     position: relative;
     z-index: 3;
