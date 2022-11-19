@@ -160,46 +160,7 @@ button {
     width: 105vw !important
   } */
 
-.four-column-section {
-    padding: 0 30px;
-}
-four-column-container{
-    width: 100%;
-    max-width: 1440px;
-    margin: 0 auto;
-/*     padding: 0 30px; */
-}
-.four-column-wrapper{
-  width:100%;
-  padding: 0;
-}
-.four-column-wrapper li{
-  width:25%;
-  list-style: none;
-}
-.inner-section{
-    width: 100%;
-    position: relative;
-    height: 34vw;
-    align-items: flex-end;
-}
-.inner-section img{
-    position: absolute;
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-}
 
-.inner-section .content{
-    text-align: center;
-    position: relative;
-    z-index: 3;
-    width: 100%;
-    padding: 30px;
-    overflow: hidden;
-}
 
 @media only screen and (min-width: 800px){
 .slick-slider .slide {
