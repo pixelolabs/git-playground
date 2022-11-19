@@ -175,6 +175,9 @@ four-column-container{
 .four-column-wrapper li{
   width:25%;
 }
+.inner-section img{
+  width: 100%;
+}
 
 @media only screen and (min-width: 800px){
 .slick-slider .slide {
