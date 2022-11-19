@@ -28,7 +28,7 @@
     overflow: hidden;
     padding: 80px 30px;
 }
-.content-section a .btn-text {
+.content-section a {
     padding: 10px 20px;
     border: 1px solid #000;
     margin: 40px;
