@@ -169,6 +169,9 @@ four-column-container{
     margin: 0 auto;
     padding: 0 30px;
 }
+.four-column-wrapper{
+  width:100%;
+}
 
 @media only screen and (min-width: 800px){
 .slick-slider .slide {
