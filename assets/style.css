@@ -31,7 +31,8 @@
 .content-section a .btn-text {
     padding: 10px 20px;
     border: 1px solid #000;
-    margin: 40px;
+    max-width: 310px;
+    margin: 0 auto;
     border-radius: 50px;
     text-transform: uppercase;
     color: #241f21;
