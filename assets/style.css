@@ -174,9 +174,13 @@ button {
 .four-column-section ul li .inner-section{
   position: relative;
   width: 100%;
+  height: 34vh;
 }
 .four-column-section ul li .inner-section img{
   width: 100%;
+  position: absolute;
+  height: 100%;
+  object-fit: contain;
 }
 
 @media only screen and (min-width: 800px){
