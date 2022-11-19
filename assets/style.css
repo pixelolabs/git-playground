@@ -160,7 +160,9 @@ button {
     width: 105vw !important
   } */
 
-
+.four-column-section{
+  width: 100%;
+}
 
 @media only screen and (min-width: 800px){
 .slick-slider .slide {
