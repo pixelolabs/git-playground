@@ -160,7 +160,7 @@ button {
     width: 105vw !important
   } */
 
-.four-column-section{
+.four-column-section .container{
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
