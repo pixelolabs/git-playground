@@ -176,10 +176,19 @@ button {
   list-style:none;
 }
 .four-column-section ul li .inner-section{
-  position: relative;
+/*   position: relative;
   width: 100%;
   height: 34vh;
-  display:flex;
+  display:flex; */
+  width: 100%;
+    position: relative;
+    height: 450px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
 }
 .four-column-section ul li .inner-section img{
   width: 100%;
