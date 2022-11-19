@@ -175,6 +175,10 @@ four-column-container{
 .four-column-wrapper li{
   width:25%;
 }
+.inner-section{
+    width: 100%;
+    position: relative;
+}
 .inner-section img{
     position: absolute;
     object-fit: cover;
