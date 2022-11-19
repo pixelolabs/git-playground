@@ -182,7 +182,7 @@ button {
   display:flex; */
   width: 100%;
     position: relative;
-    height: 450px;
+    height: 250px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
