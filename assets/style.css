@@ -162,6 +162,8 @@ button {
 
 .four-column-section{
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 .four-column-section ul{
   display: flex;
