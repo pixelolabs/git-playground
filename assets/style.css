@@ -202,10 +202,11 @@ button {
     width: 100%;
     padding: 30px;
     overflow: hidden;
+    color: #fff;
+    font-size: 25px;
 }
-.four-column-section ul li .inner-section .content{
-  color: #fff;
-  font-size: 25px;
+.four-column-section ul li .inner-section .content h3{
+  margin: 0;
 }
 
 @media only screen and (min-width: 800px){
