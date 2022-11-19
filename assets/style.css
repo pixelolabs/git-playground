@@ -169,6 +169,7 @@ button {
 .four-column-section ul li{
   width: 25%;
   padding: 5px;
+  list-style:none;
 }
 .four-column-section ul li .inner-section{
   position: relative;
