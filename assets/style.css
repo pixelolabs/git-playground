@@ -170,8 +170,11 @@ button {
   width: 25%;
   padding: 5px;
 }
-.inner-section{
+.four-column-section ul li .inner-section{
   position: relative;
+  width: 100%;
+}
+.four-column-section ul li .inner-section img{
   width: 100%;
 }
 
