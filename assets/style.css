@@ -163,6 +163,9 @@ button {
 .four-column-section{
   width: 100%;
 }
+.four-column-section ul{
+  display: flex;
+}
 
 @media only screen and (min-width: 800px){
 .slick-slider .slide {
