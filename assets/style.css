@@ -168,6 +168,7 @@ button {
 .four-column-section ul{
   display: flex;
   padding: 0;
+  flex-wrap: wrap;
 }
 .four-column-section ul li{
   width: 25%;
