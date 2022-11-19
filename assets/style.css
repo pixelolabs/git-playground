@@ -181,7 +181,6 @@ button {
 .four-column-section ul li .inner-section img{
   width: 100%;
   position: absolute;
-  height: 100%;
   object-fit: contain;
 }
 .four-column-section ul li .inner-section .content{
