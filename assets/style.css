@@ -163,6 +163,12 @@ button {
 .four-column-section {
     padding: 0 30px;
 }
+four-column-container{
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
 
 @media only screen and (min-width: 800px){
 .slick-slider .slide {
