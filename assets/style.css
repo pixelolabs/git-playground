@@ -230,7 +230,12 @@ button {
   margin: 0 auto;
   padding: 0 30px;
 }
-
+.half-content-half-slider-section .half-content{
+  flex: 1;
+}
+.half-content-half-slider-section .half-slider{
+  flex: 2;
+}
 @media only screen and (min-width: 800px){
 .slick-slider .slide {
     height: 500px;
