@@ -278,7 +278,7 @@ button {
     padding: 13px;
     max-width: 260px;
 }
-.half-content-half-slider-section .container .half-content a{
+.half-content-half-slider-section .container .half-content a:hover{
   background: #241f21;
   color: #fff;
 }
