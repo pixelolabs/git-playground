@@ -305,6 +305,12 @@ position: relative;
     left: 0;
     top: 0;
 }
+.half-content-half-slider-section .container .half-slider .container .image-section h5{
+  font-family: QuattrocentoSans;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
 
 @media only screen and (min-width: 800px){
 .slick-slider .slide {
