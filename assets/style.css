@@ -173,10 +173,13 @@ button {
 /*   margin-left: -30px; */
 }
 .four-column-section ul li{
-    width: 25%;
+/*     width: 25%;
     list-style: none;
     padding-left: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 30px; */
+    width: 22%;
+    list-style: none;
+    padding: 15px;
 }
 .four-column-section ul li .inner-section{
 /*   position: relative;
