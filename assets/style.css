@@ -235,6 +235,7 @@ button {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 30px;
+  align-items: center;
 }
 .half-content-half-slider-section .container .half-content{
   flex: 1;
