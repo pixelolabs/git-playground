@@ -289,12 +289,15 @@ button {
   max-width: 1050px;
 }
 .half-content-half-slider-section .container .half-slider .container .image-section{
-position: relative;
+   position: relative;
    background: #fff;
     border-radius: 50%;
     margin: 0 auto 20px;
     width: 200px;
     height: 200px;   
+}
+.half-content-half-slider-section .container .half-slider .container .image-section .slick-list{
+  height: 320px;
 }
 
 .half-content-half-slider-section .container .half-slider .container .image-section img{
