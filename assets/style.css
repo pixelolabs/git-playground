@@ -288,6 +288,15 @@ button {
   width: 100%;
   max-width: 1050px;
 }
+.half-content-half-slider-section .container .half-slider .container .image-section{
+position: relative;
+   background: #fff;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    width: 200px;
+    height: 200px;   
+}
+
 @media only screen and (min-width: 800px){
 .slick-slider .slide {
     height: 500px;
