@@ -244,6 +244,8 @@ button {
   margin-bottom: 15px;
   color: #241f21;
   font-family: Headland One,serif;
+  font-size: 30px;
+  font-weight: 400;
 }
 .half-content-half-slider-section .container .half-slider{
   flex: 3;
