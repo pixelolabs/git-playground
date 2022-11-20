@@ -369,4 +369,7 @@ button {
   .half-content-half-slider-section .container{
     display: block;
   }
+  .half-content-half-slider-section .container{
+    padding: 0;
+  }
 }
