@@ -255,6 +255,7 @@ button {
     line-height: 1.53;
     letter-spacing: normal;
     color: #241f21;
+    margin: 0;
 }
 
 .half-content-half-slider-section .container .half-content a{
