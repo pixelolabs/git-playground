@@ -301,6 +301,12 @@ button {
   height: 330px;
 }
 
+.half-content-half-slider-section .container .half-slider .container .slick-list .slick-prev{
+    opacity: 40px;
+    width: 19px;
+    height: 19px;
+}
+
 .half-content-half-slider-section .container .half-slider .slick-initialized .slick-slide{
   margin: 20px;
   height: 330px;
