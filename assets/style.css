@@ -316,7 +316,14 @@ position: relative;
   text-transform: uppercase;
 }
 .half-content-half-slider-section .container .half-slider .container h6{
-  
+  font-family: QuattrocentoSans;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.43;
+  letter-spacing: 3px;
+  color: #241f21;
+  text-transform: uppercase;
 }
 
 @media only screen and (min-width: 800px){
