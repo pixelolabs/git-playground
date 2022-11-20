@@ -223,20 +223,18 @@ button {
   font-weight: 500;
 }
 
+.half-content-half-slider-section{
+    background: #f9f6f2;
+    padding: 79px 0 70px;
+    overflow: hidden;
+}
 
-
-
-.half-content-half-slider-section {
-  background: #f9f6f2;
-padding: 79px 0 70px;
-overflow: hidden;
-  .container{
+.half-content-half-slider-section .container{
   display:flex;
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 30px;
-}
 }
 .half-content-half-slider-section .container .half-content{
   flex: 1;
