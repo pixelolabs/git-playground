@@ -278,6 +278,10 @@ button {
     padding: 13px;
     max-width: 260px;
 }
+.half-content-half-slider-section .container .half-content a{
+  background: #241f21;
+  color: #fff;
+}
 
 .half-content-half-slider-section .container .half-slider{
   flex: 4;
