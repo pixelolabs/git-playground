@@ -372,4 +372,7 @@ button {
   .half-content-half-slider-section .container{
     padding: 0;
   }
+  .half-content-half-slider-section .container .half-slider .container .slick-list{
+    margin-top: 50px;
+  }
 }
