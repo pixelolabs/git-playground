@@ -1,4 +1,4 @@
-<div class="half-content-half-slider-section">
+{% comment %} <div class="half-content-half-slider-section">
   <div class="container">
     <div class="half-content">
       <h2>Best Sellers</h2>
@@ -13,10 +13,24 @@
         </div>
     </div>
   </div>
-</div>
+</div> {% endcomment %}
+
+<div class="container">
+          <div>your content</div>
+          <div>your content</div>
+          <div>your content</div>
+        </div>
 
 <script>
- 
+ $(".container").slick({
+   slidesToShow: 3,
+   infinite:false,
+   slidesToScroll: 1,
+   autoplay: true,
+   autoplaySpeed: 2000
+     // dots: false, Boolean
+    // arrows: false, Boolean
+  });
 
 
 </script>
