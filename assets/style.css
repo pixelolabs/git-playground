@@ -297,6 +297,15 @@ position: relative;
     height: 200px;   
 }
 
+.half-content-half-slider-section .container .half-slider .container .image-section img{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: contain;
+    left: 0;
+    top: 0;
+}
+
 @media only screen and (min-width: 800px){
 .slick-slider .slide {
     height: 500px;
