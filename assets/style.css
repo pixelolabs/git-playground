@@ -223,6 +223,14 @@ button {
   font-weight: 500;
 }
 
+.half-content-half-slider-section{
+  display:flex;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
 @media only screen and (min-width: 800px){
 .slick-slider .slide {
     height: 500px;
