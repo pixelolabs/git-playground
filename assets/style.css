@@ -302,7 +302,7 @@ button {
 }
 
 .slick-prev{
-    opacity: 40px !important;
+    opacity: 40 !important;
     width: 19px;
     height: 19px;
 }
