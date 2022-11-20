@@ -223,7 +223,7 @@ button {
   font-weight: 500;
 }
 
-.container{
+.half-content-half-slider-section .container{
   display:flex;
   width: 100%;
   max-width: 1400px;
