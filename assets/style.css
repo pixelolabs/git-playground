@@ -257,6 +257,27 @@ button {
     color: #241f21;
 }
 
+.half-content-half-slider-section .container .half-content a{
+  font-family: Quattrocento Sans,sans-serif;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.53;
+    letter-spacing: 2.67px;
+    text-align: center;
+    color: #241f21;
+    width: 100%;
+    border-radius: 26px;
+    border: solid 1px #241f21;
+    background-color: transparent;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 13px;
+    max-width: 260px;
+    min-height: 52px;
+}
+
 .half-content-half-slider-section .container .half-slider{
   flex: 4;
 }
