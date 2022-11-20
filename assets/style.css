@@ -301,6 +301,10 @@ button {
   height: 320px;
 }
 
+.half-content-half-slider-section .container .half-slider .container .slick-list .slick-slide{
+  margin-right: 48px;
+}
+
 .half-content-half-slider-section .container .half-slider .container .image-section img{
     width: 100%;
     height: 100%;
