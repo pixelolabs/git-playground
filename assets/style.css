@@ -247,6 +247,16 @@ button {
   font-size: 30px;
   font-weight: 400;
 }
+
+.half-content-half-slider-section .container .half-content p{
+    font-family: Quattrocento Sans,sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.53;
+    letter-spacing: normal;
+    color: #241f21;
+}
+
 .half-content-half-slider-section .container .half-slider{
   flex: 3;
 }
