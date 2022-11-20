@@ -298,12 +298,12 @@ button {
     height: 200px;   
 }
 .half-content-half-slider-section .container .half-slider .container .slick-list{
-  height: 320px;
+  height: 330px;
 }
 
 .half-content-half-slider-section .container .half-slider .slick-initialized .slick-slide{
   margin: 20px;
-  height: 320px;
+  height: 330px;
 }
 
 .half-content-half-slider-section .container .half-slider .container .image-section img{
