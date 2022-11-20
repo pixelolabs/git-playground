@@ -303,6 +303,7 @@ button {
 
 .half-content-half-slider-section .container .half-slider .slick-initialized .slick-slide{
   margin: 20px;
+  height: 320px;
 }
 
 .half-content-half-slider-section .container .half-slider .container .image-section img{
