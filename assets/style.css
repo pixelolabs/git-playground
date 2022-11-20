@@ -258,7 +258,7 @@ button {
 }
 
 .half-content-half-slider-section .container .half-slider{
-  flex: 3;
+  flex: 4;
 }
 @media only screen and (min-width: 800px){
 .slick-slider .slide {
