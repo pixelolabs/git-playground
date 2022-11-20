@@ -363,7 +363,7 @@ button {
   
 }
 @media only screen and (min-width: 988px){
-  .half-content-half-slider-section .container .half-slider .slick-initialized .slick-slide
+  .half-content-half-slider-section .container .half-slider .slick-initialized .slick-slide{
     margin: 0 !important;
   }
 }
