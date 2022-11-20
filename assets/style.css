@@ -309,6 +309,14 @@ button {
     right: 71px;
     top: -31px;
 }
+.slick-next{
+    opacity: 40 !important;
+    width: 19px;
+    height: 19px;
+    position: absolute;
+    right: 71px;
+    top: -31px;
+}
 
 .half-content-half-slider-section .container .half-slider .slick-initialized .slick-slide{
   margin: 20px;
