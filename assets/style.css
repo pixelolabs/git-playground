@@ -301,7 +301,7 @@ button {
   height: 330px;
 }
 
-.half-slider .container .slick-list .slick-prev{
+.slick-prev{
     opacity: 40px !important;
     width: 19px;
     height: 19px;
