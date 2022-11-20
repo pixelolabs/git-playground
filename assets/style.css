@@ -258,7 +258,8 @@ button {
 }
 
 .half-content-half-slider-section .container .half-content a{
-  font-family: Quattrocento Sans,sans-serif;
+    font-family: Quattrocento Sans,sans-serif;
+    margin-top: 30px;
     cursor: pointer;
     display: inline-block;
     font-size: 16px;
