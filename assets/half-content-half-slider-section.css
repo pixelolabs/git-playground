@@ -128,3 +128,17 @@
   text-transform: uppercase;
   margin: 0;
 }
+
+@media only screen and (max-width: 988px){
+
+  .half-content-half-slider-section .container{
+    display: block;
+  }
+  .half-content-half-slider-section .container{
+    padding: 0;
+  }
+  .half-content-half-slider-section .container .half-slider .container .slick-list{
+    margin-top: 50px;
+  }
+  
+}

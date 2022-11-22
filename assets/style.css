@@ -163,10 +163,6 @@ button {
 
 
 
-
-
-
-
 @media only screen and (min-width: 800px){
 .slick-slider .slide {
     height: 500px;
@@ -175,21 +171,4 @@ button {
     height: 500px;
   }
   
-}
-@media only screen and (max-width: 988px){
-/*   .half-content-half-slider-section .container .half-slider .slick-initialized .slick-slide{
-    margin: 0 !important;
-  } */
-  .half-content-half-slider-section .container{
-    display: block;
-  }
-  .half-content-half-slider-section .container{
-    padding: 0;
-  }
-  .half-content-half-slider-section .container .half-slider .container .slick-list{
-    margin-top: 50px;
-  }
-  .four-column-section ul li{
-    width: 30%;
-  }
 }
