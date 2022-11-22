@@ -60,3 +60,10 @@
   font-size: 25px;
   font-weight: 500;
 }
+
+@media only screen and (max-width: 988px){
+
+  .four-column-section ul li{
+    width: 30%;
+  }
+}
