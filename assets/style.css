@@ -160,68 +160,11 @@ button {
     width: 105vw !important
   } */
 
-.four-column-section .container{
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-.four-column-section ul{
-  display: flex;
-  padding: 0;
-  flex-wrap: wrap;
-  justify-content: center;
-/*   margin-left: -30px; */
-}
-.four-column-section ul li{
-/*     width: 25%;
-    list-style: none;
-    padding-left: 30px;
-    margin-bottom: 30px; */
-    width: 22%;
-    list-style: none;
-    padding: 15px;
-}
-.four-column-section ul li .inner-section{
-/*   position: relative;
-  width: 100%;
-  height: 34vh;
-  display:flex; */
-    width: 100%;
-    position: relative;
-    height: 250px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: end;
-    -ms-flex-align: end;
-    align-items: flex-end;
-}
-.four-column-section ul li .inner-section img{
-/*   width: 100%;
-  position: absolute;
-  object-fit: contain; */
-    position: absolute;
-    object-fit: cover;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-}
-.four-column-section ul li .inner-section .content{
-    text-align: center;
-    position: relative;
-    z-index: 3;
-    width: 100%;
-    padding: 30px;
-    overflow: hidden;
-    color: #fff;
-    font-size: 25px;
-}
-.four-column-section ul li .inner-section .content h3{
-  margin: 0;
-  font-size: 25px;
-  font-weight: 500;
-}
+
+
+
+
+
 
 .half-content-half-slider-section{
     background: #f9f6f2;
