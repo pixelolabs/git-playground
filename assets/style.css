@@ -189,4 +189,7 @@ button {
   .half-content-half-slider-section .container .half-slider .container .slick-list{
     margin-top: 50px;
   }
+  .four-column-section ul li{
+    width: 30%;
+  }
 }
