@@ -72,7 +72,10 @@
   .four-column-section ul li{
     width: 100%;
   }
+  .four-column-section ul li .inner-section{
+    height: 40vh;
+  }
   .four-column-section ul li .inner-section img{
-    object-fit: contain;
+    object-fit: cover;
   }
 }
