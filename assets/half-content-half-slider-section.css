@@ -144,7 +144,9 @@
 }
 @media only screen and (max-width: 600px){
   .half-content-half-slider-section .container .half-slider .container .image-section{
-  width: 100%;
-  max-width: 200px;
+    width: 100%;
+    max-width: 200px;
+    height: 115px;
+    max-height: 200px;
   }
 }
