@@ -10,9 +10,24 @@
   background: #306767;
   .left-container{
     flex: 1;
+    position: relative;
+    height: 100%;
+    .image-section{
+      position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
     img{
       width: 100%;
+      object-fit: cover;
+      position: absolute;
+      height: 100%;
+      left: 0;
+      bottom: 0;
     }
+  }
   }
   .right-container{
     flex: 1;
