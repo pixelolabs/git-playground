@@ -54,7 +54,6 @@
           img{
             object-fit: cover;
             width: 100%;
-/*             margin-bottom: 20px; */
           }
         }
           .border-cta{
@@ -71,4 +70,11 @@
       }
     }
   }
+}
+.heading-content::before{
+        content: " ";
+        width:100%;
+        top: -12px;
+        position: absolute;
+        background-image: url({{ "leaf-florish.svg" |asset_url}});
 }
