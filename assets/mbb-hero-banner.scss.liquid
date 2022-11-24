@@ -13,11 +13,11 @@
     height: 100%;
     .image-section{
       position: absolute;
-    height: 100%;
-    width: 100%;
-    left: 0;
-    bottom: 0;
-    overflow: hidden;
+      height: 100%;
+      width: 100%;
+      left: 0;
+      bottom: 0;
+      overflow: hidden;
     img{
       width: 100%;
       object-fit: cover;
@@ -39,7 +39,7 @@
       top: 0;
       right: 0;
     } */
-    .bottom-left-image{
+/*     .bottom-left-image{
       position: absolute;
       top: 489px;
       -webkit-transform:rotate(180deg);
@@ -47,7 +47,7 @@
       -ms-transform: rotate(180deg);
       -o-transform: rotate(180deg);
       transform: rotate(180deg);
-    }
+    } */
     .content{
       text-align: center;
       height: 100%;
@@ -97,4 +97,9 @@
       bottom: 0;
       left: 0;
       background-image: url({{ "flower-top.svg" |asset_url}});
+      -webkit-transform:rotate(180deg);
+      -moz-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+      -o-transform: rotate(180deg);
+      transform: rotate(180deg);
     }
