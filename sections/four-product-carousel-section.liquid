@@ -8,9 +8,9 @@
       <a href="#" class="border-cta">Shop Our Collection</a>
     </div>
 
-    <div class="carousel">
-      <div class="slide-container">
-        <div class="content">
+    <div class="carousel swiper-container">
+      <div class="slide-container swiper-wrapper">
+        <div class="content swiper-slide">
           <div class="image-section">
             <img src="{{ "prod-img.webp" |asset_url}}" />
           </div>
@@ -25,7 +25,38 @@
           </div>
         </div> 
       </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
     </div>
     
   </div>
 </div>
+
+
+<script>
+  $(document).ready(function() {
+// Swiper: Slider
+    new Swiper('.swiper-container', {
+        loop: true,
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        slidesPerView: 1,
+        paginationClickable: true,
+        breakpoints: {
+            1920: {
+                slidesPerView: 1,
+                spaceBetween: 30
+            },
+            1028: {
+                slidesPerView: 1,
+                spaceBetween: 30
+            },
+            480: {
+                slidesPerView: 1,
+                spaceBetween: 10
+            }
+        }
+    });
+});
+
+</script>
