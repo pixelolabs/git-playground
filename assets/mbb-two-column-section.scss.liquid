@@ -56,6 +56,19 @@
   }
 }
 
+          #shopify-section-mbb-two-column-section{
+            position: relative;
+          }
+          .mbb-two-column-section::before{
+              content: " ";
+              width:100%;
+              top: -12px;
+              position: absolute;
+              background-image: url({{ "wave-bg.svg" |asset_url}});
+              background-repeat: no-repeat;
+              background-size: 100%;
+              height:200px;
+          }
 
 {% comment %} .mbb-two-column-section{
   background: #669999;
@@ -154,14 +167,3 @@
               background-size: 100%;
               height:200px;
           } {% endcomment %}
-/* .heading-content::before{
-        content: " ";
-        width: 200px;
-        top: -45px;
-        left: 43%;
-        position: absolute;
-        background-image: url({{ "leaf-florish.svg" |asset_url}});
-        background-repeat: no-repeat;
-        background-size: 100%;
-        height:45px
-} */
