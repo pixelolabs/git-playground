@@ -71,8 +71,7 @@
 // Swiper: Slider
     new Swiper('.two-swiper-container', {
         // loop: true,
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',
+       
         slidesPerView: 2,
         autoplay: false,
         // paginationClickable: true,
@@ -85,7 +84,9 @@
             },
             1028: {
                 slidesPerView: 2,
-                spaceBetween: 35
+                spaceBetween: 35,
+                 nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
             },
             480: {
                 loop: false,
