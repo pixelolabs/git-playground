@@ -110,17 +110,14 @@
   .mbb-half-heading-half-list-two{
     .container-1200{
       padding: 0 70px;
-      ul{
-        li{
-          width: 100%;
-          margin-bottom: 25px;
-          h2{
+      .heading{
+        h2{
         position: relative;
         &:before{
           content: " ";
           width: 119px;
           top: -30px;
-          left: 28%;
+          left: 42%;
           position: absolute;
           background-image: url({{ "leaf-florish.svg" |asset_url}});
           background-repeat: no-repeat;
@@ -129,6 +126,11 @@
       }
         
       }
+      }
+      ul{
+        li{
+          width: 100%;
+          margin-bottom: 25px;
         }
       }
     }
