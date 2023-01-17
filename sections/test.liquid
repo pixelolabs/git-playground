@@ -9,13 +9,12 @@
      {% endif %}  
   {% endfor %}
 
-  {% for collection in collections %}
+ 
  {% for product in collection.products %}
      {% if forloop.index == 1%}
      {% comment %}display product{% endcomment %}
      {% endif %}
  {% endfor %} 
-    {% endfor %}
 
 
 
