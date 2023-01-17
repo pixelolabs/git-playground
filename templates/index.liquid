@@ -1,3 +1,5 @@
+{% assign var = "hello" %}
+{{ var }}
 {% comment %} {% section 'hero-banner' %}
 {% section 'full-width-text-component' %}
 {% section 'four-column-section' %}
@@ -21,10 +23,7 @@
 {% section 'mbb-four-column-section' %}
 {% endcomment %}
 {% section 'test' %}
- <script>console.log({{ product | json }});</script>
-{% for product in collection.products %} 
-	{{ product.title }} 
-{% endfor %}
+
 {% comment %}
 {% section 'mbb-half-heading-half-list-two' %}
 {% endcomment %}
