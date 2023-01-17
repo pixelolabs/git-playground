@@ -16,7 +16,9 @@
      {% endif %}
  {% endfor %} 
 
-
+{% if product.title %}
+  {{ product.title }}
+{% endif %}
 
 {% schema %}
   {
