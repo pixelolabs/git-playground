@@ -4,11 +4,11 @@
 <!--     <div class="swiper-container"> -->
         <!-- Additional required wrapper -->
 <!--         <div class="swiper-wrapper"> -->
-  {% for block in section.blocks %}
-    {% if block.settings.my_heading %}
-      <h2>{{ block.settings.my_heading }}</h2>
-  {% if block.settings.my_description %}
-                  <p>{{ block.settings.my_description }}</p>
+  {% for xys in section.blocks %}
+    {% if xys.settings.my_heading %}
+      <h2>{{ xys.settings.my_heading }}</h2>
+  {% if xys.settings.my_description %}
+                  <p>{{ xys.settings.my_description }}</p>
                   {% endif %}
      {% endif %}  
   {% endfor %}
