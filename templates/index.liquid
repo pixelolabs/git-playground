@@ -22,9 +22,9 @@
 {% endcomment %}
 {% section 'test' %}
 
-{% if product.available %}
-  test : {{ product.title }}
-{% endif %}
+{% for product in collection.products %} 
+	{{ product.title }} 
+{% endfor %}
 {% comment %}
 {% section 'mbb-half-heading-half-list-two' %}
 {% endcomment %}
