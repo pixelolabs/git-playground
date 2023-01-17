@@ -89,6 +89,7 @@
 
 </script>
 
+{% comment %}
 {% schema %}
   {
   "name": "Hero Banner",
@@ -123,6 +124,22 @@
         ]
          
     }]
-    
+      
+},
+
+{% endschema %}
+{% endcomment %}
+
+{% schema %}
+{
+  "name": "Product recommendations",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_product_recommendations",
+      "label": "Enable product recommendations",
+      "default": false
+    }
+  ]
 }
 {% endschema %}
