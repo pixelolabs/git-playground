@@ -1,10 +1,21 @@
 {% assign var = "hello" %}
 {{ var }}
 <br>
+<br>
 Array--
 {% assign array_string = "1,2,3,4,5" %}
 {% assign array = array_string | split: "," %}
 {{ array }}
+<br>
+{% assign array_string = "1,2,3,4,5" %}
+{% assign array = array_string | split: "," %}
+
+<ul>
+
+  {% for array_list in array %}
+    <li>{{ array }}</li>
+    {% endfor %}
+</ul>
 
 {% comment %} {% section 'hero-banner' %}
 {% section 'full-width-text-component' %}
