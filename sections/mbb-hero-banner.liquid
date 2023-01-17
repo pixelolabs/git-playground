@@ -13,6 +13,15 @@
      {% endif %}  
   {% endfor %}
 
+  {% for xys in section.blocks %}
+    {% if xys.settings.my_heading %}
+      <h2>{{ xys.settings.my_heading }}</h2>
+  {% if xys.settings.my_description %}
+                  <p>{{ xys.settings.my_description }}</p>
+                  {% endif %}
+     {% endif %}  
+  {% endfor %}
+
 
 
   
