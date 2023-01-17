@@ -4,9 +4,6 @@
       "mbb-hero-banner": {
         "type": "mbb-hero-banner",
         "settings": {
-          "my_heading": "LIMITED EDITION",
-          "my_sub_heading": "Enter sub-heading here",
-          "my_description": "Description"
         }
       },
       "four-product-carousel-section": {
@@ -36,6 +33,33 @@
       },
       "mbb-four-column-section": {
         "type": "mbb-four-column-section",
+        "settings": {
+        }
+      },
+      "test": {
+        "type": "test",
+        "blocks": {
+          "68e28f7e-f379-48a0-9670-cc5287ce3f30": {
+            "type": "slide",
+            "settings": {
+              "my_heading": "Enter heading here",
+              "my_sub_heading": "Enter sub-heading here",
+              "my_description": "Description"
+            }
+          },
+          "d7757a8a-e6e0-4a09-8c3b-eb1fc0ee5465": {
+            "type": "slide",
+            "settings": {
+              "my_heading": "test",
+              "my_sub_heading": "test",
+              "my_description": "test"
+            }
+          }
+        },
+        "block_order": [
+          "68e28f7e-f379-48a0-9670-cc5287ce3f30",
+          "d7757a8a-e6e0-4a09-8c3b-eb1fc0ee5465"
+        ],
         "settings": {
         }
       }
