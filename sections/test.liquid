@@ -1,5 +1,8 @@
 
   <h1>Testing</h1>
+  {% if product.available %}
+  test : {{ product.title }}
+{% endif %}
   
   {% for block in section.blocks %}
     {% if block.settings.my_heading %}
