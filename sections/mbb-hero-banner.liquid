@@ -4,6 +4,18 @@
 <!--     <div class="swiper-container"> -->
         <!-- Additional required wrapper -->
 <!--         <div class="swiper-wrapper"> -->
+  {% for block in section.blocks %}
+    {% if section.settings.my_heading %}
+      <h2>{{ section.settings.my_heading }}</h2>
+  {% if section.settings.my_description %}
+                  <p>{{ section.settings.my_description }}</p>
+                  {% endif %}
+     {% endif %}  
+  {% endfor %}
+
+
+
+  
             <div class="hero-slider ">
               <div class="left-container">
                 <div class="image-section">
@@ -107,6 +119,7 @@
             "label": "Description",
             "default": "Description"
           }
+          
         ]
          
     }]
