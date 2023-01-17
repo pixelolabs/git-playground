@@ -7,13 +7,13 @@ Array--
 {% assign array = array_string | split: "," %}
 {{ array }}
 <br>
-{% assign array_string = "1,2,3,4,5" %}
-{% assign array = array_string | split: "," %}
+{% assign array_string_loop = "1,2,3,4,5" %}
+{% assign array_loop = array_string_loop | split: "," %}
 
 <ul>
 
   {% for array_list in array %}
-    <li>{{ array }}</li>
+    <li>{{ array_loop }}</li>
     {% endfor %}
 </ul>
 
