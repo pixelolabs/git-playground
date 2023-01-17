@@ -21,6 +21,10 @@
 {% section 'mbb-four-column-section' %}
 {% endcomment %}
 {% section 'test' %}
+
+{% if product.available %}
+  test : {{ product.title }}
+{% endif %}
 {% comment %}
 {% section 'mbb-half-heading-half-list-two' %}
 {% endcomment %}
