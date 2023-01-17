@@ -5,10 +5,10 @@
         <!-- Additional required wrapper -->
 <!--         <div class="swiper-wrapper"> -->
   {% for block in section.blocks %}
-    {% if section.settings.my_heading %}
-      <h2>{{ section.settings.my_heading }}</h2>
-  {% if section.settings.my_description %}
-                  <p>{{ section.settings.my_description }}</p>
+    {% if blocks.settings.my_heading %}
+      <h2>{{ blocks.settings.my_heading }}</h2>
+  {% if blocks.settings.my_description %}
+                  <p>{{ blocks.settings.my_description }}</p>
                   {% endif %}
      {% endif %}  
   {% endfor %}
