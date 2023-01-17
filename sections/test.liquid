@@ -1,9 +1,5 @@
-<link href="{{ 'mbb-hero-banner.scss.css' | asset_url }}" rel="stylesheet" type="text/css" media="all">
-<div class="container">   
-    <!-- Slider main container -->
-<!--     <div class="swiper-container"> -->
-        <!-- Additional required wrapper -->
-<!--         <div class="swiper-wrapper"> -->
+
+  
   {% for block in section.blocks %}
     {% if block.settings.my_heading %}
       <h2>{{ block.settings.my_heading }}</h2>
@@ -22,79 +18,6 @@
     {% endfor %}
 
 
-  
-<!--             <div class="hero-slider ">
-              <div class="left-container">
-                <div class="image-section">
-                  <img src="{{ "half-photo.webp" |asset_url}}" alt="">
-                </div>
-              </div>
-              <div class="right-container">
-                <div class="content">
-                  {% if section.settings.my_heading %}
-                  <h2>{{ section.settings.my_heading }}</h2>
-                  {% endif %}
-                  {% if section.settings.my_sub_heading %}
-                  <h1>{{ section.settings.my_sub_heading }}</h1>
-                  {% endif %}
-                  {% if section.settings.my_description %}
-                  <p>{{ section.settings.my_description }}</p>
-                  {% endif %}
-                  {% if section.settings.my_description %}
-                  <a href="#" class="primery-btn">Shop Now</a>
-                  {% endif %}
-                </div>
-              </div>   
-            </div> -->
-<!--           <div class="hero-slider swiper-slide">
-              <div class="left-container">
-                <div class="image-section">
-                  <img src="{{ "half-photo.webp" |asset_url}}" alt="">
-                </div>
-              </div>
-              <div class="right-container">
-                <div class="content">
-                  <h2>LIMITED EDITION</h2>
-                  <h1>BAR SOAPS</h1>
-                  <p>New spring arrivals starting at $5.99</p>
-                  <a href="#" class="primery-btn">Shop Now</a>
-                </div>
-              </div>   
-            </div> -->
-          </div>
-        <!-- If we need navigation buttons -->
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-<!--     </div>
-</div>    -->
-
-<script>
-  $(document).ready(function() {
-// Swiper: Slider
-    new Swiper('.swiper-container', {
-        loop: true,
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',
-        slidesPerView: 1,
-        paginationClickable: true,
-        breakpoints: {
-            1920: {
-                slidesPerView: 1,
-                spaceBetween: 30
-            },
-            1028: {
-                slidesPerView: 1,
-                spaceBetween: 30
-            },
-            480: {
-                slidesPerView: 1,
-                spaceBetween: 10
-            }
-        }
-    });
-});
-
-</script>
 
 {% schema %}
   {
