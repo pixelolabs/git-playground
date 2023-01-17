@@ -21,7 +21,7 @@
 {% section 'mbb-four-column-section' %}
 {% endcomment %}
 {% section 'test' %}
-
+ <script>console.log({{ product | json }});</script>
 {% for product in collection.products %} 
 	{{ product.title }} 
 {% endfor %}
