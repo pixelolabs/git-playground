@@ -18,8 +18,12 @@
                   {% if section.settings.my_sub_heading %}
                   <h1>{{ section.settings.my_sub_heading }}</h1>
                   {% endif %}
-                  <p>New spring arrivals starting at $5.99</p>
+                  {% if section.settings.my_description %}
+                  <p>{{ section.settings.my_description }}</p>
+                  {% endif %}
+                  {% if section.settings.my_description %}
                   <a href="#" class="primery-btn">Shop Now</a>
+                  {% endif %}
                 </div>
               </div>   
             </div>
@@ -76,29 +80,36 @@
 {% schema %}
   {
   "name": "Hero Banner",
-  "settings": [
-    {
-      "type": "header",
-      "content": "My settings"
-    },
-    {
-      "type": "text",
-      "id": "my_heading",
-      "label": "My heading label",
-      "default": "Enter heading here"
-    },
-    {
-      "type": "text",
-      "id": "my_sub_heading",
-      "label": "My sub-heading label",
-      "default": "Enter sub-heading here"
-    },
-    {
-      "type": "textarea",
-      "id": "my_description",
-      "label": "Description",
-      "default": "Description"
-    }
-  ]
+    "blocks": [{
+      "name": "Slides",
+      "type": "slide",
+        "settings": [
+          {
+            "type": "header",
+            "content": "My settings"
+          },
+          {
+            "type": "text",
+            "id": "my_heading",
+            "label": "My heading label",
+            "default": "Enter heading here"
+          },
+          {
+            "type": "text",
+            "id": "my_sub_heading",
+            "label": "My sub-heading label",
+            "default": "Enter sub-heading here"
+          },
+          
+          {
+            "type": "textarea",
+            "id": "my_description",
+            "label": "Description",
+            "default": "Description"
+          }
+        ]
+         
+    }]
+    
 }
 {% endschema %}
