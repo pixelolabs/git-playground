@@ -1,5 +1,11 @@
 {% assign var = "hello" %}
 {{ var }}
+
+Array
+{% assign array_string = "1,2,3,4,5" %}
+{% assign array = array_string | split: "," %}
+{{ array }}
+
 {% comment %} {% section 'hero-banner' %}
 {% section 'full-width-text-component' %}
 {% section 'four-column-section' %}
