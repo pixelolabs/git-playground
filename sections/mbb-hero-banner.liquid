@@ -15,7 +15,9 @@
                   {% if section.settings.my_heading %}
                   <h2>{{ section.settings.my_heading }}</h2>
                   {% endif %}
-                  <h1>BAR SOAPS</h1>
+                  {% if section.settings.my_sub_heading %}
+                  <h1>{{ section.settings.my_sub_heading }}</h1>
+                  {% endif %}
                   <p>New spring arrivals starting at $5.99</p>
                   <a href="#" class="primery-btn">Shop Now</a>
                 </div>
