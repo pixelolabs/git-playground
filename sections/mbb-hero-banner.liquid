@@ -13,25 +13,12 @@
      {% endif %}  
   {% endfor %}
 
-  {%- if section.settings.show_product_recommendations -%}
-  <div class="product-recommendations" data-product-id="{{ product.id }}" data-limit="4">
-    {%- if recommendations.products_count > 0 -%}
-      <h2>You may also like</h2>
-      <ul>
-        {%- for product in recommendations.products -%}
-        <li>
-          <a href="{{ product.url }}">
-            <img src="{{ product.featured_image | img_url: '300x300' }}" alt="{{ product.featured_image.alt }}" />
-            <p>{{ product.title }}</p>
-            <p>{{ product.price | money}}</p>
-          </a>
-        </li>
-        {%- endfor -%}
-      </ul>
-    {%- endif -%}
-  </div>
-{%- endif -%}
-
+  {% for collection in collections %}
+ {% for product in collection.products %}
+     {% if forloop.index == 1%}
+     {% comment %}display product{% endcomment %}
+     {% endif %}
+ {% endfor %} {% endfor %}
 
 
   
@@ -108,7 +95,6 @@
 
 </script>
 
-{% comment %}
 {% schema %}
   {
   "name": "Hero Banner",
@@ -144,21 +130,5 @@
          
     }]
       
-},
-
-{% endschema %}
-{% endcomment %}
-
-{% schema %}
-{
-  "name": "Product recommendations",
-  "settings": [
-    {
-      "type": "checkbox",
-      "id": "show_product_recommendations",
-      "label": "Enable product recommendations",
-      "default": false
-    }
-  ]
 }
 {% endschema %}
